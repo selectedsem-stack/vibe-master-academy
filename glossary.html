@@ -46,7 +46,7 @@
         placeholder="חפש מושג… (Python, brew, משתנה...)"
         aria-label="חיפוש מושג במילון"
       >
-      <span class="glossary-search__count">28 מושגים</span>
+      <span class="glossary-search__count">39 מושגים</span>
     </div>
 
     <div class="glossary-filters" role="group" aria-label="קטגוריות">
@@ -226,6 +226,72 @@
         <span class="term__category term__category--concepts">מושג בסיסי</span>
         <h3 class="term__name">Key <span class="term__en">מפתח</span></h3>
         <p>השם של ערך בdict. בדוגמה <code>{"name": "מנגו"}</code> — <code>name</code> הוא הkey, <code>"מנגו"</code> הוא הvalue.</p>
+      </div>
+
+      <div class="term" id="http" data-category="concepts">
+        <span class="term__category term__category--concepts">תקשורת רשת</span>
+        <h3 class="term__name">HTTP <span class="term__en">HyperText Transfer Protocol</span></h3>
+        <p>השפה בה דפדפנים ושרתים מדברים. כל קריאה ל-API היא בעצם HTTP request — בקשה ותגובה.</p>
+      </div>
+
+      <div class="term" id="request" data-category="concepts">
+        <span class="term__category term__category--concepts">תקשורת רשת</span>
+        <h3 class="term__name">Request <span class="term__en">בקשה</span></h3>
+        <p>הצד שאתה שולח כשמבקש משהו מ-API. כולל method (GET/POST), URL, headers, ולפעמים body.</p>
+      </div>
+
+      <div class="term" id="response" data-category="concepts">
+        <span class="term__category term__category--concepts">תקשורת רשת</span>
+        <h3 class="term__name">Response <span class="term__en">תגובה</span></h3>
+        <p>מה ש-API מחזיר אחרי בקשה. כולל status code (200/404/500), headers, ו-body (בדרך כלל JSON).</p>
+      </div>
+
+      <div class="term" id="status-code" data-category="concepts">
+        <span class="term__category term__category--concepts">תקשורת רשת</span>
+        <h3 class="term__name">Status Code <span class="term__en">קוד מצב</span></h3>
+        <p>מספר תלת-ספרתי שמתאר מה קרה בקריאה. <code>200</code> = הצלחה, <code>404</code> = לא נמצא, <code>500</code> = שגיאת שרת.</p>
+      </div>
+
+      <div class="term" id="header" data-category="concepts">
+        <span class="term__category term__category--concepts">תקשורת רשת</span>
+        <h3 class="term__name">Header</h3>
+        <p>מידע נוסף שנשלח עם בקשה או תגובה. למשל <code>Authorization</code> נושא את מפתח ה-API, <code>Content-Type</code> מסביר את הפורמט.</p>
+      </div>
+
+      <div class="term" id="exception" data-category="concepts">
+        <span class="term__category term__category--concepts">מושג בסיסי</span>
+        <h3 class="term__name">Exception <span class="term__en">חריגה</span></h3>
+        <p>שגיאה בזמן ריצה. למשל קריאת קובץ שלא קיים. ב-Python מטפלים בה עם try/except.</p>
+      </div>
+
+      <div class="term" id="try-except" data-category="language">
+        <span class="term__category term__category--language">תחביר</span>
+        <h3 class="term__name">try / except</h3>
+        <p>בלוק קוד ב-Python שתופס שגיאות. הקוד ב-<code>try</code> רץ; אם יש שגיאה — <code>except</code> מטפל בה במקום לקרוס.</p>
+      </div>
+
+      <div class="term" id="pip" data-category="tools">
+        <span class="term__category term__category--tools">כלי</span>
+        <h3 class="term__name">pip</h3>
+        <p>מנהל החבילות של Python. <code>pip install requests</code> מתקין ספרייה ל-Python שלך.</p>
+      </div>
+
+      <div class="term" id="library" data-category="concepts">
+        <span class="term__category term__category--concepts">מושג בסיסי</span>
+        <h3 class="term__name">Library <span class="term__en">ספרייה</span></h3>
+        <p>אוסף קוד מוכן שכתבו אחרים. במקום לכתוב כל דבר מאפס, מייבאים ספרייה ומשתמשים בפונקציות שלה.</p>
+      </div>
+
+      <div class="term" id="branch" data-category="git">
+        <span class="term__category term__category--git">Git</span>
+        <h3 class="term__name">Branch <span class="term__en">ענף</span></h3>
+        <p>גרסה מקבילה של הקוד. <code>main</code> הוא הענף הראשי. עובדים על ענף נפרד ואז ממזגים.</p>
+      </div>
+
+      <div class="term" id="pull-request" data-category="git">
+        <span class="term__category term__category--git">Git</span>
+        <h3 class="term__name">Pull Request <span class="term__en">PR</span></h3>
+        <p>בקשה למזג שינויים מענף לתוך main. ב-GitHub זה גם המקום ל-code review לפני המיזוג.</p>
       </div>
 
     </div>

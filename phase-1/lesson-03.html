@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 3 · VMA</title>
+  <title>Lesson 3 — APIs + Git + Errors · VMA</title>
   <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-4">
 </head>
 <body>
+
+  <div class="reading-progress"><div class="reading-progress__fill"></div></div>
 
   <header class="site-header">
     <div class="container site-header__inner">
@@ -16,13 +18,14 @@
       </a>
       <nav class="site-nav">
         <a href="../index.html">בית</a>
-        <a href="index.html">Phase 1</a>
+        <a href="index.html" class="active">Phase 1</a>
         <a href="../glossary.html">מילון</a>
       </nav>
     </div>
   </header>
 
-  <main class="container lesson">
+  <main class="container">
+
     <nav class="breadcrumbs" aria-label="פירורי לחם">
       <a href="../index.html" class="breadcrumbs__home">בית</a>
       <span class="breadcrumbs__separator">›</span>
@@ -31,13 +34,756 @@
       <span class="breadcrumbs__current">Lesson 3 — APIs + Git + Errors</span>
     </nav>
 
-    <div class="lesson__meta">Phase 1 · Lesson 3 · 5 שעות</div>
-    <h1 class="lesson__title">APIs + Git + Errors</h1>
-    <p class="lesson__intro">HTTP, requests, try/except, git workflow.</p>
+    <!-- Lesson Hero -->
+    <section class="lesson-hero">
+      <div class="lesson-hero__badges">
+        <a href="index.html" class="lesson-hero__badge lesson-hero__badge--phase">Phase 1 · Foundations</a>
+        <span class="lesson-hero__badge lesson-hero__badge--time">⏱ 5 שעות לימוד</span>
+        <span class="lesson-hero__badge lesson-hero__badge--level">📊 בונה על Lessons 1-2</span>
+      </div>
+      <h1 class="lesson-hero__title">Lesson 3 — APIs + Git + Errors</h1>
+      <p class="lesson-hero__intro">
+        ב-Lesson 2 קראנו <span class="term" data-term-id="json">JSON</span> מקובץ מקומי.
+        עכשיו נעלה שלב — נקרא JSON מהאינטרנט ממש, נשלח בקשות ל-<span class="term" data-term-id="api">API</span> של Claude,
+        נלמד לתפוס שגיאות בצורה נכונה, ונבנה <span class="term" data-term-id="git">Git</span> workflow יומי שישרת אותך
+        בכל פרויקט עתידי.
+      </p>
 
-    <div class="callout callout--warning">
-      <div class="callout__title">🔒 השיעור ייכתב בקרוב</div>
-      <p>תוכן השיעור ייכתב לפני שתגיע אליו. כרגע השלם את <a href="lesson-02.html">Lesson 02</a> ראשון.</p>
+      <div class="objectives">
+        <div class="objectives__title">בסוף השיעור תדע</div>
+        <ul class="objectives__list">
+          <li>מה זה <span class="term" data-term-id="http">HTTP</span> ואיך <span class="term" data-term-id="request">request</span> ו-<span class="term" data-term-id="response">response</span> עובדים</li>
+          <li>ההבדל בין GET ל-POST, ומה <span class="term" data-term-id="status-code">status codes</span> אומרים</li>
+          <li>להשתמש ב-<span class="term" data-term-id="library">ספריית</span> <code>requests</code> ב-<span class="term" data-term-id="python">Python</span></li>
+          <li>לשלוח קריאה אמיתית ל-Claude API ולקבל תשובה בעברית</li>
+          <li>לכתוב <span class="term" data-term-id="try-except">try/except</span> שתופס <span class="term" data-term-id="exception">exceptions</span> מ-API calls</li>
+          <li>לעבוד עם <span class="term" data-term-id="git">Git</span> יום-יום: status, add, <span class="term" data-term-id="commit">commit</span>, <span class="term" data-term-id="push">push</span></li>
+        </ul>
+      </div>
+
+      <div class="lesson-hero__chips">
+        <span class="lesson-hero__chip lesson-hero__chip--accent">HTTP</span>
+        <span class="lesson-hero__chip">GET / POST</span>
+        <span class="lesson-hero__chip">requests</span>
+        <span class="lesson-hero__chip">Claude API</span>
+        <span class="lesson-hero__chip">try/except</span>
+        <span class="lesson-hero__chip">Git Workflow</span>
+        <span class="lesson-hero__chip">pip</span>
+      </div>
+    </section>
+
+    <!-- TOC -->
+    <nav class="lesson-toc">
+      <a href="#part-1" class="lesson-toc__item">חלק 1: HTTP ו-APIs</a>
+      <a href="#part-2" class="lesson-toc__item">חלק 2: Python requests</a>
+      <a href="#part-3" class="lesson-toc__item">חלק 3: Error Handling</a>
+      <a href="#part-4" class="lesson-toc__item">חלק 4: Git Workflow</a>
+      <a href="#part-5" class="lesson-toc__item">חלק 5: Review</a>
+    </nav>
+
+    <!-- Part 1: HTTP & APIs -->
+    <section class="lesson-section" id="part-1">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">1</div>
+        <h2 class="lesson-section__title">HTTP ו-APIs — איך תוכנות מדברות</h2>
+        <span class="lesson-section__time">1.5 שעות</span>
+      </div>
+
+      <div class="refresher">
+        <div class="refresher__title">רענון מ-Lesson 2</div>
+        <p>ב-Lesson 2 השתמשנו בנתונים <span class="term" data-term-id="json">JSON</span> מקובץ מקומי. עכשיו נראה איך לקבל JSON מאתר אחר באינטרנט — כלומר, לקרוא <span class="term" data-term-id="api">API</span>.</p>
+      </div>
+
+      <h3>מה זה <span class="term" data-term-id="api">API</span> באמת?</h3>
+      <p>
+        API הוא "תפריט הזמנות" של שירות אינטרנטי. הדמיון הכי קל להבין:
+      </p>
+      <ul>
+        <li><strong>אתה (הלקוח)</strong> = קוד ה-Python שלך</li>
+        <li><strong>המלצר</strong> = ה-API — מקבל את הבקשה ומחזיר תוצאה</li>
+        <li><strong>המטבח</strong> = השרת של Claude / GitHub / Google</li>
+        <li><strong>האוכל</strong> = ה-<span class="term" data-term-id="json">JSON</span> עם המידע שביקשת</li>
+      </ul>
+      <p>
+        אתה לא נכנס למטבח בעצמך. אתה שולח <span class="term" data-term-id="request">request</span> מסוים,
+        ומקבל <span class="term" data-term-id="response">response</span> מסוים.
+        זה כל מה ש-<span class="term" data-term-id="http">HTTP</span> הוא — שפת התקשורת בין לקוח לשרת.
+      </p>
+
+      <hr class="mini-divider">
+
+      <h3>GET לעומת POST</h3>
+      <p>
+        שתי ה-methods הנפוצות ביותר ב-HTTP:
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>מה הוא עושה</th>
+            <th>מתי משתמשים</th>
+            <th>דוגמה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>GET</code></td>
+            <td>מבקש מידע מהשרת</td>
+            <td>קריאה בלבד — שליפת נתונים</td>
+            <td>שלוף פרטי משתמש מ-GitHub</td>
+          </tr>
+          <tr>
+            <td><code>POST</code></td>
+            <td>שולח מידע לשרת + מבקש תגובה</td>
+            <td>יצירה / פעולה / שליחה</td>
+            <td>שלח הודעה ל-Claude API</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">חוק האגודל</div>
+        <p>קריאה בלבד → <code>GET</code>. שליחת נתונים או פעולה → <code>POST</code>. Claude API הוא תמיד <code>POST</code> — אתה שולח את ההודעה שלך.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3><span class="term" data-term-id="status-code">Status Codes</span> — מה ה-API אומר לך</h3>
+      <p>
+        כל <span class="term" data-term-id="response">response</span> מ-API כולל מספר תלת-ספרתי שמסביר מה קרה.
+        חשוב ללמוד אותם בעל פה:
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">status_codes.txt</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>200  OK              — הצלחה מלאה ✓
+201  Created         — נוצר משאב חדש ✓
+400  Bad Request     — הבקשה שלך שגויה (בדוק פרמטרים)
+401  Unauthorized    — מפתח API שגוי או חסר
+403  Forbidden       — אין לך הרשאה
+404  Not Found       — ה-URL לא קיים
+429  Too Many Req.   — חרגת ממגבלת קריאות (המתן)
+500  Server Error    — שגיאה בצד השרת (לא אשמתך)</code></pre>
+      </div>
+
+      <div class="output">
+        <div class="output__label">לזכור בקלות</div>
+<pre>2xx = הצלחה
+4xx = טעות שלך
+5xx = טעות של השרת</pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3><span class="term" data-term-id="header">Headers</span> — המידע שנוסע עם הבקשה</h3>
+      <p>
+        Headers הם "מטא-נתונים" שנשלחים עם כל בקשה. שני ה-headers החשובים ביותר ב-API calls:
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">headers_example.txt</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>x-api-key: sk-ant-api03-...         (מי אתה — מפתח ה-API)
+anthropic-version: 2023-06-01        (איזו גרסת API אתה משתמש)
+content-type: application/json       (פורמט הנתונים שאתה שולח)</code></pre>
+      </div>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">מפתח API = סיסמה</div>
+        <p>
+          מפתח ה-API שלך הוא בדיוק כמו סיסמה. <strong>לעולם</strong> אל תכניס אותו ישירות בקוד.
+          תמיד תשמור אותו ב-environment variable ותטען עם <code>os.environ.get("ANTHROPIC_API_KEY")</code>.
+          אם בטעות עשית commit למפתח — תחליף אותו מיד.
+        </p>
+      </div>
+
+      <button class="section-complete-btn" data-section="part-1">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 2: Python requests -->
+    <section class="lesson-section" id="part-2">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">2</div>
+        <h2 class="lesson-section__title">Python <code>requests</code> — הקריאה הראשונה שלך</h2>
+        <span class="lesson-section__time">1.5 שעות</span>
+      </div>
+
+      <h3>התקנת ספריית <span class="term" data-term-id="pip">pip</span></h3>
+      <p>
+        <code>requests</code> היא <span class="term" data-term-id="library">ספרייה</span> חיצונית — לא מגיעה עם Python מובנית.
+        מתקינים עם <span class="term" data-term-id="pip">pip</span>:
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>pip3 install requests</code></pre>
+      </div>
+
+      <div class="output">
+        <div class="output__label">פלט צפוי</div>
+<pre>Successfully installed requests-2.x.x</pre>
+      </div>
+
+      <p>אחרי ההתקנה, מייבאים בתוך הקוד עם <code>import requests</code>.</p>
+
+      <hr class="mini-divider">
+
+      <h3>Hello World: קריאת GET ראשונה</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">get_demo.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>import requests
+
+# קריאת GET — שולפים מידע
+response = requests.get("https://api.github.com")
+
+print(response.status_code)    # 200
+print(type(response))          # &lt;class 'requests.models.Response'&gt;</code></pre>
+      </div>
+
+      <p>ה-<span class="term" data-term-id="response">response</span> הוא אובייקט עם שדות שימושיים:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>שדה</th>
+            <th>תוכן</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>response.status_code</code></td>
+            <td>קוד המצב (200, 404, 500...)</td>
+          </tr>
+          <tr>
+            <td><code>response.json()</code></td>
+            <td>ה-body כ-dict Python</td>
+          </tr>
+          <tr>
+            <td><code>response.text</code></td>
+            <td>ה-body כ-string גולמי</td>
+          </tr>
+          <tr>
+            <td><code>response.headers</code></td>
+            <td>כל ה-<span class="term" data-term-id="header">headers</span> של התגובה</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr class="mini-divider">
+
+      <h3>Parse JSON מ-response</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">parse_json.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>import requests
+
+response = requests.get("https://api.github.com")
+
+# .json() ממיר את ה-body ל-dict Python
+data = response.json()
+
+# עכשיו data הוא dict רגיל — אפשר לגשת לפי key
+print(data.get("current_user_url"))
+# https://api.github.com/user</code></pre>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">זיכרון מ-Lesson 2</div>
+        <p>כשעשינו <code>json.load(f)</code> מקובץ — קיבלנו dict Python. כשעושים <code>response.json()</code> מ-API — מקבלים בדיוק אותו דבר. הכלים זהים, רק המקור שונה.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>קריאת POST ל-Claude API</h3>
+      <p>
+        זו הקריאה האמיתית. שים לב ל-<span class="term" data-term-id="header">headers</span> ולמבנה ה-body.
+        <strong>שים לב שהמפתח מגיע מ-environment variable, לא מהקוד עצמו.</strong>
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">claude_api_call.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>import requests
+import os
+
+API_KEY = os.environ.get("ANTHROPIC_API_KEY")
+
+response = requests.post(
+    "https://api.anthropic.com/v1/messages",
+    headers={
+        "x-api-key": API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json"
+    },
+    json={
+        "model": "claude-opus-4-7",
+        "max_tokens": 500,
+        "messages": [
+            {"role": "user", "content": "סכם בעברית: Python היא שפה פופולרית."}
+        ]
+    }
+)
+
+if response.status_code == 200:
+    data = response.json()
+    print(data["content"][0]["text"])
+else:
+    print(f"שגיאה: {response.status_code}")</code></pre>
+      </div>
+
+      <p>נקודות חשובות בקוד:</p>
+      <ul>
+        <li><code>os.environ.get("ANTHROPIC_API_KEY")</code> — מפתח מגיע מהסביבה, לא מהקוד</li>
+        <li><code>json={...}</code> — requests ממיר אוטומטית ל-JSON ומוסיף Content-Type header</li>
+        <li><code>data["content"][0]["text"]</code> — זה המבנה הספציפי של תגובת Claude</li>
+      </ul>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">איך מגדירים environment variable?</div>
+        <p>
+          ב-Terminal: <code>export ANTHROPIC_API_KEY="sk-ant-..."</code><br>
+          או תוסיף לקובץ <code>.env</code> ותשתמש בספרייה <code>python-dotenv</code>.<br>
+          <strong>לא לשים את ה-.env ב-git commit!</strong>
+        </p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>תרגיל: Claude מסכם בעברית</h3>
+      <p>
+        צור קובץ: <code>exercises/lesson-03/claude_summary.py</code><br>
+        כתוב קוד שמקבל מהמשתמש פסקה כלשהי (עם <code>input()</code>) ושולח אותה ל-Claude עם הבקשה "סכם בעברית".
+      </p>
+
+      <p><strong>אל תפתח את Claude עדיין.</strong> נסה לבד לפחות 20 דקות.</p>
+
+      <details class="hint">
+        <summary>רמז 1 — איך מקבלים input ומשלבים עם הבקשה?</summary>
+        <p>
+          השתמש ב-<code>text = input("הכנס טקסט: ")</code>.<br>
+          ואז ה-content יהיה: <code>f"סכם בעברית: {text}"</code>
+        </p>
+      </details>
+
+      <details class="hint">
+        <summary>רמז 2 — איך שולפים את הטקסט מהתגובה?</summary>
+        <p>
+          תגובת Claude מחזירה dict עם מפתח <code>"content"</code> — רשימה של אובייקטים.<br>
+          הטקסט הוא תמיד ב: <code>data["content"][0]["text"]</code>
+        </p>
+      </details>
+
+      <details class="solution">
+        <summary>פתרון מלא (רק אחרי שניסית!)</summary>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__filename">claude_summary.py</span>
+            <button class="code-block__copy">העתק</button>
+          </div>
+<pre><code>import requests
+import os
+
+API_KEY = os.environ.get("ANTHROPIC_API_KEY")
+
+text = input("הכנס טקסט לסיכום: ")
+
+response = requests.post(
+    "https://api.anthropic.com/v1/messages",
+    headers={
+        "x-api-key": API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json"
+    },
+    json={
+        "model": "claude-opus-4-7",
+        "max_tokens": 500,
+        "messages": [
+            {"role": "user", "content": f"סכם בעברית: {text}"}
+        ]
+    }
+)
+
+if response.status_code == 200:
+    data = response.json()
+    print("\nסיכום Claude:")
+    print(data["content"][0]["text"])
+else:
+    print(f"שגיאה: {response.status_code}")</code></pre>
+        </div>
+        <p>הרץ עם <code>python3 claude_summary.py</code>. נסה עם טקסטים שונים בעברית ובאנגלית.</p>
+      </details>
+
+      <button class="section-complete-btn" data-section="part-2">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 3: Error Handling -->
+    <section class="lesson-section" id="part-3">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">3</div>
+        <h2 class="lesson-section__title">Error Handling — מה קורה כשדברים נשברים</h2>
+        <span class="lesson-section__time">1 שעה</span>
+      </div>
+
+      <h3>למה צריך error handling?</h3>
+      <p>
+        ב-API calls דברים נשברים <strong>כל הזמן</strong>. אין אינטרנט, מפתח פג תוקף,
+        השרת עמוס, הגעת ל-rate limit. בלי error handling — הקוד קורס עם traceback
+        ומפסיק לרוץ לגמרי. עם error handling — הקוד מטפל בבעיה בצורה נקייה.
+      </p>
+
+      <div class="callout callout--info">
+        <div class="callout__title">מה זה Exception?</div>
+        <p>
+          <span class="term" data-term-id="exception">Exception</span> (חריגה) היא שגיאה בזמן ריצה.
+          Python "זורק" exception כשמשהו משתבש — חיבור נפל, קובץ לא קיים, מפתח לא נמצא.
+          ה-<span class="term" data-term-id="try-except">try/except</span> מאפשר לתפוס את ה-exception לפני שהוא קורס את התוכנית.
+        </p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3><span class="term" data-term-id="try-except">try / except</span> — הסינטקס הבסיסי</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">try_except_demo.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>import requests
+
+try:
+    # קוד שעלול להיכשל
+    response = requests.get("https://api.github.com", timeout=5)
+    response.raise_for_status()   # זורק exception אם status code &gt;= 400
+    data = response.json()
+    print(data)
+
+except requests.exceptions.Timeout:
+    print("פסק זמן — השרת לא ענה תוך 5 שניות")
+
+except requests.exceptions.HTTPError as e:
+    print(f"שגיאת HTTP: {e}")
+
+except requests.exceptions.ConnectionError:
+    print("שגיאת חיבור — בדוק אינטרנט")
+
+except Exception as e:
+    # תופס כל שגיאה אחרת שלא ציפינו לה
+    print(f"שגיאה לא צפויה: {e}")</code></pre>
+      </div>
+
+      <p>שים לב ל-<code>response.raise_for_status()</code> — זה כלי חשוב:
+        אם ה-<span class="term" data-term-id="status-code">status code</span> הוא 4xx או 5xx,
+        הוא אוטומטית זורק <code>HTTPError</code>. בלעדיו תצטרך לבדוק בעצמך.
+      </p>
+
+      <hr class="mini-divider">
+
+      <h3>מתי לתפוס exception ומתי לא?</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">when_to_catch.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code># לא טוב — בולע שגיאות בשקט
+try:
+    data = call_api()
+except:
+    pass    # הכי גרוע שאפשר — שגיאה נעלמת בשקט
+
+# לא טוב — תופס יותר מדי
+try:
+    data = call_api()
+except Exception:
+    print("משהו נשבר")    # אין מידע מה קרה
+
+# טוב — תופס ספציפי ומטפל נכון
+try:
+    data = call_api()
+except requests.exceptions.Timeout:
+    print("timeout — נסה שוב בעוד כמה שניות")
+    data = None
+except requests.exceptions.HTTPError as e:
+    if e.response.status_code == 429:
+        print("rate limit — המתן לפני הניסיון הבא")
+    raise    # שגיאות אחרות — זרוק הלאה</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">הכלל הפשוט</div>
+        <p>תפוס exception רק כשאתה יודע מה לעשות עם השגיאה הספציפית הזאת. אחרת — תן לקוד לקרוס בצורה ברורה. traceback גלוי עדיף על שגיאה בלועה.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>retry פשוט עם try/except</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">retry_example.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>import requests
+import time
+
+def call_api_with_retry(url, max_tries=3):
+    """קורא ל-API עם ניסיון חוזר אם יש timeout או rate limit."""
+    for attempt in range(1, max_tries + 1):
+        try:
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.Timeout:
+            print(f"Timeout בניסיון {attempt}/{max_tries}")
+            if attempt == max_tries:
+                raise    # הניסיון האחרון — זרוק הלאה
+        except requests.exceptions.HTTPError as e:
+            if response.status_code == 429:
+                wait = attempt * 2
+                print(f"Rate limit — מחכה {wait} שניות...")
+                time.sleep(wait)
+            else:
+                raise    # שגיאת HTTP אחרת — זרוק הלאה
+
+# שימוש:
+data = call_api_with_retry("https://api.github.com")</code></pre>
+      </div>
+
+      <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 4: Git Workflow -->
+    <section class="lesson-section" id="part-4">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">4</div>
+        <h2 class="lesson-section__title">Git Workflow היומי</h2>
+        <span class="lesson-section__time">30 דקות</span>
+      </div>
+
+      <div class="refresher">
+        <div class="refresher__title">רענון מ-Lessons 1-2</div>
+        <p>ב-Lessons 1 ו-2 עשינו <span class="term" data-term-id="git">Git</span> <span class="term" data-term-id="commit">commit</span> + <span class="term" data-term-id="push">push</span>. עכשיו נלמד את הרוטינה המלאה וגם branching בסיסי.</p>
+      </div>
+
+      <h3>הפקודות שתשתמש בהן יום-יום</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal — Git daily workflow</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>git status                              # מה השתנה?
+git add lesson3-exercise.py             # הוסף לstaging
+git commit -m "Lesson 3: API + error handling"  # commit עם הודעה
+git push                                # שלח ל-GitHub</code></pre>
+      </div>
+
+      <p>הסדר הוא תמיד: <strong>status → add → commit → push</strong>.</p>
+
+      <hr class="mini-divider">
+
+      <h3>git pull — לפני שמתחילים לעבוד</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>git pull        # מושך שינויים מ-GitHub למחשב שלך</code></pre>
+      </div>
+
+      <p>
+        חשוב לעשות <code>git pull</code> בתחילת כל עבודה, במיוחד אם עובדים ממחשבים שונים.
+        זה מונע conflicts.
+      </p>
+
+      <hr class="mini-divider">
+
+      <h3>מה זה commit message טוב?</h3>
+      <p>commit message טוב עונה על: <strong>מה השתנה ולמה?</strong></p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal — commit messages</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code># לא טוב — לא אומר כלום
+git commit -m "update"
+git commit -m "fix"
+git commit -m "asdf"
+
+# טוב — ברור מה ולמה
+git commit -m "Lesson 3: first Claude API call works"
+git commit -m "Add try/except for timeout and 429 errors"
+git commit -m "Fix: load API key from os.environ, not hardcode"</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">נוסחה פשוטה</div>
+        <p>Verb + מה + (למה). לדוגמה: "Add error handling for rate limit" או "Fix: Claude API key not loading from env".</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3><span class="term" data-term-id="branch">Branch</span> בסיסי — ענפים של קוד</h3>
+      <p>
+        <span class="term" data-term-id="branch">Branch</span> הוא גרסה מקבילה של הקוד. מאפשר לעבוד על פיצ'ר חדש בלי לשבור את main.
+        כשמסיימים — ממזגים חזרה.
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal — branching</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code># יצירת ענף חדש מ-main
+git checkout -b feature/lesson3-exercise
+
+# עבוד על הקוד, עשה commits...
+git add .
+git commit -m "Lesson 3 exercise: Claude summary script"
+
+# חזרה ל-main
+git checkout main
+
+# מיזוג הענף
+git merge feature/lesson3-exercise</code></pre>
+      </div>
+
+      <p>
+        בשלב הזה תעבוד ישירות על <code>main</code> — branching יהיה חשוב יותר ב-Phase 2
+        כשתעבוד על פרויקטים גדולים יותר.
+      </p>
+
+      <p>
+        ב-<span class="term" data-term-id="github">GitHub</span> יש מושג נוסף —
+        <span class="term" data-term-id="pull-request">Pull Request</span> (PR): בקשה רשמית למזג ענף לתוך main.
+        זה גם המקום ל-code review לפני המיזוג.
+      </p>
+
+      <hr class="mini-divider">
+
+      <h3>מה לעולם לא לעשות</h3>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">קבצים שאסור לעשות להם commit</div>
+        <p>
+          בדוק שה-<code>.gitignore</code> שלך כולל את הקבצים האלה:
+        </p>
+      </div>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">.gitignore</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>.env                # משתני סביבה עם מפתחות API — הכי חשוב!
+venv/               # תיקיית virtualenv — כבדה ומיותרת
+__pycache__/        # קבצי cache של Python
+*.pyc               # קבצים מקומפלים
+.DS_Store           # קובץ מטא של macOS</code></pre>
+      </div>
+
+      <p>
+        <strong>אם בטעות עשית commit למפתח API</strong> — החלף את המפתח מיד ב-Anthropic Console.
+        נחשב גנוב גם אם ה-repo פרטי — bots סורקים GitHub כל הזמן.
+      </p>
+
+      <button class="section-complete-btn" data-section="part-4">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 5: Review -->
+    <section class="lesson-section" id="part-5">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">5</div>
+        <h2 class="lesson-section__title">Review + שאלות סיכום</h2>
+        <span class="lesson-section__time">30 דקות</span>
+      </div>
+
+      <h3>4 שאלות לפני שאתה ממשיך</h3>
+      <p>ענה לעצמך (בלי לגלול חזרה):</p>
+      <ol>
+        <li>מה ההבדל בין <code>GET</code> ל-<code>POST</code>? תן דוגמה לכל אחד.</li>
+        <li>למה אסור לשים מפתח <span class="term" data-term-id="api">API</span> ישירות בקוד? מה עושים במקום?</li>
+        <li>מתי אתה רוצה לתפוס <span class="term" data-term-id="exception">exception</span> ומתי עדיף לתת לקוד לקרוס?</li>
+        <li>מה זה commit message טוב? תן דוגמה אחת טובה ואחת גרועה.</li>
+      </ol>
+
+      <p>אם אתה לא בטוח על אחת מאלה — חזור על החלק הרלוונטי לפני שעוברים ל-Lesson 4.</p>
+
+      <hr class="mini-divider">
+
+      <h3>עדכן את PROGRESS.md</h3>
+      <p>פתח <code>PROGRESS.md</code> בשורש הפרויקט. סמן ✅ ליד הסעיפים של Lesson 3. מלא:</p>
+      <ul>
+        <li><strong>שעות בפועל:</strong> כמה זמן זה לקח באמת</li>
+        <li><strong>קושי (1-5):</strong> סובייקטיבי</li>
+        <li><strong>הערות:</strong> מה הפתיע, מה לא היה ברור, מה רצית עוד</li>
+      </ul>
+
+      <button class="section-complete-btn" data-section="part-5">סיימתי חלק זה ✓</button>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__dot"></span>
+    </div>
+
+    <!-- Checkpoint Card -->
+    <section class="lesson-section" id="checkpoint">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">✓</div>
+        <h2 class="lesson-section__title">Checkpoint — השלמת Lesson 3</h2>
+      </div>
+
+      <p>כשכל ה-✓ למטה ירוקים — אתה מוכן ל-Lesson 4.</p>
+
+      <div class="checklist">
+        <ul>
+          <li data-id="w3-first-api">קריאת <span class="term" data-term-id="api">API</span> ראשונה עבדה — קיבלת <span class="term" data-term-id="status-code">status code</span> 200</li>
+          <li data-id="w3-claude-api">Claude API החזיר תשובה בעברית</li>
+          <li data-id="w3-exception">תפסת <span class="term" data-term-id="exception">exception</span> לפחות פעם אחת עם <span class="term" data-term-id="try-except">try/except</span></li>
+          <li data-id="w3-commit"><span class="term" data-term-id="git">Git</span> <span class="term" data-term-id="commit">commit</span> עם הודעה ברורה</li>
+          <li data-id="w3-push">git <span class="term" data-term-id="push">push</span> הצליח</li>
+          <li data-id="w3-progress"><code>PROGRESS.md</code> מעודכן</li>
+          <li data-id="w3-get-post">הבנת מה ההבדל בין GET ל-POST</li>
+        </ul>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">משהו לא ברור?</div>
+        <p>אל תיתקע לבד יותר מ-30 דקות. שאל את Claude (בצ'אט או ב-Claude Code), או חזור על החלק הרלוונטי. אם אחרי 60 דקות עוד תקוע — תכתוב לי, ננווט יחד.</p>
+      </div>
+    </section>
+
+    <!-- Lesson Footer Navigation -->
+    <div class="lesson-footer">
+      <a href="lesson-02.html" class="lesson-nav-btn">
+        <div class="lesson-nav-btn__label">השיעור הקודם</div>
+        <div class="lesson-nav-btn__title">Lesson 2 — מבני נתונים + JSON</div>
+      </a>
+      <a href="lesson-04.html" class="lesson-nav-btn lesson-nav-btn--next">
+        <div class="lesson-nav-btn__label">השיעור הבא</div>
+        <div class="lesson-nav-btn__title">Lesson 4 — n8n + Portal Setup →</div>
+      </a>
     </div>
 
   </main>

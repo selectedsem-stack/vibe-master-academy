@@ -119,6 +119,50 @@
     'key': {
       title: 'Key (מפתח)',
       definition: 'השם של ערך בdict. ב-{"name": "מנגו"} — name הוא הkey, "מנגו" הוא הvalue.'
+    },
+    'http': {
+      title: 'HTTP',
+      definition: 'השפה בה דפדפנים ושרתים מדברים. כל קריאה ל-API היא HTTP request.'
+    },
+    'request': {
+      title: 'Request (בקשה)',
+      definition: 'הצד שאתה שולח. כולל method (GET/POST), URL, headers, ולפעמים body.'
+    },
+    'response': {
+      title: 'Response (תגובה)',
+      definition: 'מה ש-API מחזיר. כולל status code, headers, ו-body (בדרך כלל JSON).'
+    },
+    'status-code': {
+      title: 'Status Code',
+      definition: 'מספר תלת-ספרתי שמתאר מה קרה. 200 = הצלחה, 404 = לא נמצא, 500 = שגיאת שרת.'
+    },
+    'header': {
+      title: 'Header',
+      definition: 'מידע נוסף שנשלח עם בקשה. Authorization נושא את מפתח ה-API, Content-Type מסביר את הפורמט.'
+    },
+    'exception': {
+      title: 'Exception (חריגה)',
+      definition: 'שגיאה בזמן ריצה. ב-Python מטפלים בה עם try/except.'
+    },
+    'try-except': {
+      title: 'try / except',
+      definition: 'בלוק קוד שתופס שגיאות. הקוד ב-try רץ; אם יש שגיאה — except מטפל במקום לקרוס.'
+    },
+    'pip': {
+      title: 'pip',
+      definition: 'מנהל החבילות של Python. pip install requests מתקין ספרייה.'
+    },
+    'library': {
+      title: 'Library (ספרייה)',
+      definition: 'אוסף קוד מוכן. במקום לכתוב מאפס, מייבאים ספרייה ומשתמשים בפונקציות שלה.'
+    },
+    'branch': {
+      title: 'Branch (ענף)',
+      definition: 'גרסה מקבילה של הקוד. main הוא הענף הראשי. עובדים על ענף נפרד ואז ממזגים.'
+    },
+    'pull-request': {
+      title: 'Pull Request (PR)',
+      definition: 'בקשה למזג ענף לתוך main. גם המקום ל-code review לפני המיזוג.'
     }
   };
 
