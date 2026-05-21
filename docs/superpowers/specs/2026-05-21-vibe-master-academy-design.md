@@ -1,7 +1,7 @@
 # Vibe Master Academy — Curriculum Design Spec
 
 **Date:** 2026-05-21
-**Student:** Shai Hartmann (Head of SEO, Selected agency)
+**Student:** Shai Berdugo (Head of SEO, Selected agency)
 **Duration:** 32 weeks (2026-05-21 → 2026-12-31)
 **Total commitment:** ~140–150 hours (5h/week core + occasional bonus)
 **Expected budget:** ₪600–1,500

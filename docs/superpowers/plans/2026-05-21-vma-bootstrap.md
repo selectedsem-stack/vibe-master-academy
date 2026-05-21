@@ -128,7 +128,7 @@ Content (Hebrew, RTL-friendly markdown):
 
 ## רישיון
 
-פרטי — לשימוש אישי של Shai Hartmann.
+פרטי — לשימוש אישי של Shai Berdugo.
 ```
 
 - [ ] **Step 2: Write PROGRESS.md template**
@@ -926,7 +926,7 @@ Expected: file exists.
 
   <footer class="site-footer">
     <div class="container">
-      <p>Vibe Master Academy · נוצר במאי 2026 על ידי Shai Hartmann + Claude</p>
+      <p>Vibe Master Academy · נוצר במאי 2026 על ידי Shai Berdugo + Claude</p>
     </div>
   </footer>
 

@@ -357,6 +357,52 @@
     });
   }
 
+  // === Glossary search + filter ===
+  function setupGlossary() {
+    const searchInput = document.querySelector('.glossary-search__input');
+    const countEl = document.querySelector('.glossary-search__count');
+    const filterButtons = document.querySelectorAll('.glossary-filter');
+    const terms = document.querySelectorAll('.term');
+    const emptyState = document.querySelector('.glossary-empty');
+    if (!terms.length) return;
+
+    let activeCategory = 'all';
+    let query = '';
+
+    const apply = () => {
+      let visible = 0;
+      terms.forEach(term => {
+        const cat = term.dataset.category || '';
+        const text = (term.textContent || '').toLowerCase();
+        const matchCat = activeCategory === 'all' || cat === activeCategory;
+        const matchText = !query || text.includes(query);
+        const show = matchCat && matchText;
+        term.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      if (countEl) countEl.textContent = visible + ' מושגים';
+      if (emptyState) emptyState.style.display = visible === 0 ? 'block' : 'none';
+    };
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        query = e.target.value.toLowerCase().trim();
+        apply();
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        apply();
+      });
+    });
+
+    apply();
+  }
+
   // === Init ===
   document.addEventListener('DOMContentLoaded', () => {
     highlightNav();
@@ -369,5 +415,6 @@
     setupReadingProgress();
     setupBackToTop();
     setupMobileMenu();
+    setupGlossary();
   });
 })();
