@@ -23,7 +23,14 @@
   </header>
 
   <main class="container">
-    <section class="hero">
+
+    <nav class="breadcrumbs" aria-label="פירורי לחם">
+      <a href="../index.html" class="breadcrumbs__home">בית</a>
+      <span class="breadcrumbs__separator">›</span>
+      <span class="breadcrumbs__current">Phase 1 — Foundations Sprint</span>
+    </nav>
+
+    <section class="hero phase-hero">
       <h1 class="hero__title">Phase 1 — Foundations Sprint</h1>
       <p class="hero__subtitle">
         שיעורים 1–4 · ~20 שעות · יסודות חיים שתשתמש בהם בכל הקורס
@@ -39,27 +46,65 @@
     <section class="lessons-grid">
 
       <a href="lesson-01.html" class="lesson-card">
-        <div class="lesson-card__num">Lesson 1</div>
-        <div class="lesson-card__title">Python יום ראשון</div>
-        <div class="lesson-card__hours">5 שעות · setup, משתנים, print/input</div>
+        <div class="lesson-card__number">01</div>
+        <div class="lesson-card__body">
+          <span class="lesson-card__tag">Lesson 1</span>
+          <h3 class="lesson-card__title">Python יום ראשון</h3>
+          <div class="lesson-card__meta">5 שעות</div>
+          <div class="lesson-card__chips">
+            <span class="lesson-card__chip">Setup</span>
+            <span class="lesson-card__chip">משתנים</span>
+            <span class="lesson-card__chip">print/input</span>
+          </div>
+          <div class="lesson-card__cta">התחל</div>
+        </div>
       </a>
 
       <a href="lesson-02.html" class="lesson-card">
-        <div class="lesson-card__num">Lesson 2</div>
-        <div class="lesson-card__title">מבני נתונים + JSON</div>
-        <div class="lesson-card__hours">5 שעות · lists, dicts, functions, JSON</div>
+        <div class="lesson-card__number">02</div>
+        <div class="lesson-card__body">
+          <span class="lesson-card__tag">Lesson 2</span>
+          <h3 class="lesson-card__title">מבני נתונים + JSON</h3>
+          <div class="lesson-card__meta">5 שעות</div>
+          <div class="lesson-card__chips">
+            <span class="lesson-card__chip">lists</span>
+            <span class="lesson-card__chip">dicts</span>
+            <span class="lesson-card__chip">functions</span>
+            <span class="lesson-card__chip">JSON</span>
+          </div>
+          <div class="lesson-card__cta">התחל</div>
+        </div>
       </a>
 
       <a href="lesson-03.html" class="lesson-card">
-        <div class="lesson-card__num">Lesson 3</div>
-        <div class="lesson-card__title">APIs + Git + Errors</div>
-        <div class="lesson-card__hours">5 שעות · HTTP, requests, try/except, git</div>
+        <div class="lesson-card__number">03</div>
+        <div class="lesson-card__body">
+          <span class="lesson-card__tag">Lesson 3</span>
+          <h3 class="lesson-card__title">APIs + Git + Errors</h3>
+          <div class="lesson-card__meta">5 שעות</div>
+          <div class="lesson-card__chips">
+            <span class="lesson-card__chip">HTTP</span>
+            <span class="lesson-card__chip">requests</span>
+            <span class="lesson-card__chip">try/except</span>
+            <span class="lesson-card__chip">git</span>
+          </div>
+          <div class="lesson-card__cta">התחל</div>
+        </div>
       </a>
 
       <a href="lesson-04.html" class="lesson-card">
-        <div class="lesson-card__num">Lesson 4</div>
-        <div class="lesson-card__title">n8n + Portal Setup</div>
-        <div class="lesson-card__hours">5 שעות · n8n hello world + portal final</div>
+        <div class="lesson-card__number">04</div>
+        <div class="lesson-card__body">
+          <span class="lesson-card__tag">Lesson 4</span>
+          <h3 class="lesson-card__title">n8n + Portal Setup</h3>
+          <div class="lesson-card__meta">5 שעות</div>
+          <div class="lesson-card__chips">
+            <span class="lesson-card__chip">n8n</span>
+            <span class="lesson-card__chip">workflows</span>
+            <span class="lesson-card__chip">portal final</span>
+          </div>
+          <div class="lesson-card__cta">התחל</div>
+        </div>
       </a>
 
     </section>

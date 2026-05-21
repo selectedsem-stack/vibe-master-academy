@@ -1247,3 +1247,433 @@ pre code {
   .hero { padding: var(--space-10) 0 var(--space-8); }
   .hero__subtitle { font-size: 1.05rem; }
 }
+
+/* ============================================
+   UX/UI Overhaul — v3
+   Better lesson cards, breadcrumbs, reading progress, badges
+   ============================================ */
+
+/* === Reading progress bar (fixed top) === */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: transparent;
+  z-index: 101;
+  pointer-events: none;
+}
+
+.reading-progress__fill {
+  height: 100%;
+  background: var(--gradient-hero);
+  width: 0;
+  transition: width 100ms ease-out;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+}
+
+/* === Breadcrumbs === */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) 0 0;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  flex-wrap: wrap;
+}
+
+.breadcrumbs a {
+  color: var(--color-text-soft);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+  transition: all var(--transition);
+}
+
+.breadcrumbs a:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.breadcrumbs__separator {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+.breadcrumbs__current {
+  color: var(--color-text);
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+}
+
+.breadcrumbs__home::before {
+  content: '🏠';
+  margin-left: var(--space-1);
+  font-size: 0.95em;
+}
+
+/* === Lesson Cards v2 === */
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+  margin: var(--space-6) 0 var(--space-12);
+}
+
+@media (max-width: 720px) {
+  .lessons-grid { grid-template-columns: 1fr; }
+}
+
+.lesson-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.lesson-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-hero);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+  border-radius: var(--radius-xl);
+  z-index: -1;
+}
+
+.lesson-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--gradient-purple);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.lesson-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-light);
+  text-decoration: none;
+}
+
+.lesson-card:hover::after { opacity: 1; }
+
+.lesson-card__number {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 3.5rem;
+  line-height: 1;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
+}
+
+.lesson-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.lesson-card__tag {
+  display: inline-block;
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: fit-content;
+}
+
+.lesson-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.lesson-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.85rem;
+  color: var(--color-text-soft);
+  font-weight: 600;
+}
+
+.lesson-card__meta::before {
+  content: '⏱';
+  font-size: 0.95rem;
+}
+
+.lesson-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.lesson-card__chip {
+  background: var(--color-bg);
+  color: var(--color-text-soft);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.7rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+.lesson-card__cta {
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap var(--transition);
+}
+
+.lesson-card:hover .lesson-card__cta { gap: 0.6rem; }
+
+.lesson-card__cta::after { content: '←'; }
+
+/* Locked lesson card */
+.lesson-card--locked {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.lesson-card--locked .lesson-card__number {
+  filter: grayscale(0.8);
+}
+
+/* === Section badge (numbered gradient circle) === */
+.lesson-section__num {
+  background: var(--gradient-hero);
+  box-shadow: 0 8px 16px -4px rgba(139, 92, 246, 0.4);
+}
+
+/* Decorative divider between sections */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-12) 0;
+  gap: var(--space-4);
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
+}
+
+.section-divider__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gradient-hero);
+  flex-shrink: 0;
+}
+
+/* === Lesson hero v2 — topic chips === */
+.lesson-hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+.lesson-hero__chip {
+  background: white;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-soft);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-full);
+}
+
+.lesson-hero__chip--accent {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary-soft);
+}
+
+/* === Lesson footer cards v2 (thumbnails) === */
+.lesson-footer { margin: var(--space-16) 0 var(--space-8); }
+
+.lesson-nav-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-nav-btn__big-num {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 1rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-primary-soft);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.lesson-nav-btn--next .lesson-nav-btn__big-num { color: rgba(255, 255, 255, 0.25); }
+
+/* === Phase 1 header tweak (when on phase page) === */
+.phase-hero {
+  padding: var(--space-10) 0 var(--space-6);
+}
+
+/* === Active TOC item highlight (refined) === */
+.lesson-toc__item.active {
+  transform: scale(1.05);
+}
+
+/* === Home page CTA === */
+.home-cta {
+  background: linear-gradient(135deg, white 0%, var(--color-primary-soft) 100%);
+  border: 1px solid var(--color-primary-soft);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin: var(--space-8) 0;
+  box-shadow: var(--shadow-md);
+  flex-wrap: wrap;
+}
+
+.home-cta__text {
+  flex: 1;
+  min-width: 240px;
+}
+
+.home-cta__label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.home-cta__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.01em;
+}
+
+.home-cta__desc {
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
+}
+
+.home-cta__btn {
+  background: var(--gradient-hero);
+  color: white;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+}
+
+.home-cta__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  text-decoration: none;
+}
+
+/* === Stats strip (home page) === */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+}
+
+@media (max-width: 720px) {
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+}
+
+.stat {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+
+.stat:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat__num {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 2rem;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.stat__label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-soft);
+  margin-top: var(--space-2);
+}

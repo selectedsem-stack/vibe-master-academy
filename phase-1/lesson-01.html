@@ -8,6 +8,8 @@
 </head>
 <body>
 
+  <div class="reading-progress"><div class="reading-progress__fill"></div></div>
+
   <header class="site-header">
     <div class="container site-header__inner">
       <a href="../index.html" class="brand">
@@ -23,6 +25,14 @@
   </header>
 
   <main class="container">
+
+    <nav class="breadcrumbs" aria-label="פירורי לחם">
+      <a href="../index.html" class="breadcrumbs__home">בית</a>
+      <span class="breadcrumbs__separator">›</span>
+      <a href="index.html">Phase 1</a>
+      <span class="breadcrumbs__separator">›</span>
+      <span class="breadcrumbs__current">Lesson 1 — Python יום ראשון</span>
+    </nav>
 
     <!-- Lesson Hero -->
     <section class="lesson-hero">
@@ -43,6 +53,15 @@
           <li>להשתמש ב-print ו-input</li>
           <li>לכתוב סקריפט שמחלץ דומיין מ-URL</li>
         </ul>
+      </div>
+
+      <div class="lesson-hero__chips">
+        <span class="lesson-hero__chip lesson-hero__chip--accent">Python</span>
+        <span class="lesson-hero__chip">Terminal</span>
+        <span class="lesson-hero__chip">VS Code</span>
+        <span class="lesson-hero__chip">Homebrew</span>
+        <span class="lesson-hero__chip">משתנים</span>
+        <span class="lesson-hero__chip">str / int / float / bool</span>
       </div>
     </section>
 

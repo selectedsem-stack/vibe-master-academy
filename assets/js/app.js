@@ -281,6 +281,21 @@
     sections.forEach(s => observer.observe(s));
   }
 
+  // === Reading progress bar ===
+  function setupReadingProgress() {
+    const bar = document.querySelector('.reading-progress__fill');
+    if (!bar) return;
+    const updateProgress = () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+      const pct = docHeight > 0 ? (scrolled / docHeight) * 100 : 0;
+      bar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  }
+
   // === Init ===
   document.addEventListener('DOMContentLoaded', () => {
     highlightNav();
@@ -290,5 +305,6 @@
     setupCopyButtons();
     setupSectionComplete();
     setupActiveToc();
+    setupReadingProgress();
   });
 })();
