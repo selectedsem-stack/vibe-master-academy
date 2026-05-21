@@ -333,34 +333,39 @@ Shai כבר כתב spec של SEO Brain. הפאזה הזאת בונה את ה-spe
 vibe-master-academy/
 ├── README.md                    הקדמה + ניווט
 ├── PROGRESS.md                  מעקב שבועי
-├── portal/                      ← נראה בדפדפן (GitHub Pages)
-│   ├── index.html              דף בית
-│   ├── phase-1/                שבועות 1–4
-│   │   ├── week-01.html
-│   │   ├── week-02.html
-│   │   ├── week-03.html
-│   │   └── week-04.html
-│   ├── phase-2/                Music Radar
-│   ├── phase-3/                AI Booking Agency
-│   ├── phase-4/                Master Project
-│   ├── phase-5/                Polish
-│   ├── assets/                 CSS, JS, images
-│   └── glossary.html           מילון מושגים בעברית
-├── lessons/                     החומרים שאני כותב (markdown)
-│   ├── phase-1/
-│   ├── phase-2/
-│   └── ...
-├── projects/                    קוד הפרויקטים
-│   ├── 01-music-radar/
-│   ├── 02-ai-booking-agency/
-│   └── 03-master-project/
-├── exercises/                   תרגילים שבועיים
-├── notes/                       סיכומים אישיים
-├── docs/                        תיעוד הקורס עצמו
-│   └── superpowers/
-│       └── specs/               ← המסמך הזה יושב כאן
-└── .gitignore
+├── .gitignore
+│
+├── index.html                   ← פורטל בית (GitHub Pages root)
+├── glossary.html                מילון
+├── phase-1/                     שיעורי Phase 1 בHTML
+│   ├── index.html
+│   ├── week-01.html
+│   ├── week-02.html
+│   ├── week-03.html
+│   └── week-04.html
+├── phase-2/                     ושאר הפאזות (stubs בהתחלה)
+├── phase-3/
+├── phase-4/
+├── phase-5/
+├── assets/
+│   ├── css/styles.css
+│   ├── js/app.js
+│   └── images/
+│
+├── lessons/                     Markdown source (פנימי)
+│   └── phase-N/
+├── projects/                    קוד הפרויקטים (פנימי)
+├── exercises/                   תרגילים (פנימי)
+├── notes/                       סיכומים אישיים (פנימי)
+│
+└── docs/                        תיעוד הקורס
+    ├── mac-sync.md
+    └── superpowers/
+        ├── specs/
+        └── plans/
 ```
+
+**הערה על המבנה:** GitHub Pages מגיש מהשורש, ולכן הHTML של הפורטל יושב בשורש (לא בתת-תיקייה `portal/`). הקבצים הפנימיים (lessons source, code, docs) נמצאים בתת-תיקיות.
 
 ### 8.2 גישה מכל מקום — GitHub Pages
 
