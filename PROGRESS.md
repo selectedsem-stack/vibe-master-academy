@@ -4,7 +4,7 @@
 
 ## Phase 1 — Foundations Sprint
 
-### Week 1 — Python יום ראשון (תאריכים: ___ - ___)
+### Lesson 1 — Python יום ראשון (תאריכים: ___ - ___)
 - [ ] Setup הושלם
 - [ ] Concepts הושלם
 - [ ] Practice הושלם
@@ -13,7 +13,7 @@
 - **קושי (1-5):** ___
 - **הערות:** ___
 
-### Week 2 — מבני נתונים + JSON (תאריכים: ___ - ___)
+### Lesson 2 — מבני נתונים + JSON (תאריכים: ___ - ___)
 - [ ] Lists & Dicts
 - [ ] Functions
 - [ ] JSON
@@ -23,7 +23,7 @@
 - **קושי (1-5):** ___
 - **הערות:** ___
 
-### Week 3 — APIs + Git + Errors (תאריכים: ___ - ___)
+### Lesson 3 — APIs + Git + Errors (תאריכים: ___ - ___)
 - [ ] HTTP/APIs
 - [ ] requests in Python
 - [ ] Error handling
@@ -33,7 +33,7 @@
 - **קושי (1-5):** ___
 - **הערות:** ___
 
-### Week 4 — n8n + Portal Setup (תאריכים: ___ - ___)
+### Lesson 4 — n8n + Portal Setup (תאריכים: ___ - ___)
 - [ ] n8n intro
 - [ ] Install + Hello
 - [ ] n8n + Claude

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Bootstrap the Vibe Master Academy course environment — folder structure, learning portal (RTL Hebrew, hosted on GitHub Pages), GitHub repository, and Week 1 Lesson 1 (Setup) — so Shai can begin studying immediately upon completion.
+**Goal:** Bootstrap the Vibe Master Academy course environment — folder structure, learning portal (RTL Hebrew, hosted on GitHub Pages), GitHub repository, and Lesson 1 (Setup) — so Shai can begin studying immediately upon completion.
 
 **Architecture:** Static HTML portal with vanilla JS (no build step, no framework — beginner-readable). Hebrew RTL with Heebo font, purple accent matching Selected brand. Portal files at repo root (GitHub Pages constraint). Internal artifacts (lessons source, project code, docs) in subfolders. Two-machine workflow: Windows for now (Claude Code), Mac will clone from GitHub later.
 
@@ -22,10 +22,10 @@ vibe-master-academy/
 ├── glossary.html                   Hebrew glossary
 ├── phase-1/
 │   ├── index.html                  Phase 1 overview
-│   ├── week-01.html                Week 1 page
-│   ├── week-02.html                Stub
-│   ├── week-03.html                Stub
-│   └── week-04.html                Stub
+│   ├── lesson-01.html              Lesson 1 page
+│   ├── lesson-02.html              Stub
+│   ├── lesson-03.html              Stub
+│   └── lesson-04.html              Stub
 ├── phase-2/index.html              "Unlocks after Phase 1" stub
 ├── phase-3/index.html              Stub
 ├── phase-4/index.html              Stub
@@ -41,7 +41,7 @@ vibe-master-academy/
 │
 ├── lessons/                        Markdown source (internal)
 │   └── phase-1/
-│       └── week-01-setup.md        Week 1 Lesson 1 in Hebrew
+│       └── lesson-01-setup.md      Lesson 1 Setup in Hebrew
 │
 ├── projects/                       Code projects (internal, future)
 ├── exercises/                      Exercise files (internal, future)
@@ -114,7 +114,7 @@ Content (Hebrew, RTL-friendly markdown):
 ## איך מתחילים?
 
 1. פתח את **index.html** בדפדפן (או את ה-URL של GitHub Pages)
-2. עבור אל **Phase 1 — Week 1**
+2. עבור אל **Phase 1 — Lesson 1**
 3. עקוב אחר ההוראות בשיעור
 
 ## פרויקטים בקורס
@@ -140,7 +140,7 @@ Content (Hebrew, RTL-friendly markdown):
 
 ## Phase 1 — Foundations Sprint
 
-### Week 1 — Python יום ראשון (תאריכים: ___ - ___)
+### Lesson 1 — Python יום ראשון (תאריכים: ___ - ___)
 - [ ] Setup הושלם
 - [ ] Concepts הושלם
 - [ ] Practice הושלם
@@ -149,7 +149,7 @@ Content (Hebrew, RTL-friendly markdown):
 - **קושי (1-5):** ___
 - **הערות:** ___
 
-### Week 2 — מבני נתונים + JSON (תאריכים: ___ - ___)
+### Lesson 2 — מבני נתונים + JSON (תאריכים: ___ - ___)
 - [ ] Lists & Dicts
 - [ ] Functions
 - [ ] JSON
@@ -159,7 +159,7 @@ Content (Hebrew, RTL-friendly markdown):
 - **קושי (1-5):** ___
 - **הערות:** ___
 
-### Week 3 — APIs + Git + Errors (תאריכים: ___ - ___)
+### Lesson 3 — APIs + Git + Errors (תאריכים: ___ - ___)
 - [ ] HTTP/APIs
 - [ ] requests in Python
 - [ ] Error handling
@@ -169,7 +169,7 @@ Content (Hebrew, RTL-friendly markdown):
 - **קושי (1-5):** ___
 - **הערות:** ___
 
-### Week 4 — n8n + Portal Setup (תאריכים: ___ - ___)
+### Lesson 4 — n8n + Portal Setup (תאריכים: ___ - ___)
 - [ ] n8n intro
 - [ ] Install + Hello
 - [ ] n8n + Claude
@@ -1200,14 +1200,14 @@ Open `glossary.html` in browser. Expected: 6 terms listed cleanly.
 
 ---
 
-## Task 8: Week 1 Lesson 1 — Setup (the first real content)
+## Task 8: Lesson 1 — Setup (the first real content)
 
 **Files:**
-- Create: `lessons/phase-1/week-01-setup.md` (markdown source)
-- Create: `phase-1/week-01.html` (the HTML view linking to it)
-- Create: `phase-1/week-02.html`, `phase-1/week-03.html`, `phase-1/week-04.html` (stubs)
+- Create: `lessons/phase-1/lesson-01-setup.md` (markdown source)
+- Create: `phase-1/lesson-01.html` (the HTML view linking to it)
+- Create: `phase-1/lesson-02.html`, `phase-1/lesson-03.html`, `phase-1/lesson-04.html` (stubs)
 
-- [ ] **Step 1: Write the Hebrew lesson — lessons/phase-1/week-01-setup.md**
+- [ ] **Step 1: Write the Hebrew lesson — lessons/phase-1/lesson-01-setup.md**
 
 ```markdown
 # Week 1 — Python יום ראשון
@@ -1440,7 +1440,7 @@ print("הדומיין הוא:", domain)
 
 ```
 
-- [ ] **Step 2: Write phase-1/week-01.html (the portal page that links to the lesson)**
+- [ ] **Step 2: Write phase-1/lesson-01.html (the portal page that links to the lesson)**
 
 ```html
 <!DOCTYPE html>
@@ -1521,7 +1521,7 @@ print("הדומיין הוא:", domain)
 </html>
 ```
 
-- [ ] **Step 3: Write phase-1/week-02.html, week-03.html, week-04.html (stubs)**
+- [ ] **Step 3: Write phase-1/lesson-02.html, lesson-03.html, lesson-04.html (stubs)**
 
 Use this template, substituting per week:
 
@@ -1572,13 +1572,13 @@ Use this template, substituting per week:
 ```
 
 Substitutions:
-- **week-02.html**: N=2, WEEK_TITLE="מבני נתונים + JSON", WEEK_INTRO="lists, dicts, functions, JSON.", PREV_N=01
-- **week-03.html**: N=3, WEEK_TITLE="APIs + Git + Errors", WEEK_INTRO="HTTP, requests, try/except, git workflow.", PREV_N=02
-- **week-04.html**: N=4, WEEK_TITLE="n8n + Portal Setup", WEEK_INTRO="n8n hello world + portal final touches.", PREV_N=03
+- **lesson-02.html**: N=2, LESSON_TITLE="מבני נתונים + JSON", LESSON_INTRO="lists, dicts, functions, JSON.", PREV_N=01
+- **lesson-03.html**: N=3, LESSON_TITLE="APIs + Git + Errors", LESSON_INTRO="HTTP, requests, try/except, git workflow.", PREV_N=02
+- **lesson-04.html**: N=4, LESSON_TITLE="n8n + Portal Setup", LESSON_INTRO="n8n hello world + portal final touches.", PREV_N=03
 
 - [ ] **Step 4: Verify**
 
-Open `phase-1/week-01.html` in browser. Click through to phase-1/index.html and back. Test the checklist (click items, refresh page — should remain checked via localStorage).
+Open `phase-1/lesson-01.html` in browser. Click through to phase-1/index.html and back. Test the checklist (click items, refresh page — should remain checked via localStorage).
 
 ---
 
@@ -1605,14 +1605,14 @@ git status
 Expected: All files staged, no .env or secrets visible.
 
 ```bash
-git commit -m "Initial scaffold: portal skeleton + Week 1 Lesson 1
+git commit -m "Initial scaffold: portal skeleton + Lesson 1
 
 - Folder structure (portal at root, internal subfolders)
 - README, PROGRESS, .gitignore
 - CSS framework (RTL Hebrew, purple accent)
 - Home dashboard + 5 phase pages + glossary
-- Phase 1 Week 1 full lesson (Hebrew)
-- Phase 1 Week 2-4 stubs
+- Phase 1 Lesson 1 full lesson (Hebrew)
+- Phase 1 Lessons 2-4 stubs
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
@@ -1689,7 +1689,7 @@ GitHub builds and deploys (~1-2 minutes). The URL will be:
 
 - [ ] **Step 4: Verify**
 
-Open the URL above. Expected: Hebrew RTL home page renders. Navigate to Phase 1 → Week 1. Open the lesson markdown link — verify GitHub renders the markdown.
+Open the URL above. Expected: Hebrew RTL home page renders. Navigate to Phase 1 → Lesson 1. Open the lesson markdown link — verify GitHub renders the markdown.
 
 - [ ] **Step 5: Add Pages URL to README**
 
@@ -1802,7 +1802,7 @@ URL: `https://selectedsem-stack.github.io/vibe-master-academy/`
 Click through:
 1. Home → 5 phase cards visible
 2. Click Phase 1 → see 4 week cards
-3. Click Week 1 → see lesson page
+3. Click Lesson 1 → see lesson page
 4. Click "פתח שיעור" → see markdown rendered on GitHub
 5. Check checklist items → checkmarks appear, refresh page → still checked
 6. Click מילון → 6 terms render
@@ -1850,10 +1850,10 @@ vibe-master-academy/
 ├── glossary.html                מילון
 ├── phase-1/                     שיעורי Phase 1 בHTML
 │   ├── index.html
-│   ├── week-01.html
-│   ├── week-02.html
-│   ├── week-03.html
-│   └── week-04.html
+│   ├── lesson-01.html
+│   ├── lesson-02.html
+│   ├── lesson-03.html
+│   └── lesson-04.html
 ├── phase-2/                     ושאר הפאזות (stubs בהתחלה)
 ├── phase-3/
 ├── phase-4/
@@ -1893,9 +1893,9 @@ git push
 
 עם השלמת 14 ה-Tasks:
 - ✅ פורטל וובי שלם מתארח בענן, נגיש מכל מקום
-- ✅ Phase 1 Week 1 שיעור מלא בעברית, מוכן ללמידה
-- ✅ Phases 2-5 + Phase 1 שבועות 2-4 כsubs מוכנות לכתיבה
+- ✅ Phase 1 Lesson 1 שיעור מלא בעברית, מוכן ללמידה
+- ✅ Phases 2-5 + Phase 1 שיעורים 2-4 כsubs מוכנות לכתיבה
 - ✅ Git workflow פעיל בין Windows ו-Mac
 - ✅ תיעוד מלא — spec, plan, README, מסמך sync
 
-Shai יכול **להתחיל את שבוע 1 מיד אחרי שיגיע למאק וירוץ את הוראות `docs/mac-sync.md`**.
+Shai יכול **להתחיל את שיעור 1 מיד אחרי שיגיע למאק וירוץ את הוראות `docs/mac-sync.md`**.

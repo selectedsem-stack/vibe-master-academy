@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1 — Python יום ראשון · VMA</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="../index.html" class="brand">
+        <div class="brand__logo">V</div>
+        <div class="brand__name">Vibe Master Academy</div>
+      </a>
+      <nav class="site-nav">
+        <a href="../index.html">בית</a>
+        <a href="index.html">Phase 1</a>
+        <a href="../glossary.html">מילון</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Lesson Hero -->
+    <section class="lesson-hero">
+      <div class="lesson-hero__meta">Phase 1 · Lesson 1 · 5 שעות</div>
+      <h1 class="lesson-hero__title">Python יום ראשון</h1>
+      <p class="lesson-hero__intro">
+        בסוף השיעור הזה סביבת <span class="term" data-term-id="python">Python</span> תעבוד אצלך במאק,
+        אתה תדע מה זה משתנה, ויהיו לך שני סקריפטים שרצים.
+      </p>
+
+      <div class="objectives">
+        <div class="objectives__title">בסוף השיעור תדע</div>
+        <ul class="objectives__list">
+          <li>להתקין Python ו-VS Code על המאק דרך <span class="term" data-term-id="homebrew">Homebrew</span></li>
+          <li>לכתוב סקריפט Python ראשון ולהריץ אותו</li>
+          <li>מה זה <span class="term" data-term-id="variable">משתנה</span> ואיך משתמשים בו</li>
+          <li>4 הטיפוסים הבסיסיים: str, int, float, bool</li>
+          <li>להשתמש ב-print ו-input</li>
+          <li>לכתוב סקריפט שמחלץ דומיין מ-URL</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOC -->
+    <nav class="lesson-toc">
+      <a href="#part-1" class="lesson-toc__item">חלק 1: Setup</a>
+      <a href="#part-2" class="lesson-toc__item">חלק 2: Concepts</a>
+      <a href="#part-3" class="lesson-toc__item">חלק 3: תרגול</a>
+      <a href="#part-4" class="lesson-toc__item">חלק 4: Review</a>
+    </nav>
+
+    <!-- Part 1: Setup -->
+    <section class="lesson-section" id="part-1">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">1</div>
+        <h2 class="lesson-section__title">Setup — מתקינים את הסביבה</h2>
+        <span class="lesson-section__time">1.5 שעות</span>
+      </div>
+
+      <h3>מה זה Python בכלל?</h3>
+      <p>
+        <span class="term" data-term-id="python">Python</span> היא שפת תכנות. כשאתה כותב קוד Python, אתה כותב הוראות למחשב שלך בשפה שיותר קלה לבני אדם לקרוא.
+        ה<span class="term" data-term-id="script">סקריפט</span> עצמו הוא קובץ טקסט שמסתיים ב-<code>.py</code>.
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה ראשונה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>print("Hello, Shai!")</code></pre>
+      </div>
+
+      <p>זאת שורה אחת — היא מבקשת מהמחשב להדפיס את המילים האלה למסך.</p>
+
+      <hr class="mini-divider">
+
+      <h3>3 הצעדים</h3>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">1</div>
+          <div class="step__body">
+            <div class="step__title">התקנת Python על המאק</div>
+            <p>המאק שלך בא עם גרסה ישנה של Python שלא משתמשים בה. נתקין את 3.12 דרך <span class="term" data-term-id="homebrew">Homebrew</span>.</p>
+            <p>פתח את ה-<span class="term" data-term-id="terminal">Terminal</span> (Cmd+Space, חפש "Terminal"). הרץ:</p>
+            <div class="code-block">
+              <div class="code-block__header">
+                <span class="code-block__filename">Terminal</span>
+                <button class="code-block__copy">העתק</button>
+              </div>
+<pre><code>brew install python@3.12</code></pre>
+            </div>
+            <p>אם brew לא מותקן, תקבל הודעה. תתקין אותו דרך:</p>
+            <div class="code-block">
+              <div class="code-block__header">
+                <span class="code-block__filename">Terminal</span>
+                <button class="code-block__copy">העתק</button>
+              </div>
+<pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+            </div>
+            <p>בדוק שזה עבד:</p>
+            <div class="code-block">
+              <div class="code-block__header">
+                <span class="code-block__filename">Terminal</span>
+                <button class="code-block__copy">העתק</button>
+              </div>
+<pre><code>python3 --version</code></pre>
+            </div>
+            <div class="output">
+              <div class="output__label">פלט צפוי</div>
+<pre>Python 3.12.x</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__num">2</div>
+          <div class="step__body">
+            <div class="step__title">VS Code על המאק</div>
+            <p>אם אין לך <span class="term" data-term-id="vscode">VS Code</span>:</p>
+            <div class="code-block">
+              <div class="code-block__header">
+                <span class="code-block__filename">Terminal</span>
+                <button class="code-block__copy">העתק</button>
+              </div>
+<pre><code>brew install --cask visual-studio-code</code></pre>
+            </div>
+            <p>
+              פתח את VS Code. בצד שמאל יש סמל של <span class="term" data-term-id="extension">extensions</span>.
+              לחץ עליו, חפש <strong>Python</strong>, ולחץ Install על ה-extension של Microsoft.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__num">3</div>
+          <div class="step__body">
+            <div class="step__title">הסקריפט הראשון</div>
+            <p>ב-Terminal:</p>
+            <div class="code-block">
+              <div class="code-block__header">
+                <span class="code-block__filename">Terminal</span>
+                <button class="code-block__copy">העתק</button>
+              </div>
+<pre><code>cd ~/projects/vibe-master-academy
+mkdir -p exercises/week-01
+cd exercises/week-01
+code hello.py</code></pre>
+            </div>
+            <p>זה יפתח את VS Code עם קובץ ריק בשם <code>hello.py</code>. הכנס:</p>
+            <div class="code-block">
+              <div class="code-block__header">
+                <span class="code-block__filename">hello.py</span>
+                <button class="code-block__copy">העתק</button>
+              </div>
+<pre><code>print("Hello, Shai!")
+print("This is my first Python script.")</code></pre>
+            </div>
+            <p>שמור (Cmd+S), חזור ל-Terminal והרץ:</p>
+            <div class="code-block">
+              <div class="code-block__header">
+                <span class="code-block__filename">Terminal</span>
+                <button class="code-block__copy">העתק</button>
+              </div>
+<pre><code>python3 hello.py</code></pre>
+            </div>
+            <div class="output">
+              <div class="output__label">פלט צפוי</div>
+<pre>Hello, Shai!
+This is my first Python script.</pre>
+            </div>
+            <p>🎉 <strong>הרצת את הקוד הראשון שלך.</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <button class="section-complete-btn" data-section="part-1">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 2: Concepts -->
+    <section class="lesson-section" id="part-2">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">2</div>
+        <h2 class="lesson-section__title">Concepts בסיסיים</h2>
+        <span class="lesson-section__time">1.5 שעות</span>
+      </div>
+
+      <h3>משתנים</h3>
+      <p>
+        <span class="term" data-term-id="variable">משתנה</span> הוא "תיבה" שמכילה ערך. ב-Python:
+      </p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>name = "Shai"
+age = 35
+is_seo_head = True</code></pre>
+      </div>
+      <p>עכשיו תוכל להשתמש בהם:</p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>print(name)            # מדפיס: Shai
+print("שלום", name)    # מדפיס: שלום Shai</code></pre>
+      </div>
+
+      <h3>טיפוסים בסיסיים</h3>
+      <table>
+        <thead>
+          <tr><th>טיפוס</th><th>דוגמה</th><th>למה זה</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code><span class="term" data-term-id="str">str</span></code></td><td><code>"Shai"</code></td><td>מחרוזת — טקסט</td></tr>
+          <tr><td><code><span class="term" data-term-id="int">int</span></code></td><td><code>35</code></td><td>מספר שלם</td></tr>
+          <tr><td><code><span class="term" data-term-id="float">float</span></code></td><td><code>3.14</code></td><td>מספר עם נקודה עשרונית</td></tr>
+          <tr><td><code><span class="term" data-term-id="bool">bool</span></code></td><td><code>True</code> / <code>False</code></td><td>בוליאני — נכון/לא נכון</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Print ו-Input</h3>
+      <p>
+        <span class="term" data-term-id="print">print</span> כבר השתמשת בו. עכשיו <span class="term" data-term-id="input">input</span>:
+      </p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">interactive.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>print("מה השם שלך?")
+name = input()
+print("שלום,", name)</code></pre>
+      </div>
+      <p>הרץ את זה. המחשב יחכה שתכניס שם, ואז ידפיס לך שלום.</p>
+
+      <h3>הערות בקוד</h3>
+      <p>
+        <span class="term" data-term-id="comment">הערות</span> הן טקסט בקוד שה-Python מתעלם ממנו. הן בשבילך, לזכור מה הקוד עושה:
+      </p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code># זאת הערה — לא משפיעה על ההרצה
+name = "Shai"   # זאת גם הערה, אחרי קוד</code></pre>
+      </div>
+
+      <div class="callout">
+        <div class="callout__title">💡 הרגל מצוין</div>
+        <p>הוסף הערה לפני כל שורה לא טריוויאלית. עוד שנה תודה לעצמך.</p>
+      </div>
+
+      <button class="section-complete-btn" data-section="part-2">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 3: Practice -->
+    <section class="lesson-section" id="part-3">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">3</div>
+        <h2 class="lesson-section__title">תרגול: דומיין מ-URL</h2>
+        <span class="lesson-section__time">1.5 שעות</span>
+      </div>
+
+      <div class="refresher">
+        <div class="refresher__title">רענון מחלק 2</div>
+        <p>נשתמש בכלים שלמדנו עכשיו: משתנים, <span class="term" data-term-id="input">input</span> ו-<span class="term" data-term-id="print">print</span>. אם משהו לא ברור — חזור ל-<a href="#part-2">חלק 2</a>.</p>
+      </div>
+
+      <h3>המטרה</h3>
+      <p>צור קובץ חדש: <code>exercises/week-01/domain_extractor.py</code>. המטרה — סקריפט שמקבל URL מהמשתמש ומדפיס רק את הדומיין.</p>
+
+      <div class="output">
+        <div class="output__label">דוגמה לתפעול</div>
+<pre>הכנס URL: https://www.beatport.com/genre/techno
+הדומיין הוא: beatport.com</pre>
+      </div>
+
+      <p><strong>אל תפתח את Claude עדיין.</strong> נסה לבד 30 דקות לפחות. אם תקעת — אז תפתח את הרמזים.</p>
+
+      <details class="hint">
+        <summary>רמז 1 — איך מקבלים URL מהמשתמש?</summary>
+        <p>השתמש ב-<span class="term" data-term-id="input">input()</span> כדי לקבל URL מהמשתמש. שמור אותו במשתנה.</p>
+      </details>
+
+      <details class="hint">
+        <summary>רמז 2 — איך מסירים את ה-https://?</summary>
+        <p>למחרוזות יש מתודה בשם <code>.replace(old, new)</code>. למשל: <code>url.replace("https://", "")</code> מחליף את "https://" במחרוזת ריקה (מסיר אותו). אפשר לקרוא לזה כמה פעמים ברצף.</p>
+      </details>
+
+      <details class="hint">
+        <summary>רמז 3 — איך חותכים בסלאש הראשון?</summary>
+        <p>למחרוזות יש מתודה <code>.split(separator)</code> שמחזירה רשימה של חלקים. <code>"a/b/c".split("/")</code> מחזיר <code>["a", "b", "c"]</code>. אז <code>.split("/")[0]</code> מחזיר את האלמנט הראשון.</p>
+      </details>
+
+      <details class="solution">
+        <summary>פתרון מלא (רק אחרי שניסית!)</summary>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__filename">domain_extractor.py</span>
+            <button class="code-block__copy">העתק</button>
+          </div>
+<pre><code># domain_extractor.py
+url = input("הכנס URL: ")
+
+# מסירים את הפרוטוקול
+url = url.replace("https://", "").replace("http://", "")
+
+# מסירים www
+url = url.replace("www.", "")
+
+# חותכים בסלאש הראשון
+domain = url.split("/")[0]
+
+print("הדומיין הוא:", domain)</code></pre>
+        </div>
+        <p>הרץ עם 3 URLs שונים כדי לראות שזה עובד.</p>
+      </details>
+
+      <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 4: Review -->
+    <section class="lesson-section" id="part-4">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">4</div>
+        <h2 class="lesson-section__title">Review — מה למדת</h2>
+        <span class="lesson-section__time">30 דקות</span>
+      </div>
+
+      <h3>3 שאלות לפני שאתה ממשיך</h3>
+      <p>ענה לעצמך (בלי לגלול חזרה):</p>
+      <ol>
+        <li>מה ההבדל בין <code>print</code> ל-<code>input</code>?</li>
+        <li>מה השם של הטיפוס של <code>35</code>?</li>
+        <li>למה הוספנו <code>.replace("www.", "")</code> בתרגיל?</li>
+      </ol>
+      <p>אם אתה לא בטוח על אחת מאלה — חזור על החלק הרלוונטי לפני שעוברים ל-Lesson 2.</p>
+
+      <hr class="mini-divider">
+
+      <h3>עדכן את PROGRESS.md</h3>
+      <p>פתח <code>PROGRESS.md</code> בשורש הפרויקט. סמן ✅ ליד הסעיפים של Lesson 1. מלא:</p>
+      <ul>
+        <li><strong>שעות בפועל:</strong> כמה זמן זה לקח באמת</li>
+        <li><strong>קושי (1-5):</strong> סובייקטיבי</li>
+        <li><strong>הערות:</strong> מה הפתיע, מה לא היה ברור, מה רצית עוד</li>
+      </ul>
+
+      <button class="section-complete-btn" data-section="part-4">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Checkpoint Card -->
+    <section class="lesson-section" id="checkpoint">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">✓</div>
+        <h2 class="lesson-section__title">Checkpoint — השלמת Lesson 1</h2>
+      </div>
+
+      <p>כשכל ה-✓ למטה ירוקים — אתה מוכן ל-Lesson 2.</p>
+
+      <div class="checklist">
+        <ul>
+          <li data-id="w1-python">Python 3.12 מותקן על המאק</li>
+          <li data-id="w1-vscode">VS Code עם extension של Python</li>
+          <li data-id="w1-hello"><code>hello.py</code> רץ והדפיס שלום</li>
+          <li data-id="w1-domain"><code>domain_extractor.py</code> עובד עם 3 URLs לפחות</li>
+          <li data-id="w1-progress"><code>PROGRESS.md</code> מעודכן</li>
+          <li data-id="w1-commit"><span class="term" data-term-id="git">Git</span> <span class="term" data-term-id="commit">commit</span> + <span class="term" data-term-id="push">push</span></li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        <div class="callout__title">משהו לא ברור?</div>
+        <p>אל תיתקע לבד יותר מ-30 דקות. שאל את Claude (בצ'אט או ב-Claude Code), או חזור על החלק הרלוונטי. אם אחרי 60 דקות עוד תקוע — תכתוב לי, ננווט יחד.</p>
+      </div>
+    </section>
+
+    <!-- Lesson Footer Navigation -->
+    <div class="lesson-footer">
+      <a href="index.html" class="lesson-nav-btn">
+        <div class="lesson-nav-btn__label">חזרה ל-</div>
+        <div class="lesson-nav-btn__title">Phase 1 Overview</div>
+      </a>
+      <a href="lesson-02.html" class="lesson-nav-btn lesson-nav-btn--next">
+        <div class="lesson-nav-btn__label">השיעור הבא</div>
+        <div class="lesson-nav-btn__title">Lesson 2 — מבני נתונים →</div>
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container"><p>Vibe Master Academy</p></div>
+  </footer>
+
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

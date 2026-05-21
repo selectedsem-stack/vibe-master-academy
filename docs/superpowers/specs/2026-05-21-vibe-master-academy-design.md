@@ -39,11 +39,11 @@ Shai מנהל את מחלקת ה-SEO ב-Selected. במהלך השנים האחר
 מבנה 5 פאזות שמשלב יסודות, פרויקטים בקנה מידה גדל, ופיתוח שיפוט עצמאי.
 
 ```
-Phase 1 — Foundations Sprint        שבועות 1–4    ~20h
-Phase 2 — Arc #1: Music Radar       שבועות 5–10   ~30h
-Phase 3 — Arc #2: AI Booking Agency שבועות 11–20  ~50h
-Phase 4 — Arc #3: Master Project    שבועות 21–28  ~35h
-Phase 5 — Mastery & Polish          שבועות 29–32  ~10h
+Phase 1 — Foundations Sprint        שיעורים 1–4    ~20h
+Phase 2 — Arc #1: Music Radar       שיעורים 5–10   ~30h
+Phase 3 — Arc #2: AI Booking Agency שיעורים 11–20  ~50h
+Phase 4 — Arc #3: Master Project    שיעורים 21–28  ~35h
+Phase 5 — Mastery & Polish          שיעורים 29–32  ~10h
 ─────────────────────────────────────────────────────────
                                     32 שבועות    ~145h
 ```
@@ -69,11 +69,11 @@ Phase 5 — Mastery & Polish          שבועות 29–32  ~10h
 
 ---
 
-## 3. Phase 1 — Foundations Sprint (שבועות 1–4, ~20h)
+## 3. Phase 1 — Foundations Sprint (שיעורים 1–4, ~20h)
 
 **מטרה:** בסוף הפאזה Shai מסוגל לקרוא סקריפט Python של 50 שורות, להבין מה הוא עושה, ולהפעיל workflow ראשון ב-n8n שמדבר עם Claude.
 
-### 3.1 שבוע 1 — Python יום ראשון (5h)
+### 3.1 שיעור 1 — Python יום ראשון (5h)
 
 | בלוק | זמן | תוכן | חומר |
 |------|-----|------|------|
@@ -82,7 +82,7 @@ Phase 5 — Mastery & Polish          שבועות 29–32  ~10h
 | Practice | 1.5h | סקריפט: URL → דומיין | תרגיל שלי |
 | Review | 30min | סיכום בפורטל | טופס Review |
 
-### 3.2 שבוע 2 — מבני נתונים + JSON (5h)
+### 3.2 שיעור 2 — מבני נתונים + JSON (5h)
 
 | בלוק | זמן | תוכן |
 |------|-----|------|
@@ -92,7 +92,7 @@ Phase 5 — Mastery & Polish          שבועות 29–32  ~10h
 | Practice | 1h | דמה לקוחות → top 5 |
 | Review | 30min | פורטל |
 
-### 3.3 שבוע 3 — APIs + Git + Errors (5h)
+### 3.3 שיעור 3 — APIs + Git + Errors (5h)
 
 | בלוק | זמן | תוכן |
 |------|-----|------|
@@ -104,7 +104,7 @@ Phase 5 — Mastery & Polish          שבועות 29–32  ~10h
 
 **Bonus:** הפעלת prompt של Smart Brief מ-Python ידני (לא דרך Claude Code).
 
-### 3.4 שבוע 4 — n8n + Portal Setup (5h)
+### 3.4 שיעור 4 — n8n + Portal Setup (5h)
 
 | בלוק | זמן | תוכן |
 |------|-----|------|
@@ -125,11 +125,11 @@ Phase 5 — Mastery & Polish          שבועות 29–32  ~10h
 
 - **Demo:** workflow ב-n8n + הסבר על Python script
 - **Q&A עומק:** שאלות שמגלות הבנה אמיתית vs חיקוי
-- **Adjustment:** אם לא תפס — שבוע חזרה לפני פאזה 2
+- **Adjustment:** אם לא תפס — שיעור חזרה לפני פאזה 2
 
 ---
 
-## 4. Phase 2 — Arc #1: Music Radar (שבועות 5–10, ~30h)
+## 4. Phase 2 — Arc #1: Music Radar (שיעורים 5–10, ~30h)
 
 **מטרה:** פרויקט אישי שעובד, n8n-heavy, Python מועט. אמן רכה ל-Phase 3.
 
@@ -142,9 +142,9 @@ n8n workflow שכל יום ראשון בבוקר:
 - שולח מייל מעוצב + שומר DB
 - בעלייה ב-Phase 3: הופך מ-passive consumption ל-active outreach (Booking Agency)
 
-### 4.2 מבנה השבועות
+### 4.2 מבנה השיעורים
 
-| שבוע | זמן | תוכן | מה חדש |
+| שיעור | זמן | תוכן | מה חדש |
 |------|-----|------|---------|
 | **5** | 5h | Spec writing + n8n nodes deep dive | spec writing, n8n expressions |
 | **6** | 5h | סקרייפר ראשון: Beatport API/scraping | OAuth, HTTP details |
@@ -179,7 +179,7 @@ n8n workflow שכל יום ראשון בבוקר:
 
 ---
 
-## 5. Phase 3 — Arc #2: AI Booking Agency (שבועות 11–20, ~50h)
+## 5. Phase 3 — Arc #2: AI Booking Agency (שיעורים 11–20, ~50h)
 
 **מטרה:** הפרויקט הדגל. מערכת רב-סוכנים שמזהה אמנים, מעריכה סיכויי הסכמה, ומיירטת מייל אישי. כאן "הכל מתחבר".
 
@@ -204,9 +204,9 @@ n8n workflow שכל יום ראשון בבוקר:
                                      Database (SQLite/Postgres)
 ```
 
-### 5.2 שבועות 11–20
+### 5.2 שיעורים 11–20
 
-| שבוע | זמן | תוכן | מה חדש |
+| שיעור | זמן | תוכן | מה חדש |
 |------|-----|------|---------|
 | **11** | 5h | Spec מלא + Architecture. ER diagrams. מיפוי מקורות. | Spec writing מקצועי. ER. |
 | **12** | 5h | Data layer: SQLite + Pydantic. סקרייפר ראשון. | DB design. Pydantic. |
@@ -254,7 +254,7 @@ Phase 3 היא הפאזה הקשה ביותר. צפויים באגים, פייפ
 
 ---
 
-## 6. Phase 4 — Arc #3: Master Project (שבועות 21–28, ~35h)
+## 6. Phase 4 — Arc #3: Master Project (שיעורים 21–28, ~35h)
 
 **מטרה:** פרויקט גביע. Solution Architect הוכחה — מערכת לא טריוויאלית שמשלבת את כל מה שנלמד.
 
@@ -274,13 +274,13 @@ Shai כבר כתב spec של SEO Brain. הפאזה הזאת בונה את ה-spe
 **ד. Project X — שיופיע תוך כדי**
 פרויקט אישי או מתחום חדש.
 
-### 6.2 שבועות 21–28 — מבנה גנרי
+### 6.2 שיעורים 21–28 — מבנה גנרי
 
-| שבוע | זמן | תוכן |
+| שיעור | זמן | תוכן |
 |------|-----|------|
 | **21** | 5h | Spec מאפס לבד. אני מבקר. |
 | **22** | 5h | Architecture + planning. ER, sequence, מודולים. |
-| **23–25** | 15h | Core building — 3 שבועות רצופים. Shai מוביל, אני יועץ. |
+| **23–25** | 15h | Core building — 3 שיעורים רצופים. Shai מוביל, אני יועץ. |
 | **26** | 5h | Integration + testing. Edge cases. |
 | **27** | 5h | Demo prep + cost optimization. |
 | **28** | 5h | Final demo + Checkpoint. |
@@ -303,13 +303,13 @@ Shai כבר כתב spec של SEO Brain. הפאזה הזאת בונה את ה-spe
 
 ---
 
-## 7. Phase 5 — Mastery & Polish (שבועות 29–32, ~10h)
+## 7. Phase 5 — Mastery & Polish (שיעורים 29–32, ~10h)
 
 **מטרה:** סגירת הקורס בצורה שניתן לחזור אליה ולהציג אותו.
 
-### 7.1 שבועות 29–32
+### 7.1 שיעורים 29–32
 
-| שבוע | זמן | תוכן |
+| שיעור | זמן | תוכן |
 |------|-----|------|
 | **29** | 3h | Refactor sweep — חוזרים על 3 הפרויקטים, מתקנים חוב טכני |
 | **30** | 3h | Deployment hardening — monitoring, alerts, secrets management |
@@ -339,10 +339,10 @@ vibe-master-academy/
 ├── glossary.html                מילון
 ├── phase-1/                     שיעורי Phase 1 בHTML
 │   ├── index.html
-│   ├── week-01.html
-│   ├── week-02.html
-│   ├── week-03.html
-│   └── week-04.html
+│   ├── lesson-01.html
+│   ├── lesson-02.html
+│   ├── lesson-03.html
+│   └── lesson-04.html
 ├── phase-2/                     ושאר הפאזות (stubs בהתחלה)
 ├── phase-3/
 ├── phase-4/

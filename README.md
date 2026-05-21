@@ -13,7 +13,7 @@
 
 | מסמך | מה זה |
 |------|--------|
-| [פורטל הלימודי](https://selectedsem-stack.github.io/vibe-master-academy/) | האתר הראשי — שיעורים, שבועות, מעקב |
+| [פורטל הלימודי](https://selectedsem-stack.github.io/vibe-master-academy/) | האתר הראשי — שיעורים, מעקב |
 | [Spec הקורס](docs/superpowers/specs/2026-05-21-vibe-master-academy-design.md) | תכנון מלא של 5 הפאזות |
 | [Bootstrap Plan](docs/superpowers/plans/2026-05-21-vma-bootstrap.md) | תוכנית ההקמה |
 | [PROGRESS.md](PROGRESS.md) | מעקב התקדמות שבועי |
@@ -21,7 +21,7 @@
 ## איך מתחילים?
 
 1. פתח את **index.html** בדפדפן (או את ה-URL של GitHub Pages)
-2. עבור אל **Phase 1 — Week 1**
+2. עבור אל **Phase 1 — Lesson 1**
 3. עקוב אחר ההוראות בשיעור
 
 ## פרויקטים בקורס

@@ -31,34 +31,119 @@
     <h1>מילון מושגים</h1>
     <p class="lesson__intro">המילון מתעדכן עם כל מושג חדש שאתה פוגש. עברית כשאפשר, אנגלית כשמושג הוא מילה אנגלית מקצועית.</p>
 
-    <div class="term">
+    <div class="term" id="python">
       <div class="term__name">Python <span class="term__en">(פייתון)</span></div>
       <p>שפת תכנות פופולרית, פשוטה לקריאה. ה-DSL הלא-רשמי של AI ו-data. אנחנו לומדים אותה ברמת קריאה ועריכה, לא ברמת מפתח.</p>
     </div>
 
-    <div class="term">
+    <div class="term" id="n8n">
       <div class="term__name">n8n</div>
       <p>פלטפורמה ויזואלית לבניית workflows (זרימות אוטומציה). חופשי בקוד פתוח. מתחבר לכל API בעולם בגרירה ושחרור.</p>
     </div>
 
-    <div class="term">
+    <div class="term" id="api">
       <div class="term__name">API <span class="term__en">(Application Programming Interface)</span></div>
       <p>"דלת" שתוכנה אחת פותחת בשבילך כדי שתוכנה אחרת תוכל לבקש ממנה דברים. למשל ה-API של Claude מאפשר ל-Python שלך לבקש סיכומים.</p>
     </div>
 
-    <div class="term">
+    <div class="term" id="json">
       <div class="term__name">JSON <span class="term__en">(JavaScript Object Notation)</span></div>
       <p>פורמט טקסט מובנה לחילופי מידע בין מערכות. כל ה-APIs כמעט מדברים JSON. נראה כמו מילון ב-Python.</p>
     </div>
 
-    <div class="term">
+    <div class="term" id="git">
       <div class="term__name">Git</div>
       <p>מערכת ניהול גרסאות. שומרת היסטוריה של כל שינוי שעשית בקוד, ומאפשרת לסנכרן בין מחשבים דרך GitHub.</p>
     </div>
 
-    <div class="term">
+    <div class="term" id="github">
       <div class="term__name">GitHub</div>
       <p>שרת בענן שמארח repositories (תיקיות עם היסטוריית גיט). חינמי לפרויקטים פרטיים. גם נותן GitHub Pages — אירוח חינמי לאתרי HTML סטטיים.</p>
+    </div>
+
+    <div class="term" id="homebrew">
+      <div class="term__name">Homebrew <span class="term__en">(brew)</span></div>
+      <p>מנהל החבילות של macOS. מתקין כלי פיתוח עם פקודה אחת בטרמינל: <code>brew install python</code>. הסטנדרט במאק.</p>
+    </div>
+
+    <div class="term" id="terminal">
+      <div class="term__name">Terminal</div>
+      <p>אפליקציית שורת פקודה במאק. שם מקלידים פקודות ישירות למחשב. במאק: Cmd+Space → "Terminal".</p>
+    </div>
+
+    <div class="term" id="vscode">
+      <div class="term__name">VS Code <span class="term__en">(Visual Studio Code)</span></div>
+      <p>עורך קוד חינמי של מיקרוסופט. הסטנדרט בתעשייה. תומך ב-Python דרך extension של Microsoft.</p>
+    </div>
+
+    <div class="term" id="extension">
+      <div class="term__name">Extension <span class="term__en">(תוסף)</span></div>
+      <p>תוסף שמוסיף יכולות לעורך הקוד. למשל extension של Python מוסיף ניתוח קוד, הרצה, debug, ו-IntelliSense.</p>
+    </div>
+
+    <div class="term" id="script">
+      <div class="term__name">Script <span class="term__en">(סקריפט)</span></div>
+      <p>קובץ קוד שמכיל הוראות. קובץ Python מסתיים ב-<code>.py</code>. מריצים עם <code>python3 filename.py</code>.</p>
+    </div>
+
+    <div class="term" id="variable">
+      <div class="term__name">משתנה <span class="term__en">(Variable)</span></div>
+      <p>"תיבה" שמכילה ערך. דוגמה: <code>name = "Shai"</code> יוצר משתנה בשם name שמכיל את הטקסט Shai.</p>
+    </div>
+
+    <div class="term" id="type">
+      <div class="term__name">טיפוס <span class="term__en">(Type)</span></div>
+      <p>הסוג של ערך. <code>str</code> לטקסט, <code>int</code> למספר שלם, <code>float</code> למספר עם נקודה, <code>bool</code> ל-True/False.</p>
+    </div>
+
+    <div class="term" id="str">
+      <div class="term__name">str <span class="term__en">(String)</span></div>
+      <p>טיפוס של מחרוזת — טקסט. מוקף בגרשיים: <code>"Shai"</code> או <code>'Shai'</code>.</p>
+    </div>
+
+    <div class="term" id="int">
+      <div class="term__name">int <span class="term__en">(Integer)</span></div>
+      <p>טיפוס של מספר שלם, ללא נקודה עשרונית. דוגמה: <code>35</code>.</p>
+    </div>
+
+    <div class="term" id="float">
+      <div class="term__name">float</div>
+      <p>טיפוס של מספר עם נקודה עשרונית. דוגמה: <code>3.14</code>.</p>
+    </div>
+
+    <div class="term" id="bool">
+      <div class="term__name">bool <span class="term__en">(Boolean)</span></div>
+      <p>טיפוס בוליאני — <code>True</code> או <code>False</code> בלבד. למצבי כן/לא.</p>
+    </div>
+
+    <div class="term" id="function">
+      <div class="term__name">פונקציה <span class="term__en">(Function)</span></div>
+      <p>בלוק קוד שניתן לקרוא לו שוב ושוב. <code>print</code> ו-<code>input</code> הן פונקציות מובנות של Python.</p>
+    </div>
+
+    <div class="term" id="print">
+      <div class="term__name">print</div>
+      <p>פונקציה מובנית של Python שמדפיסה ערך למסך. דוגמה: <code>print("Hello")</code>.</p>
+    </div>
+
+    <div class="term" id="input">
+      <div class="term__name">input</div>
+      <p>פונקציה שמחכה שהמשתמש יקליד משהו, ומחזירה את הטקסט שהוקלד. דוגמה: <code>name = input()</code>.</p>
+    </div>
+
+    <div class="term" id="comment">
+      <div class="term__name">הערה <span class="term__en">(Comment)</span></div>
+      <p>טקסט בקוד ש-Python מתעלם ממנו. מתחיל ב-<code>#</code>. בשבילך, לזכור מה הקוד עושה.</p>
+    </div>
+
+    <div class="term" id="commit">
+      <div class="term__name">Commit</div>
+      <p>פעולה ב-Git שמתעדת שמירה של שינויים עם תיאור. כמו save עם רישום היסטוריה.</p>
+    </div>
+
+    <div class="term" id="push">
+      <div class="term__name">Push</div>
+      <p>פעולה ב-Git ששולחת commits מקומיים ל-GitHub כדי שיהיו נגישים ממחשבים אחרים.</p>
     </div>
 
   </main>
