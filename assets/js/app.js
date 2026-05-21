@@ -296,6 +296,67 @@
     updateProgress();
   }
 
+  // === Back to top button ===
+  function setupBackToTop() {
+    const btn = document.createElement('button');
+    btn.className = 'back-to-top';
+    btn.innerHTML = '↑';
+    btn.setAttribute('aria-label', 'חזרה למעלה');
+    document.body.appendChild(btn);
+
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    const toggleVisibility = () => {
+      if (window.scrollY > 600) btn.classList.add('visible');
+      else btn.classList.remove('visible');
+    };
+
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+  }
+
+  // === Mobile menu (hamburger) ===
+  function setupMobileMenu() {
+    const header = document.querySelector('.site-header__inner');
+    if (!header) return;
+
+    const nav = header.querySelector('.site-nav');
+    if (!nav) return;
+
+    const toggle = document.createElement('button');
+    toggle.className = 'menu-toggle';
+    toggle.setAttribute('aria-label', 'תפריט');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'site-nav');
+    toggle.innerHTML = '<span class="menu-toggle__icon"></span>';
+    header.appendChild(toggle);
+
+    nav.id = 'site-nav';
+
+    toggle.addEventListener('click', () => {
+      const isOpen = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close on link click
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!header.contains(e.target) && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
   // === Init ===
   document.addEventListener('DOMContentLoaded', () => {
     highlightNav();
@@ -306,5 +367,7 @@
     setupSectionComplete();
     setupActiveToc();
     setupReadingProgress();
+    setupBackToTop();
+    setupMobileMenu();
   });
 })();
