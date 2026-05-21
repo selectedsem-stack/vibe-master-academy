@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>מילון מושגים · VMA</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260521-4">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260521-5">
 </head>
 <body>
 
@@ -46,7 +46,7 @@
         placeholder="חפש מושג… (Python, brew, משתנה...)"
         aria-label="חיפוש מושג במילון"
       >
-      <span class="glossary-search__count">39 מושגים</span>
+      <span class="glossary-search__count">46 מושגים</span>
     </div>
 
     <div class="glossary-filters" role="group" aria-label="קטגוריות">
@@ -294,6 +294,48 @@
         <p>בקשה למזג שינויים מענף לתוך main. ב-GitHub זה גם המקום ל-code review לפני המיזוג.</p>
       </div>
 
+      <div class="term" id="workflow" data-category="automation">
+        <span class="term__category term__category--automation">אוטומציה</span>
+        <h3 class="term__name">Workflow</h3>
+        <p>זרימת עבודה אוטומטית ב-n8n. סדרה של nodes (צעדים) המחוברים בחיצים. רץ כשטריגר מופעל.</p>
+      </div>
+
+      <div class="term" id="node" data-category="automation">
+        <span class="term__category term__category--automation">אוטומציה</span>
+        <h3 class="term__name">Node</h3>
+        <p>צעד יחיד ב-workflow של n8n. כל node עושה דבר אחד: שולח HTTP request, מפלטר נתונים, שולח מייל, וכו'.</p>
+      </div>
+
+      <div class="term" id="trigger" data-category="automation">
+        <span class="term__category term__category--automation">אוטומציה</span>
+        <h3 class="term__name">Trigger <span class="term__en">טריגר</span></h3>
+        <p>ה-node הראשון ב-workflow. מפעיל את הזרימה — Webhook (קריאת HTTP), Cron (זמן קבוע), Manual (לחיצת כפתור).</p>
+      </div>
+
+      <div class="term" id="webhook" data-category="automation">
+        <span class="term__category term__category--automation">אוטומציה</span>
+        <h3 class="term__name">Webhook</h3>
+        <p>URL ש-n8n מספק. כל קריאת HTTP אליו מפעילה את ה-workflow ומעבירה לו את הנתונים. הדרך הכי נפוצה להפעיל workflows מבחוץ.</p>
+      </div>
+
+      <div class="term" id="credential" data-category="automation">
+        <span class="term__category term__category--automation">אוטומציה</span>
+        <h3 class="term__name">Credential <span class="term__en">פרטי גישה</span></h3>
+        <p>פרטי התחברות מוצפנים לשירות חיצוני (API key, OAuth token, סיסמת SMTP). מאוחסנים מוצפנים ב-n8n ומוזרקים ל-nodes בשעת ריצה.</p>
+      </div>
+
+      <div class="term" id="cron" data-category="automation">
+        <span class="term__category term__category--automation">אוטומציה</span>
+        <h3 class="term__name">Cron</h3>
+        <p>תזמון לרצות אוטומטית בזמנים קבועים. דוגמה: כל ראשון בבוקר ב-7:00. בn8n זה ה-Schedule Trigger node.</p>
+      </div>
+
+      <div class="term" id="zapier" data-category="automation">
+        <span class="term__category term__category--automation">אוטומציה</span>
+        <h3 class="term__name">Zapier</h3>
+        <p>מתחרה גדול של n8n. SaaS בלבד (לא self-hosted), קל יותר לnon-developers, יקר יותר, פחות גמיש. ראשון בשוק.</p>
+      </div>
+
     </div>
 
     <div class="glossary-empty" style="display:none;">
@@ -307,6 +349,6 @@
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="assets/js/app.js?v=20260521-4"></script>
+  <script src="assets/js/app.js?v=20260521-5"></script>
 </body>
 </html>

@@ -163,6 +163,34 @@
     'pull-request': {
       title: 'Pull Request (PR)',
       definition: 'בקשה למזג ענף לתוך main. גם המקום ל-code review לפני המיזוג.'
+    },
+    'workflow': {
+      title: 'Workflow',
+      definition: 'זרימת עבודה אוטומטית ב-n8n. סדרה של nodes (צעדים) מחוברים בחיצים. רץ כשטריגר מופעל.'
+    },
+    'node': {
+      title: 'Node',
+      definition: 'צעד יחיד ב-workflow. כל node עושה דבר אחד: HTTP, פילטור, שליחת מייל, וכו\'.'
+    },
+    'trigger': {
+      title: 'Trigger (טריגר)',
+      definition: 'ה-node הראשון. מפעיל את ה-workflow — Webhook, Cron, או Manual.'
+    },
+    'webhook': {
+      title: 'Webhook',
+      definition: 'URL ש-n8n מספק. כל קריאת HTTP אליו מפעילה את ה-workflow ומעבירה לו נתונים.'
+    },
+    'credential': {
+      title: 'Credential (פרטי גישה)',
+      definition: 'פרטי התחברות מוצפנים לשירות חיצוני. מאוחסנים מוצפנים ב-n8n.'
+    },
+    'cron': {
+      title: 'Cron',
+      definition: 'תזמון לרצות אוטומטית בזמנים קבועים. בn8n זה ה-Schedule Trigger.'
+    },
+    'zapier': {
+      title: 'Zapier',
+      definition: 'מתחרה של n8n. SaaS בלבד, קל יותר לnon-devs, יקר יותר, פחות גמיש.'
     }
   };
 
