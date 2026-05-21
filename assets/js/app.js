@@ -99,6 +99,26 @@
     'push': {
       title: 'Push',
       definition: 'פעולה ב-Git ששולחת commits מקומיים ל-GitHub כדי שיהיו נגישים ממחשבים אחרים.'
+    },
+    'list': {
+      title: 'List (רשימה)',
+      definition: 'אוסף סדור של ערכים, בסוגריים מרובעים. דוגמה: clients = ["מנגו", "סופר ביץ\'"]. ניגשים לפי אינדקס.'
+    },
+    'dict': {
+      title: 'Dict (מילון)',
+      definition: 'אוסף של זוגות key-value, בסוגריים מסולסלים. דוגמה: {"name": "מנגו", "traffic": 45000}.'
+    },
+    'loop': {
+      title: 'Loop (לולאה)',
+      definition: 'חזרה על קוד מספר פעמים. ב-Python: for item in list: רץ פעם אחת על כל איבר.'
+    },
+    'index': {
+      title: 'Index (אינדקס)',
+      definition: 'המספר הסידורי של איבר ברשימה. Python מתחיל מ-0: list[0] הוא הראשון.'
+    },
+    'key': {
+      title: 'Key (מפתח)',
+      definition: 'השם של ערך בdict. ב-{"name": "מנגו"} — name הוא הkey, "מנגו" הוא הvalue.'
     }
   };
 
@@ -362,7 +382,7 @@
     const searchInput = document.querySelector('.glossary-search__input');
     const countEl = document.querySelector('.glossary-search__count');
     const filterButtons = document.querySelectorAll('.glossary-filter');
-    const terms = document.querySelectorAll('.term');
+    const terms = document.querySelectorAll('.glossary-grid .term');
     const emptyState = document.querySelector('.glossary-empty');
     if (!terms.length) return;
 

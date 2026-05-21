@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>מילון מושגים · VMA</title>
-  <link rel="stylesheet" href="assets/css/styles.css?v=20260521-3">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20260521-4">
 </head>
 <body>
 
@@ -46,7 +46,7 @@
         placeholder="חפש מושג… (Python, brew, משתנה...)"
         aria-label="חיפוש מושג במילון"
       >
-      <span class="glossary-search__count">23 מושגים</span>
+      <span class="glossary-search__count">28 מושגים</span>
     </div>
 
     <div class="glossary-filters" role="group" aria-label="קטגוריות">
@@ -198,6 +198,36 @@
         <p>פלטפורמה ויזואלית לבניית workflows. מתחבר לכל API בעולם בגרירה ושחרור. ה-engine של פאזה 2 בקורס.</p>
       </div>
 
+      <div class="term" id="list" data-category="concepts">
+        <span class="term__category term__category--concepts">מבנה נתונים</span>
+        <h3 class="term__name">List <span class="term__en">רשימה</span></h3>
+        <p>אוסף סדור של ערכים, בסוגריים מרובעים. דוגמה: <code>clients = ["מנגו", "סופר ביץ'"]</code>. ניגשים לפי אינדקס: <code>clients[0]</code>.</p>
+      </div>
+
+      <div class="term" id="dict" data-category="concepts">
+        <span class="term__category term__category--concepts">מבנה נתונים</span>
+        <h3 class="term__name">Dict <span class="term__en">מילון</span></h3>
+        <p>אוסף של זוגות key-value, בסוגריים מסולסלים. דוגמה: <code>client = {"name": "מנגו", "traffic": 45000}</code>. ניגשים לפי key: <code>client["name"]</code>.</p>
+      </div>
+
+      <div class="term" id="loop" data-category="concepts">
+        <span class="term__category term__category--concepts">מושג בסיסי</span>
+        <h3 class="term__name">Loop <span class="term__en">לולאה</span></h3>
+        <p>חזרה על קוד מספר פעמים. ב-Python: <code>for item in list:</code> רץ פעם אחת על כל איבר ברשימה.</p>
+      </div>
+
+      <div class="term" id="index" data-category="concepts">
+        <span class="term__category term__category--concepts">מושג בסיסי</span>
+        <h3 class="term__name">Index <span class="term__en">אינדקס</span></h3>
+        <p>המספר הסידורי של איבר ברשימה. <strong>Python מתחיל מ-0</strong>: <code>list[0]</code> הוא הראשון, <code>list[1]</code> השני.</p>
+      </div>
+
+      <div class="term" id="key" data-category="concepts">
+        <span class="term__category term__category--concepts">מושג בסיסי</span>
+        <h3 class="term__name">Key <span class="term__en">מפתח</span></h3>
+        <p>השם של ערך בdict. בדוגמה <code>{"name": "מנגו"}</code> — <code>name</code> הוא הkey, <code>"מנגו"</code> הוא הvalue.</p>
+      </div>
+
     </div>
 
     <div class="glossary-empty" style="display:none;">
@@ -211,6 +241,6 @@
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="assets/js/app.js?v=20260521-3"></script>
+  <script src="assets/js/app.js?v=20260521-4"></script>
 </body>
 </html>

@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 2 · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-3">
+  <title>Lesson 2 — מבני נתונים + JSON · VMA</title>
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-4">
 </head>
 <body>
+
+  <div class="reading-progress"><div class="reading-progress__fill"></div></div>
 
   <header class="site-header">
     <div class="container site-header__inner">
@@ -16,13 +18,14 @@
       </a>
       <nav class="site-nav">
         <a href="../index.html">בית</a>
-        <a href="index.html">Phase 1</a>
+        <a href="index.html" class="active">Phase 1</a>
         <a href="../glossary.html">מילון</a>
       </nav>
     </div>
   </header>
 
-  <main class="container lesson">
+  <main class="container">
+
     <nav class="breadcrumbs" aria-label="פירורי לחם">
       <a href="../index.html" class="breadcrumbs__home">בית</a>
       <span class="breadcrumbs__separator">›</span>
@@ -31,13 +34,603 @@
       <span class="breadcrumbs__current">Lesson 2 — מבני נתונים + JSON</span>
     </nav>
 
-    <div class="lesson__meta">Phase 1 · Lesson 2 · 5 שעות</div>
-    <h1 class="lesson__title">מבני נתונים + JSON</h1>
-    <p class="lesson__intro">lists, dicts, functions, JSON.</p>
+    <!-- Lesson Hero -->
+    <section class="lesson-hero">
+      <div class="lesson-hero__badges">
+        <a href="index.html" class="lesson-hero__badge lesson-hero__badge--phase">Phase 1 · Foundations</a>
+        <span class="lesson-hero__badge lesson-hero__badge--time">⏱ 5 שעות</span>
+        <span class="lesson-hero__badge lesson-hero__badge--level">📊 בונה על Lesson 1</span>
+      </div>
+      <h1 class="lesson-hero__title">Lesson 2 — מבני נתונים + JSON</h1>
+      <p class="lesson-hero__intro">
+        עכשיו כשאתה יודע <span class="term" data-term-id="variable">משתנים</span> ו-<span class="term" data-term-id="python">Python</span> בסיסי,
+        הגיע הזמן לאחסן הרבה ערכים יחד. בשיעור הזה תלמד lists, dicts,
+        <span class="term" data-term-id="function">פונקציות</span>, ו-<span class="term" data-term-id="json">JSON</span> —
+        הכלים שישמשו אותך בכל קוד Python שתכתוב.
+      </p>
 
-    <div class="callout callout--warning">
-      <div class="callout__title">🔒 השיעור ייכתב בקרוב</div>
-      <p>תוכן השיעור ייכתב לפני שתגיע אליו. כרגע השלם את <a href="lesson-01.html">Lesson 01</a> ראשון.</p>
+      <div class="objectives">
+        <div class="objectives__title">בסוף השיעור תדע</div>
+        <ul class="objectives__list">
+          <li>ליצור ולהשתמש ב-<span class="term" data-term-id="list">list</span> (רשימה) — הוספה, גישה לפי <span class="term" data-term-id="index">אינדקס</span>, slicing</li>
+          <li>ליצור ולהשתמש ב-<span class="term" data-term-id="dict">dict</span> (מילון) — גישה לפי <span class="term" data-term-id="key">key</span>, .get()</li>
+          <li>לכתוב <span class="term" data-term-id="function">פונקציה</span> פשוטה עם def, params, ו-return</li>
+          <li>לקרוא קובץ <span class="term" data-term-id="json">JSON</span> ב-Python עם json.load</li>
+          <li>לרוץ <span class="term" data-term-id="loop">לולאה</span> על רשימה ולהדפיס תוצאות</li>
+          <li>לבצע תרגיל מלא: קריאת JSON, מיון, ופלט של top 5 לקוחות</li>
+        </ul>
+      </div>
+
+      <div class="lesson-hero__chips">
+        <span class="lesson-hero__chip lesson-hero__chip--accent">Lists</span>
+        <span class="lesson-hero__chip">Dicts</span>
+        <span class="lesson-hero__chip">Functions</span>
+        <span class="lesson-hero__chip">JSON</span>
+        <span class="lesson-hero__chip">sorted()</span>
+        <span class="lesson-hero__chip">lambda</span>
+      </div>
+    </section>
+
+    <!-- TOC -->
+    <nav class="lesson-toc">
+      <a href="#part-1" class="lesson-toc__item">חלק 1: Lists &amp; Dicts</a>
+      <a href="#part-2" class="lesson-toc__item">חלק 2: Functions</a>
+      <a href="#part-3" class="lesson-toc__item">חלק 3: JSON</a>
+      <a href="#part-4" class="lesson-toc__item">חלק 4: תרגול</a>
+      <a href="#part-5" class="lesson-toc__item">חלק 5: Review</a>
+    </nav>
+
+    <!-- Part 1: Lists & Dicts -->
+    <section class="lesson-section" id="part-1">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">1</div>
+        <h2 class="lesson-section__title">Lists &amp; Dicts — יסודות + שימושים</h2>
+        <span class="lesson-section__time">1.5 שעות</span>
+      </div>
+
+      <div class="refresher">
+        <div class="refresher__title">רענון מ-Lesson 1</div>
+        <p>למדנו על <span class="term" data-term-id="variable">משתנים</span> — <code>name = 'Shai'</code>. עכשיו נראה איך לאחסן הרבה ערכים יחד.</p>
+      </div>
+
+      <h3>מה זה <span class="term" data-term-id="list">List</span> (רשימה)?</h3>
+      <p>
+        List היא אוסף <strong>סדור</strong> של ערכים, בסוגריים מרובעים.
+        כשיש לך הרבה לקוחות, הרבה URLs, או הרבה כל דבר — list היא הבית שלהם.
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">list_demo.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>clients = ["מנגו", "סופר ביץ'", "קליניקת רימון"]
+
+print(clients)        # ['מנגו', "סופר ביץ'", 'קליניקת רימון']
+print(len(clients))   # 3</code></pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>אינדקסים — Python מתחיל מ-0</h3>
+      <p>
+        לכל איבר ברשימה יש <span class="term" data-term-id="index">אינדקס</span> מספרי.
+        <strong>ב-Python, הספירה מתחילה מ-0.</strong>
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">indexing.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>print(clients[0])    # מנגו — הראשון
+print(clients[1])    # סופר ביץ' — השני
+print(clients[2])    # קליניקת רימון — השלישי
+print(clients[-1])   # קליניקת רימון — האחרון (מינוס = מהסוף)</code></pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>הוספת איברים ועוד כלים</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">list_methods.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code># הוספת איבר בסוף
+clients.append("מסעדת בר אבא")
+print(len(clients))   # 4
+
+# Slicing — חיתוך
+first_two = clients[:2]   # ["מנגו", "סופר ביץ'"]
+last_two  = clients[-2:]  # ["קליניקת רימון", "מסעדת בר אבא"]
+
+# לולאה על הרשימה
+for client in clients:
+    print(client)</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">טיפ: slicing</div>
+        <p><code>[:5]</code> = חמשת הראשונים. <code>[2:]</code> = מהשלישי ואילך. <code>[-3:]</code> = שלושת האחרונים. תשתמש בזה הרבה.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>מה זה <span class="term" data-term-id="dict">Dict</span> (מילון)?</h3>
+      <p>
+        Dict הוא אוסף של זוגות key-value, בסוגריים מסולסלים.
+        במקום "הלקוח הראשון", אתה ניגש לפי שם: <code>client["name"]</code>.
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">dict_demo.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>client = {
+    "name": "מנגו",
+    "traffic": 45000,
+    "conversion_rate": 2.3,
+    "industry": "fashion"
+}
+
+# גישה לפי key
+print(client["name"])           # מנגו
+print(client["traffic"])        # 45000</code></pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>.get() — גישה בטוחה</h3>
+      <p>
+        אם תנסה לגשת ל-<span class="term" data-term-id="key">key</span> שלא קיים עם <code>[]</code>,
+        תקבל שגיאה. <code>.get()</code> מחזיר <code>None</code> במקום לפצוץ.
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">dict_get.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code># client["rank"] יזרוק KeyError אם rank לא קיים
+# .get() בטוח יותר:
+rank = client.get("rank")          # None
+rank = client.get("rank", 0)       # 0 — ערך ברירת מחדל
+
+print(f"דירוג: {rank}")            # דירוג: 0</code></pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>השוואה: List לעומת Dict</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>מבנה</th>
+            <th>סוגריים</th>
+            <th>גישה לפי</th>
+            <th>מתי משתמשים</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code><span class="term" data-term-id="list">list</span></code></td>
+            <td><code>[...]</code></td>
+            <td><span class="term" data-term-id="index">אינדקס</span> מספרי</td>
+            <td>רשימת ערכים סדורים</td>
+          </tr>
+          <tr>
+            <td><code><span class="term" data-term-id="dict">dict</span></code></td>
+            <td><code>{...}</code></td>
+            <td><span class="term" data-term-id="key">key</span> בשם</td>
+            <td>אובייקט עם שדות בשם</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="section-complete-btn" data-section="part-1">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 2: Functions -->
+    <section class="lesson-section" id="part-2">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">2</div>
+        <h2 class="lesson-section__title">Functions — def, params, return</h2>
+        <span class="lesson-section__time">1 שעה</span>
+      </div>
+
+      <h3>למה צריך <span class="term" data-term-id="function">פונקציות</span>?</h3>
+      <p>
+        עיקרון DRY: <strong>D</strong>on't <strong>R</strong>epeat <strong>Y</strong>ourself.
+        במקום לכתוב את אותו קוד 10 פעמים — כותבים פעם אחת בפונקציה, ומשתמשים בה 10 פעמים.
+      </p>
+
+      <div class="callout callout--info">
+        <div class="callout__title">כבר השתמשת בפונקציות</div>
+        <p><code>print()</code>, <code>input()</code>, <code>len()</code>, <code>sorted()</code> — כולן פונקציות מובנות של Python. עכשיו תכתוב פונקציה משלך.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>syntax בסיסי</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">functions.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>def שם_הפונקציה(פרמטר1, פרמטר2):
+    # קוד כאן
+    return תוצאה</code></pre>
+      </div>
+
+      <p>חוקים חשובים:</p>
+      <ul>
+        <li><code>def</code> מתחיל את הגדרת הפונקציה</li>
+        <li>אחרי שם הפונקציה — סוגריים עם הפרמטרים (או ריקים)</li>
+        <li>הקוד בתוך הפונקציה מוזז 4 spaces פנימה (<strong>indentation</strong>)</li>
+        <li><code>return</code> מחזיר ערך — הפונקציה עוצרת שם</li>
+      </ul>
+
+      <hr class="mini-divider">
+
+      <h3>דוגמה: חישוב ציון SEO</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">calculate.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>def calculate_score(traffic, cvr):
+    """מחשב ציון לקוח לפי תנועה ורייט המרה."""
+    return traffic * cvr
+
+# קריאה לפונקציה
+score1 = calculate_score(45000, 2.3)
+score2 = calculate_score(67000, 2.9)
+
+print(score1)   # 103500.0
+print(score2)   # 194300.0</code></pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>פונקציה עם dict</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">print_client.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>def print_client(client):
+    """מדפיס שורת סיכום על לקוח."""
+    name = client["name"]
+    traffic = client["traffic"]
+    cvr = client.get("conversion_rate", 0)
+    print(f"{name}: {traffic:,} ביקורים | המרה: {cvr}%")
+
+client = {"name": "מנגו", "traffic": 45000, "conversion_rate": 2.3}
+print_client(client)
+# מנגו: 45,000 ביקורים | המרה: 2.3%</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">f-string ו-:, בפורמט</div>
+        <p><code>{traffic:,}</code> מוסיף פסיקים כמפרידי אלפים: 45000 הופך ל-45,000. <code>f"..."</code> מאפשר להכניס ערכים למחרוזת עם סוגריים מסולסלים.</p>
+      </div>
+
+      <button class="section-complete-btn" data-section="part-2">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 3: JSON -->
+    <section class="lesson-section" id="part-3">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">3</div>
+        <h2 class="lesson-section__title">JSON — מה זה, ואיך קוראים מקובץ</h2>
+        <span class="lesson-section__time">1 שעה</span>
+      </div>
+
+      <h3>מה זה <span class="term" data-term-id="json">JSON</span>?</h3>
+      <p>
+        JSON (JavaScript Object Notation) הוא פורמט טקסט לחילופי מידע.
+        <strong>כל ה-APIs בעולם כמעט מדברים JSON.</strong>
+        הוא נראה כמו dict ב-Python — אבל הוא טקסט רגיל, ולכן עובד בכל שפת תכנות.
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">clients.json</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>[
+  {"name": "מנגו", "traffic": 45000, "conversion_rate": 2.3},
+  {"name": "סופר ביץ'", "traffic": 32000, "conversion_rate": 1.8}
+]</code></pre>
+      </div>
+
+      <p>
+        בחוץ — רשימה JSON (<code>[...]</code>).
+        בפנים — אובייקטים JSON (<code>{...}</code>).
+        בדיוק כמו list של dicts ב-Python.
+      </p>
+
+      <hr class="mini-divider">
+
+      <h3>json.load — קריאת קובץ JSON</h3>
+      <p>
+        Python כולל ספריה בשם <code>json</code>. <code>json.load</code> מקבל
+        <strong>file object</strong> (קובץ פתוח) — לכן צריך <code>with open(...)</code> קודם.
+      </p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">read_json.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>import json
+
+# with open מפתח את הקובץ ושומר אותו תחת השם f
+with open("clients.json", "r", encoding="utf-8") as f:
+    clients = json.load(f)
+
+# clients עכשיו הוא list של dicts ב-Python
+print(type(clients))    # &lt;class 'list'&gt;
+print(clients[0])       # {'name': 'מנגו', 'traffic': 45000, ...}
+print(len(clients))     # 8</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">encoding="utf-8"</div>
+        <p>חובה כשיש עברית בקובץ. בלי זה Python עלול לא לקרוא נכון את האותיות.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>json.dumps — כתיבת Python → JSON string</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">write_json.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>import json
+
+data = {"name": "Shai", "role": "Head of SEO"}
+
+# ensure_ascii=False שומר על עברית. indent=2 מסדר בשורות
+json_string = json.dumps(data, ensure_ascii=False, indent=2)
+print(json_string)</code></pre>
+      </div>
+
+      <div class="output">
+        <div class="output__label">פלט צפוי</div>
+<pre>{
+  "name": "Shai",
+  "role": "Head of SEO"
+}</pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>סיכום: load לעומת dumps</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>פונקציה</th>
+            <th>מה היא עושה</th>
+            <th>קלט</th>
+            <th>פלט</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>json.load(f)</code></td>
+            <td>קריאת JSON מקובץ</td>
+            <td>file object</td>
+            <td>dict / list Python</td>
+          </tr>
+          <tr>
+            <td><code>json.loads(s)</code></td>
+            <td>קריאת JSON ממחרוזת</td>
+            <td>string</td>
+            <td>dict / list Python</td>
+          </tr>
+          <tr>
+            <td><code>json.dumps(d)</code></td>
+            <td>כתיבת Python → string</td>
+            <td>dict / list</td>
+            <td>JSON string</td>
+          </tr>
+          <tr>
+            <td><code>json.dump(d, f)</code></td>
+            <td>כתיבת Python → קובץ</td>
+            <td>dict / list + file</td>
+            <td>כותב לקובץ</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 4: Practice -->
+    <section class="lesson-section" id="part-4">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">4</div>
+        <h2 class="lesson-section__title">תרגול — Top 5 לקוחות Selected</h2>
+        <span class="lesson-section__time">1 שעה</span>
+      </div>
+
+      <div class="refresher">
+        <div class="refresher__title">רענון מחלקים 1-3</div>
+        <p>נשתמש ב-<span class="term" data-term-id="list">list</span>, <span class="term" data-term-id="dict">dict</span>, ו-<span class="term" data-term-id="json">JSON</span> יחד עכשיו. אם משהו לא ברור — חזור ל-<a href="#part-1">חלק 1</a> או <a href="#part-3">חלק 3</a>.</p>
+      </div>
+
+      <h3>המטרה</h3>
+      <p>
+        צור קובץ: <code>exercises/lesson-02/top_clients.py</code><br>
+        בתיקיה <code>exercises/lesson-02/</code> יש קובץ <code>clients.json</code> עם 8 לקוחות SEO.
+        קרא אותו, מיין לפי תנועה (traffic), והדפס את 5 הלקוחות הגדולים ביותר.
+      </p>
+
+      <div class="output">
+        <div class="output__label">תוצאה צפויה</div>
+<pre>קוסמטיקה ננו: 67,000 ביקורים
+מנגו: 45,000 ביקורים
+סופר ביץ': 32,000 ביקורים
+סטודיו דיו: 22,000 ביקורים
+אגד נדל"ן: 15,000 ביקורים</pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>הנתונים — clients.json</h3>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">exercises/lesson-02/clients.json</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>[
+  {"name": "מנגו", "traffic": 45000, "conversion_rate": 2.3, "industry": "fashion"},
+  {"name": "סופר ביץ'", "traffic": 32000, "conversion_rate": 1.8, "industry": "ecommerce"},
+  {"name": "קליניקת רימון", "traffic": 12000, "conversion_rate": 4.1, "industry": "healthcare"},
+  {"name": "מסעדת בר אבא", "traffic": 8500, "conversion_rate": 3.2, "industry": "restaurant"},
+  {"name": "סטודיו דיו", "traffic": 22000, "conversion_rate": 1.5, "industry": "fashion"},
+  {"name": "קוסמטיקה ננו", "traffic": 67000, "conversion_rate": 2.9, "industry": "beauty"},
+  {"name": "אגד נדל\"ן", "traffic": 15000, "conversion_rate": 1.2, "industry": "realestate"},
+  {"name": "פיצה דיסקו", "traffic": 5400, "conversion_rate": 4.8, "industry": "restaurant"}
+]</code></pre>
+      </div>
+
+      <p><strong>אל תפתח את Claude עדיין.</strong> נסה לבד 30 דקות לפחות. אם תקעת — אז תפתח את הרמזים.</p>
+
+      <hr class="mini-divider">
+
+      <details class="hint">
+        <summary>רמז 1 — איך לקרוא את הקובץ?</summary>
+        <p>השתמש ב-<code>with open("clients.json", "r", encoding="utf-8") as f:</code>
+        ואז בתוך הבלוק: <code>clients = json.load(f)</code>.
+        אל תשכח <code>import json</code> בשורה הראשונה.</p>
+      </details>
+
+      <details class="hint">
+        <summary>רמז 2 — איך ממיינים לפי שדה בdict?</summary>
+        <p>
+          השתמש ב-<code>sorted()</code> עם <code>key</code> ו-<code>reverse</code>:<br>
+          <code>sorted(clients, key=lambda c: c["traffic"], reverse=True)</code><br>
+          <code>lambda c: c["traffic"]</code> אומר "תמיין לפי ערך השדה traffic של כל dict".
+        </p>
+      </details>
+
+      <details class="hint">
+        <summary>רמז 3 — איך לוקחים רק 5 ראשונים?</summary>
+        <p>
+          השתמש ב-slicing: <code>[:5]</code>.<br>
+          אפשר לשרשר ישירות: <code>sorted(...)[:5]</code>.
+        </p>
+      </details>
+
+      <details class="solution">
+        <summary>פתרון מלא (רק אחרי שניסית!)</summary>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__filename">top_clients.py</span>
+            <button class="code-block__copy">העתק</button>
+          </div>
+<pre><code>import json
+
+# קריאת הקובץ
+with open("clients.json", "r", encoding="utf-8") as f:
+    clients = json.load(f)
+
+# מיון לפי תנועה — מהגבוה לנמוך — ולקחת 5 ראשונים
+top_5 = sorted(clients, key=lambda c: c["traffic"], reverse=True)[:5]
+
+# הדפסת התוצאות
+for client in top_5:
+    print(f"{client['name']}: {client['traffic']:,} ביקורים")</code></pre>
+        </div>
+        <p>הרץ מתיקיית <code>exercises/lesson-02/</code> עם <code>python3 top_clients.py</code>.</p>
+      </details>
+
+      <button class="section-complete-btn" data-section="part-4">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 5: Review -->
+    <section class="lesson-section" id="part-5">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">5</div>
+        <h2 class="lesson-section__title">Review — מה למדת</h2>
+        <span class="lesson-section__time">30 דקות</span>
+      </div>
+
+      <h3>3 שאלות לפני שאתה ממשיך</h3>
+      <p>ענה לעצמך (בלי לגלול חזרה):</p>
+      <ol>
+        <li>מה ההבדל בין <span class="term" data-term-id="list">list</span> ל-<span class="term" data-term-id="dict">dict</span>?</li>
+        <li>למה משתמשים ב-<code>.get()</code> במקום <code>[...]</code> כשניגשים למפתח ב-dict?</li>
+        <li>למה <code>json.load</code> דורש קובץ פתוח (file object) ולא רק שם של קובץ?</li>
+      </ol>
+      <p>אם אתה לא בטוח על אחת מאלה — חזור על החלק הרלוונטי לפני שעוברים ל-Lesson 3.</p>
+
+      <hr class="mini-divider">
+
+      <h3>עדכן את PROGRESS.md</h3>
+      <p>פתח <code>PROGRESS.md</code> בשורש הפרויקט. סמן ✅ ליד הסעיפים של Lesson 2. מלא:</p>
+      <ul>
+        <li><strong>שעות בפועל:</strong> כמה זמן זה לקח באמת</li>
+        <li><strong>קושי (1-5):</strong> סובייקטיבי</li>
+        <li><strong>הערות:</strong> מה הפתיע, מה לא היה ברור, מה רצית עוד</li>
+      </ul>
+
+      <button class="section-complete-btn" data-section="part-5">סיימתי חלק זה ✓</button>
+    </section>
+
+    <div class="section-divider" aria-hidden="true">
+      <span class="section-divider__dot"></span>
+    </div>
+
+    <!-- Checkpoint Card -->
+    <section class="lesson-section" id="checkpoint">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">✓</div>
+        <h2 class="lesson-section__title">Checkpoint — השלמת Lesson 2</h2>
+      </div>
+
+      <p>כשכל ה-✓ למטה ירוקים — אתה מוכן ל-Lesson 3.</p>
+
+      <div class="checklist">
+        <ul>
+          <li data-id="w2-list"><span class="term" data-term-id="list">list</span> בפעולה — נגשת לפי <span class="term" data-term-id="index">אינדקס</span> והוספת עם append</li>
+          <li data-id="w2-dict"><span class="term" data-term-id="dict">dict</span> בפעולה — נגשת לפי <span class="term" data-term-id="key">key</span> והשתמשת ב-.get()</li>
+          <li data-id="w2-function"><span class="term" data-term-id="function">פונקציה</span> ראשונה — כתבת def משלך עם return</li>
+          <li data-id="w2-json">קריאת <span class="term" data-term-id="json">JSON</span> — json.load רץ בהצלחה</li>
+          <li data-id="w2-exercise">התרגיל <code>top_clients.py</code> רץ ומדפיס 5 לקוחות</li>
+          <li data-id="w2-commit"><span class="term" data-term-id="git">Git</span> <span class="term" data-term-id="commit">commit</span> + <span class="term" data-term-id="push">push</span></li>
+        </ul>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">משהו לא ברור?</div>
+        <p>אל תיתקע לבד יותר מ-30 דקות. שאל את Claude (בצ'אט או ב-Claude Code), או חזור על החלק הרלוונטי. אם אחרי 60 דקות עוד תקוע — תכתוב לי, ננווט יחד.</p>
+      </div>
+    </section>
+
+    <!-- Lesson Footer Navigation -->
+    <div class="lesson-footer">
+      <a href="lesson-01.html" class="lesson-nav-btn">
+        <div class="lesson-nav-btn__label">השיעור הקודם</div>
+        <div class="lesson-nav-btn__title">Lesson 1 — Python יום ראשון</div>
+      </a>
+      <a href="lesson-03.html" class="lesson-nav-btn lesson-nav-btn--next">
+        <div class="lesson-nav-btn__label">השיעור הבא</div>
+        <div class="lesson-nav-btn__title">Lesson 3 — APIs + Git + Errors →</div>
+      </a>
     </div>
 
   </main>
@@ -46,6 +639,6 @@
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-3"></script>
+  <script src="../assets/js/app.js?v=20260521-4"></script>
 </body>
 </html>

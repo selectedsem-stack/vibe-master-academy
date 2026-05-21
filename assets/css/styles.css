@@ -2224,7 +2224,7 @@ summary:focus-visible,
   }
 }
 
-.term {
+.glossary-grid .term {
   background: white;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
@@ -2235,9 +2235,13 @@ summary:focus-visible,
   position: relative;
   overflow: hidden;
   scroll-margin-top: 150px;
+  display: block;
+  cursor: default;
+  font-weight: 400;
+  color: var(--color-text);
 }
 
-.term::before {
+.glossary-grid .term::before {
   content: '';
   position: absolute;
   top: 0;
@@ -2249,20 +2253,21 @@ summary:focus-visible,
   transition: opacity var(--transition);
 }
 
-.term:hover {
+.glossary-grid .term:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: var(--color-primary-light);
+  background: white;
 }
 
-.term:hover::before { opacity: 1; }
+.glossary-grid .term:hover::before { opacity: 1; }
 
-.term:target {
+.glossary-grid .term:target {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 4px var(--color-primary-soft);
 }
 
-.term:target::before { opacity: 1; }
+.glossary-grid .term:target::before { opacity: 1; }
 
 .term__category {
   display: inline-block;
@@ -2322,14 +2327,14 @@ summary:focus-visible,
   margin-right: var(--space-2);
 }
 
-.term p {
+.glossary-grid .term p {
   color: var(--color-text-soft);
   line-height: 1.65;
   margin: 0;
   font-size: 0.97rem;
 }
 
-.term p code {
+.glossary-grid .term p code {
   background: var(--color-primary-soft);
   color: var(--color-primary-dark);
   font-size: 0.88em;
@@ -2349,7 +2354,7 @@ summary:focus-visible,
 }
 
 /* Hide term during search */
-.term.hidden { display: none; }
+.glossary-grid .term.hidden { display: none; }
 
 @media (max-width: 720px) {
   .glossary-hero__title { font-size: 1.85rem; }

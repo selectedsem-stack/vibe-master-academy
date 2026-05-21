@@ -1,0 +1,10 @@
+[
+  {"name": "מנגו", "traffic": 45000, "conversion_rate": 2.3, "industry": "fashion"},
+  {"name": "סופר ביץ'", "traffic": 32000, "conversion_rate": 1.8, "industry": "ecommerce"},
+  {"name": "קליניקת רימון", "traffic": 12000, "conversion_rate": 4.1, "industry": "healthcare"},
+  {"name": "מסעדת בר אבא", "traffic": 8500, "conversion_rate": 3.2, "industry": "restaurant"},
+  {"name": "סטודיו דיו", "traffic": 22000, "conversion_rate": 1.5, "industry": "fashion"},
+  {"name": "קוסמטיקה ננו", "traffic": 67000, "conversion_rate": 2.9, "industry": "beauty"},
+  {"name": "אגד נדל\"ן", "traffic": 15000, "conversion_rate": 1.2, "industry": "realestate"},
+  {"name": "פיצה דיסקו", "traffic": 5400, "conversion_rate": 4.8, "industry": "restaurant"}
+]
