@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 1 — Python יום ראשון · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-5">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-6">
 </head>
 <body>
 
@@ -103,6 +103,34 @@
 
       <hr class="mini-divider">
 
+      <h3>Terminal — לפני שמתחילים</h3>
+      <p>ה-Terminal הוא חלון שבו אתה מקליד פקודות ישירות למחשב. <strong>5 פקודות שתשתמש בהן בלי הפסקה:</strong></p>
+
+      <table>
+        <thead>
+          <tr><th>פקודה</th><th>מה היא עושה</th><th>דוגמה</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>pwd</code></td><td>מציג את התיקייה הנוכחית</td><td><code>pwd</code> → <code>/Users/shai</code></td></tr>
+          <tr><td><code>ls</code></td><td>מציג את הקבצים בתיקייה</td><td><code>ls</code></td></tr>
+          <tr><td><code>cd &lt;תיקייה&gt;</code></td><td>נכנס לתיקייה</td><td><code>cd projects</code></td></tr>
+          <tr><td><code>cd ~</code></td><td>חוזר לתיקיית הבית</td><td><code>~</code> = home directory</td></tr>
+          <tr><td><code>mkdir &lt;שם&gt;</code></td><td>יוצר תיקייה חדשה</td><td><code>mkdir my-folder</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">טיפ חשוב</div>
+        <p>הסימן <code>~</code> תמיד מצביע על תיקיית הבית שלך (במאק: <code>/Users/USERNAME</code>). אז <code>cd ~/projects</code> = "לך לתיקיית projects שבתוך הבית שלי".</p>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">אם פקודה לא עובדת</div>
+        <p>קרא את הודעת השגיאה. <code>command not found</code> = הכלי לא מותקן. <code>Permission denied</code> = חסרות הרשאות — נסה להוסיף <code>sudo</code> לפני הפקודה, יבקש סיסמה.</p>
+      </div>
+
+      <hr class="mini-divider">
+
       <h3>3 הצעדים</h3>
 
       <div class="steps">
@@ -172,8 +200,8 @@
                 <button class="code-block__copy">העתק</button>
               </div>
 <pre><code>cd ~/projects/vibe-master-academy
-mkdir -p exercises/week-01
-cd exercises/week-01
+mkdir -p exercises/lesson-01
+cd exercises/lesson-01
 code hello.py</code></pre>
             </div>
             <p>זה יפתח את VS Code עם קובץ ריק בשם <code>hello.py</code>. הכנס:</p>
@@ -265,6 +293,23 @@ print("שלום,", name)</code></pre>
       </div>
       <p>הרץ את זה. המחשב יחכה שתכניס שם, ואז ידפיס לך שלום.</p>
 
+      <p><strong>הערה על print:</strong> הפסיק בין הארגומנטים (<code>"שלום", name</code>) גורם ל-Python להוסיף רווח אוטומטית בין הערכים.</p>
+
+      <h3>f-strings — הדרך המודרנית להדפיס</h3>
+      <p>יש דרך יותר נקייה לשלב משתנים בטקסט — <strong>f-string</strong>:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>name = "Shai"
+print(f"שלום, {name}!")            # שלום, Shai!
+print(f"השם שלך הוא {name}, נכון?")  # השם שלך הוא Shai, נכון?</code></pre>
+      </div>
+
+      <p>ה-<code>f</code> לפני הגרשיים אומר ל-Python: "זה לא טקסט רגיל, תחפש משתנים בתוך <code>{}</code> והחלף אותם בערכים שלהם". זה הסטנדרט המודרני — תשתמש בו לאורך הקורס.</p>
+
       <h3>הערות בקוד</h3>
       <p>
         <span class="term" data-term-id="comment">הערות</span> הן טקסט בקוד שה-Python מתעלם ממנו. הן בשבילך, לזכור מה הקוד עושה:
@@ -281,6 +326,28 @@ name = "Shai"   # זאת גם הערה, אחרי קוד</code></pre>
       <div class="callout callout--tip">
         <div class="callout__title">הרגל מצוין</div>
         <p>הוסף הערה לפני כל שורה לא טריוויאלית. עוד שנה תודה לעצמך.</p>
+      </div>
+
+      <h3>אינדנטציה — הסוד של Python</h3>
+      <p>ב-Python, <strong>רווחים בתחילת השורה הם משמעותיים</strong>. שלא כמו בשפות אחרות שמשתמשות ב-<code>{ }</code>, Python מסתמך על אינדנטציה כדי להבין מה שייך לאן.</p>
+
+      <p>לדוגמה, ב-<code>if</code>:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>age = 18
+if age &gt;= 18:
+    print("מבוגר")          # 4 רווחים בהתחלה
+    print("יכול להצביע")     # אותם 4 רווחים — באותו הבלוק
+print("זה לא תלוי בגיל")    # אין רווחים — מחוץ לבלוק</code></pre>
+      </div>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">שגיאה ראשונה של כל מתחיל ב-Python</div>
+        <p><code>IndentationError</code>. אם תקבל את זה — תבדוק את הרווחים. השתמש תמיד ב-4 רווחים, לא tabs. ב-VS Code, אם תלחץ Tab, הוא יהפוך אותו לרווחים אוטומטית (זה הסטנדרט).</p>
       </div>
 
       <button class="section-complete-btn" data-section="part-2">סיימתי חלק זה ✓</button>
@@ -300,7 +367,7 @@ name = "Shai"   # זאת גם הערה, אחרי קוד</code></pre>
       </div>
 
       <h3>המטרה</h3>
-      <p>צור קובץ חדש: <code>exercises/week-01/domain_extractor.py</code>. המטרה — סקריפט שמקבל URL מהמשתמש ומדפיס רק את הדומיין.</p>
+      <p>צור קובץ חדש: <code>exercises/lesson-01/domain_extractor.py</code>. המטרה — סקריפט שמקבל URL מהמשתמש ומדפיס רק את הדומיין.</p>
 
       <div class="output">
         <div class="output__label">דוגמה לתפעול</div>
@@ -311,18 +378,18 @@ name = "Shai"   # זאת גם הערה, אחרי קוד</code></pre>
       <p><strong>אל תפתח את Claude עדיין.</strong> נסה לבד 30 דקות לפחות. אם תקעת — אז תפתח את הרמזים.</p>
 
       <details class="hint">
-        <summary>רמז 1 — איך מקבלים URL מהמשתמש?</summary>
-        <p>השתמש ב-<span class="term" data-term-id="input">input()</span> כדי לקבל URL מהמשתמש. שמור אותו במשתנה.</p>
+        <summary>רמז 1 — חשוב על השלבים</summary>
+        <p>ה-URL הוא <code>https://www.beatport.com/genre/techno</code>. מה צריך להסיר כדי להישאר עם <code>beatport.com</code>?</p>
       </details>
 
       <details class="hint">
-        <summary>רמז 2 — איך מסירים את ה-https://?</summary>
-        <p>למחרוזות יש מתודה בשם <code>.replace(old, new)</code>. למשל: <code>url.replace("https://", "")</code> מחליף את "https://" במחרוזת ריקה (מסיר אותו). אפשר לקרוא לזה כמה פעמים ברצף.</p>
+        <summary>רמז 2 — איך מסירים חלק ממחרוזת</summary>
+        <p>מחרוזות ב-Python יש להן מתודה <code>.replace(old, new)</code> שמחליפה חלק אחד באחר. אם רוצים <em>להסיר</em> משהו — מחליפים אותו במחרוזת ריקה <code>""</code>.</p>
       </details>
 
       <details class="hint">
-        <summary>רמז 3 — איך חותכים בסלאש הראשון?</summary>
-        <p>למחרוזות יש מתודה <code>.split(separator)</code> שמחזירה רשימה של חלקים. <code>"a/b/c".split("/")</code> מחזיר <code>["a", "b", "c"]</code>. אז <code>.split("/")[0]</code> מחזיר את האלמנט הראשון.</p>
+        <summary>רמז 3 — איך חותכים את הסוף</summary>
+        <p>אחרי שהסרת את <code>https://</code> ו-<code>www.</code>, נשארת לך מחרוזת כמו <code>beatport.com/genre/techno</code>. מתודה <code>.split("/")</code> מחזירה רשימה כשהיא חותכת בסלאש. האיבר הראשון ברשימה (אינדקס <code>[0]</code>) הוא הדומיין.</p>
       </details>
 
       <details class="solution">
@@ -430,6 +497,6 @@ print("הדומיין הוא:", domain)</code></pre>
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-5"></script>
+  <script src="../assets/js/app.js?v=20260521-6"></script>
 </body>
 </html>

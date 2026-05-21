@@ -68,6 +68,21 @@ print(client.get("conversion_rate"))        # None
 print(client.get("conversion_rate", 0.0))   # 0.0 — ערך ברירת מחדל
 ```
 
+**מתי זה באמת שימושי?** דמיין שאתה מקבל נתונים מ-API חיצוני, וחלק מהלקוחות לא מילאו את כל השדות:
+
+```python
+client = {"name": "מנגו", "traffic": 45000}   # אין conversion_rate!
+
+# גישה ישירה — תקרוס:
+# print(client["conversion_rate"])   # KeyError: 'conversion_rate'
+
+# .get() עם ערך ברירת מחדל — לא קורס:
+cvr = client.get("conversion_rate", 0.0)
+print(f"CVR של {client['name']}: {cvr}%")   # CVR של מנגו: 0.0%
+```
+
+**כלל אצבע:** כשאתה לא בטוח שהשדה קיים — תמיד `.get()`.
+
 ---
 
 ### List לעומת Dict
@@ -76,6 +91,33 @@ print(client.get("conversion_rate", 0.0))   # 0.0 — ערך ברירת מחדל
 |------|---------|----------|------------|
 | `list` | `[...]` | אינדקס מספרי | רשימת ערכים סדורים |
 | `dict` | `{...}` | שם (key) | אובייקט עם שדות בשם |
+
+---
+
+### iteration על dict — איך עוברים על כל הזוגות
+
+לפעמים אתה רוצה לעבור על כל הזוגות key-value ב-dict. יש 3 דרכים:
+
+```python
+client = {"name": "מנגו", "traffic": 45000, "industry": "fashion"}
+
+# 1. רק keys
+for key in client.keys():
+    print(key)          # name, traffic, industry
+
+# 2. רק values
+for value in client.values():
+    print(value)        # מנגו, 45000, fashion
+
+# 3. שניהם יחד — הכי שימושי
+for key, value in client.items():
+    print(f"{key}: {value}")
+    # name: מנגו
+    # traffic: 45000
+    # industry: fashion
+```
+
+**הנפוץ ביותר:** `client.items()` — נותן זוגות (key, value) שאפשר לפרק ישירות לשני משתנים.
 
 ---
 
@@ -92,6 +134,36 @@ def שם_הפונקציה(פרמטר1, פרמטר2):
     # קוד כאן
     return תוצאה
 ```
+
+### `return` לעומת `print` — ההבדל הקריטי
+
+זו אחת השאלות הראשונות שמבלבלות כל מתחיל. ההבדל פשוט אבל חשוב:
+
+- **`print`** — *מציג* ערך על המסך. הוא לא מחזיר כלום שאפשר להשתמש בו אחר כך.
+- **`return`** — *מחזיר* ערך מהפונקציה. אפשר לשמור אותו במשתנה ולהשתמש בו.
+
+דוגמה להמחשה:
+
+```python
+def add_with_print(a, b):
+    print(a + b)        # מציג על המסך — לא מחזיר כלום
+
+def add_with_return(a, b):
+    return a + b        # מחזיר את הערך
+
+# שימוש:
+add_with_print(2, 3)    # מדפיס: 5
+result = add_with_print(2, 3)
+print(result)           # מדפיס: None — כי אין return!
+
+result = add_with_return(2, 3)
+print(result)           # מדפיס: 5 — return החזיר את הערך
+print(result * 2)       # מדפיס: 10 — אפשר להשתמש בערך הלאה
+```
+
+**כלל אצבע:** פונקציות צריכות `return`. `print` הוא רק ל-debug או להדפסה למשתמש.
+
+---
 
 ### דוגמה: חישוב ציון לקוח SEO
 
@@ -168,6 +240,50 @@ print(json_string)
 
 ---
 
+### לפני התרגיל — מה זה `lambda`?
+
+בתרגיל בעוד רגע נשתמש בפונקציה `sorted()` עם משהו שנראה כך: `key=lambda c: c["traffic"]`.
+
+**`lambda` היא דרך מקוצרת לכתוב פונקציה קטנה בשורה אחת.**
+
+הנה ההשוואה:
+
+```python
+# הדרך הרגילה — פונקציה מלאה
+def get_traffic(client):
+    return client["traffic"]
+
+# הדרך המקוצרת — lambda
+get_traffic = lambda client: client["traffic"]
+
+# שתי הגרסאות עושות בדיוק את אותו דבר
+```
+
+**איך קוראים את זה?**
+- `lambda` — מילת מפתח שמכריזה: "אני פונקציה קטנה"
+- `client` — שם הפרמטר (כל שם, תבחר)
+- `:` — מפריד בין הפרמטר לבין מה שמחזירים
+- `client["traffic"]` — הערך שמוחזר (אין צורך לכתוב `return`)
+
+**איפה משתמשים?** בעיקר עם פונקציות שמקבלות פונקציה אחרת כפרמטר — כמו `sorted()`, `map()`, `filter()`:
+
+```python
+clients = [
+    {"name": "מנגו", "traffic": 45000},
+    {"name": "סופר ביץ'", "traffic": 32000},
+    {"name": "ננו", "traffic": 67000}
+]
+
+# למיין לפי traffic — צריך לציין לפי איזה שדה
+sorted_clients = sorted(clients, key=lambda c: c["traffic"])
+
+# התוצאה: ננו (32000) → סופר ביץ' → ננו (67000)
+```
+
+עכשיו אתה מוכן לתרגיל.
+
+---
+
 ## חלק 4: תרגול — Top Clients (1 שעה)
 
 ### רענון מחלקים 1-3
@@ -193,11 +309,11 @@ print(json_string)
 
 ---
 
-**רמז 1:** השתמש ב-`with open(...) as f:` + `json.load(f)` כדי לקרוא את הקובץ.
+**רמז 1 — איך פותחים את הקובץ?** Python דורש שתפתח קובץ לקריאה לפני שאתה יכול להעביר אותו ל-`json.load()`. השתמש ב-`with open(...) as f:` — `with` מבטיח שהקובץ ייסגר אוטומטית גם אם תהיה שגיאה.
 
-**רמז 2:** `sorted(clients, key=lambda c: c["traffic"], reverse=True)` ממיין רשימה של dicts לפי שדה.
+**רמז 2 — איך ממיינים רשימה לפי שדה ב-dict?** הפונקציה `sorted()` מקבלת פרמטר `key` שאומר לה לפי מה למיין. עבור רשימה של dicts, נשתמש ב-lambda (שכרגע למדנו) כדי לבחור איזה שדה לבדוק. כדי למיין מהגבוה לנמוך — תוסיף `reverse=True`.
 
-**רמז 3:** השתמש ב-slicing `[:5]` כדי לקבל את החמישה הראשונים.
+**רמז 3 — איך לוקחים רק את 5 הראשונים?** רשימות תומכות ב-slicing. `[start:end]` מחזיר חתיכה. כדי לקבל את 5 הראשונים בלבד — `[:5]`.
 
 ---
 

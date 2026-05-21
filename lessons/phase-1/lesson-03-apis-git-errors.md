@@ -139,6 +139,55 @@ print(data.get("current_user_url"))
 
 ---
 
+---
+
+### לפני הקריאה ל-Claude: איך מגדירים מפתח API בסביבה
+
+ה-API key הוא **סוד**. כמו סיסמה. הוא לעולם לא צריך להופיע בקוד שלך — לא ב-`.py`, לא ב-Git, ולא ב-screenshot.
+
+הפתרון הסטנדרטי: **environment variables** (משתני סביבה). אתה שם את המפתח פעם אחת ב-Terminal/במערכת, והקוד שולף משם.
+
+#### דרך 1: לפעם אחת (מתאים לבדיקות)
+
+ב-Terminal, לפני שאתה מריץ את הסקריפט:
+
+```bash
+export ANTHROPIC_API_KEY="sk-ant-..."   # שים פה את המפתח האמיתי
+python3 your_script.py
+```
+
+ה-`export` תקף **רק בחלון ה-Terminal הזה**. אם תסגור אותו, המשתנה ייעלם.
+
+#### דרך 2: קבוע (מתאים לעבודה יומיומית)
+
+הוסף את ה-`export` ל-`~/.zshrc` (במאק) כדי שיטעון אוטומטית בכל Terminal חדש:
+
+```bash
+echo 'export ANTHROPIC_API_KEY="sk-ant-..."' >> ~/.zshrc
+source ~/.zshrc
+```
+
+עכשיו בכל Terminal חדש שתפתח, המשתנה יהיה זמין.
+
+#### בדיקה שזה עבד
+
+```bash
+echo $ANTHROPIC_API_KEY
+```
+
+אם רואה את המפתח — מצוין. אם לא רואה כלום — תחזור על השלבים.
+
+#### בקוד Python אתה תקרא:
+
+```python
+import os
+API_KEY = os.environ.get("ANTHROPIC_API_KEY")
+```
+
+**אם `API_KEY` מקבל ערך `None`** — סימן שמשתנה הסביבה לא הוגדר נכון. סגור את ה-Terminal, פתח חדש, נסה שוב.
+
+---
+
 ### קריאת POST ל-Claude API
 
 זו הקריאה האמיתית. שים לב למבנה:
@@ -173,9 +222,31 @@ else:
 ```
 
 **שים לב:**
-- `os.environ.get("ANTHROPIC_API_KEY")` — מפתח מגיע מהסביבה, לא מהקוד
+- `os.environ.get("ANTHROPIC_API_KEY")` — המפתח מגיע מהסביבה (שהגדרנו למעלה), לא מהקוד
 - `json={...}` — requests אוטומטית ממיר ל-JSON ומוסיף Content-Type header
-- `data["content"][0]["text"]` — זה המבנה של תגובת Claude
+- `data["content"][0]["text"]` — זה המבנה של תגובת Claude (ראה הסבר למטה)
+
+### מבנה תגובת Claude — למה `content[0].text`?
+
+Claude מחזיר JSON שנראה ככה:
+
+```json
+{
+  "id": "msg_abc123",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    { "type": "text", "text": "כאן הסיכום של Claude..." }
+  ],
+  "model": "claude-opus-4-7",
+  "stop_reason": "end_turn",
+  "usage": { "input_tokens": 25, "output_tokens": 87 }
+}
+```
+
+`content` היא **רשימה** של "content blocks", כי תגובה יכולה לכלול יותר מבלוק טקסט אחד (למשל גם תמונה או tool call). ברוב המקרים יש בלוק אחד, ולכן `[0]`. בתוכו, `.text` הוא הטקסט עצמו.
+
+**כלל:** הקוד `data["content"][0]["text"]` קורא: "קח את הרשימה content, קח את האיבר הראשון [0], וממנו קח את השדה text".
 
 ---
 
@@ -194,15 +265,31 @@ else:
 
 ---
 
-### try / except — הסינטקס הבסיסי
+### try / except — נתחיל פשוט
+
+הסינטקס הבסיסי תופס **כל** שגיאה:
 
 ```python
 try:
     # קוד שעלול להיכשל
     response = requests.get("https://api.github.com", timeout=5)
-    response.raise_for_status()   # זורק exception אם status code >= 400
     data = response.json()
     print(data)
+except Exception as e:
+    print(f"משהו השתבש: {e}")
+```
+
+זה הצורה הפשוטה ביותר. `Exception` תופס **הכל** — Timeout, ConnectionError, KeyError, וכל שאר השגיאות. הקוד לא קורס, רק מדפיס את השגיאה וממשיך.
+
+### עכשיו ספציפי יותר — נבחין בין סוגי שגיאות
+
+לפעמים אתה רוצה להגיב אחרת לפי סוג השגיאה — למשל retry על Timeout, אבל לעצור על שגיאת אימות:
+
+```python
+try:
+    response = requests.get("https://api.github.com", timeout=5)
+    response.raise_for_status()   # זורק exception אם status code >= 400
+    data = response.json()
 
 except requests.exceptions.Timeout:
     print("פסק זמן — השרת לא ענה תוך 5 שניות")
@@ -212,11 +299,9 @@ except requests.exceptions.HTTPError as e:
 
 except requests.exceptions.ConnectionError:
     print("שגיאת חיבור — בדוק אינטרנט")
-
-except Exception as e:
-    # תופס כל שגיאה אחרת
-    print(f"שגיאה לא צפויה: {e}")
 ```
+
+**הסדר חשוב:** except ספציפי יותר תמיד לפני except כללי. Python בודק אותם מלמעלה למטה.
 
 ---
 
@@ -243,7 +328,9 @@ except ValueError as e:
 
 ---
 
-### retry פשוט
+### Bonus — retry פשוט (לחקירה אישית, לא חובה)
+
+> ⚡ הקטע הבא משתמש במושגים שעדיין לא הוסברו בשיעור (default parameters, while loop, raise). תרגיש חופשי לדלג ולחזור אליו אחרי Lesson 4 כשתתעמק יותר.
 
 ```python
 import requests
@@ -255,7 +342,7 @@ def call_api_with_retry(url, max_tries=3):
             response = requests.get(url, timeout=10)
             response.raise_for_status()
             return response.json()
-        except requests.exceptions.HTTPError as e:
+        except requests.exceptions.HTTPError:
             if response.status_code == 429:
                 print(f"Rate limit — מחכה {attempt * 2} שניות...")
                 time.sleep(attempt * 2)
@@ -265,6 +352,16 @@ def call_api_with_retry(url, max_tries=3):
             print(f"Timeout בניסיון {attempt}")
     raise RuntimeError("כל הניסיונות נכשלו")
 ```
+
+---
+
+### תרגיל מהיר — תפוס שגיאה אמיתית
+
+קח את קוד Claude API שלך, ועוטף אותו ב-try/except. אחר כך **בכוונה** קלקל את ה-API key (החלף תו אחד), והרץ שוב.
+
+תקבל שגיאה — אבל הסקריפט שלך לא יקרוס. במקום זה הוא יציג הודעה ידידותית. **זה החוזק של try/except.**
+
+חזור על המפתח התקין אחרי הבדיקה.
 
 ---
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 2 — מבני נתונים + JSON · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-5">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-6">
 </head>
 <body>
 
@@ -202,6 +202,28 @@ rank = client.get("rank", 0)       # 0 — ערך ברירת מחדל
 print(f"דירוג: {rank}")            # דירוג: 0</code></pre>
       </div>
 
+      <p><strong>מתי זה באמת שימושי?</strong> דמיין שאתה מקבל נתונים מ-API חיצוני, וחלק מהלקוחות לא מילאו את כל השדות:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה — נתונים חלקיים</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>client = {"name": "מנגו", "traffic": 45000}   # אין conversion_rate!
+
+# גישה ישירה — תקרוס:
+# print(client["conversion_rate"])   # KeyError: 'conversion_rate'
+
+# .get() עם ערך ברירת מחדל — לא קורס:
+cvr = client.get("conversion_rate", 0.0)
+print(f"CVR של {client['name']}: {cvr}%")   # CVR של מנגו: 0.0%</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">כלל אצבע</div>
+        <p>כשאתה לא בטוח שהשדה קיים — תמיד <code>.get()</code>.</p>
+      </div>
+
       <hr class="mini-divider">
 
       <h3>השוואה: List לעומת Dict</h3>
@@ -230,6 +252,39 @@ print(f"דירוג: {rank}")            # דירוג: 0</code></pre>
           </tr>
         </tbody>
       </table>
+
+      <hr class="mini-divider">
+
+      <h3>iteration על dict — איך עוברים על כל הזוגות</h3>
+      <p>לפעמים אתה רוצה לעבור על כל הזוגות key-value ב-dict. יש 3 דרכים:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>client = {"name": "מנגו", "traffic": 45000, "industry": "fashion"}
+
+# 1. רק keys
+for key in client.keys():
+    print(key)          # name, traffic, industry
+
+# 2. רק values
+for value in client.values():
+    print(value)        # מנגו, 45000, fashion
+
+# 3. שניהם יחד — הכי שימושי
+for key, value in client.items():
+    print(f"{key}: {value}")
+    # name: מנגו
+    # traffic: 45000
+    # industry: fashion</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">הנפוץ ביותר</div>
+        <p><code>client.items()</code> — נותן זוגות <code>(key, value)</code> שאפשר לפרק ישירות לשני משתנים.</p>
+      </div>
 
       <button class="section-complete-btn" data-section="part-1">סיימתי חלק זה ✓</button>
     </section>
@@ -274,6 +329,43 @@ print(f"דירוג: {rank}")            # דירוג: 0</code></pre>
         <li>הקוד בתוך הפונקציה מוזז 4 spaces פנימה (<strong>indentation</strong>)</li>
         <li><code>return</code> מחזיר ערך — הפונקציה עוצרת שם</li>
       </ul>
+
+      <hr class="mini-divider">
+
+      <h3><code>return</code> לעומת <code>print</code> — ההבדל הקריטי</h3>
+      <p>זו אחת השאלות הראשונות שמבלבלות כל מתחיל. ההבדל פשוט אבל חשוב:</p>
+      <ul>
+        <li><strong><code>print</code></strong> — <em>מציג</em> ערך על המסך. הוא לא מחזיר כלום שאפשר להשתמש בו אחר כך.</li>
+        <li><strong><code>return</code></strong> — <em>מחזיר</em> ערך מהפונקציה. אפשר לשמור אותו במשתנה ולהשתמש בו.</li>
+      </ul>
+
+      <p>דוגמה להמחשה:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>def add_with_print(a, b):
+    print(a + b)        # מציג על המסך — לא מחזיר כלום
+
+def add_with_return(a, b):
+    return a + b        # מחזיר את הערך
+
+# שימוש:
+add_with_print(2, 3)    # מדפיס: 5
+result = add_with_print(2, 3)
+print(result)           # מדפיס: None — כי אין return!
+
+result = add_with_return(2, 3)
+print(result)           # מדפיס: 5 — return החזיר את הערך
+print(result * 2)       # מדפיס: 10 — אפשר להשתמש בערך הלאה</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">כלל אצבע</div>
+        <p>פונקציות צריכות <code>return</code>. <code>print</code> הוא רק ל-debug או להדפסה למשתמש.</p>
+      </div>
 
       <hr class="mini-divider">
 
@@ -454,6 +546,59 @@ print(json_string)</code></pre>
         </tbody>
       </table>
 
+      <hr class="mini-divider">
+
+      <h3>לפני התרגיל — מה זה <code>lambda</code>?</h3>
+      <p>בתרגיל בעוד רגע נשתמש בפונקציה <code>sorted()</code> עם משהו שנראה כך: <code>key=lambda c: c["traffic"]</code>.</p>
+
+      <p><strong><code>lambda</code> היא דרך מקוצרת לכתוב פונקציה קטנה בשורה אחת.</strong></p>
+
+      <p>הנה ההשוואה:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">השוואה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code># הדרך הרגילה — פונקציה מלאה
+def get_traffic(client):
+    return client["traffic"]
+
+# הדרך המקוצרת — lambda
+get_traffic = lambda client: client["traffic"]
+
+# שתי הגרסאות עושות בדיוק את אותו דבר</code></pre>
+      </div>
+
+      <p><strong>איך קוראים את זה?</strong></p>
+      <ul>
+        <li><code>lambda</code> — מילת מפתח שמכריזה: "אני פונקציה קטנה"</li>
+        <li><code>client</code> — שם הפרמטר (כל שם, תבחר)</li>
+        <li><code>:</code> — מפריד בין הפרמטר לבין מה שמחזירים</li>
+        <li><code>client["traffic"]</code> — הערך שמוחזר (אין צורך לכתוב <code>return</code>)</li>
+      </ul>
+
+      <p><strong>איפה משתמשים?</strong> בעיקר עם פונקציות שמקבלות פונקציה אחרת כפרמטר — כמו <code>sorted()</code>, <code>map()</code>, <code>filter()</code>:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה עם sorted</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>clients = [
+    {"name": "מנגו", "traffic": 45000},
+    {"name": "סופר ביץ'", "traffic": 32000},
+    {"name": "ננו", "traffic": 67000}
+]
+
+# למיין לפי traffic — צריך לציין לפי איזה שדה
+sorted_clients = sorted(clients, key=lambda c: c["traffic"])
+
+# התוצאה: סופר ביץ' (32000) → מנגו (45000) → ננו (67000)</code></pre>
+      </div>
+
+      <p>עכשיו אתה מוכן לתרגיל.</p>
+
       <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
     </section>
 
@@ -512,27 +657,18 @@ print(json_string)</code></pre>
       <hr class="mini-divider">
 
       <details class="hint">
-        <summary>רמז 1 — איך לקרוא את הקובץ?</summary>
-        <p>השתמש ב-<code>with open("clients.json", "r", encoding="utf-8") as f:</code>
-        ואז בתוך הבלוק: <code>clients = json.load(f)</code>.
-        אל תשכח <code>import json</code> בשורה הראשונה.</p>
+        <summary>רמז 1 — איך פותחים את הקובץ?</summary>
+        <p>Python דורש שתפתח קובץ לקריאה לפני שאתה יכול להעביר אותו ל-<code>json.load()</code>. השתמש ב-<code>with open(...) as f:</code> — <code>with</code> מבטיח שהקובץ ייסגר אוטומטית גם אם תהיה שגיאה.</p>
       </details>
 
       <details class="hint">
-        <summary>רמז 2 — איך ממיינים לפי שדה בdict?</summary>
-        <p>
-          השתמש ב-<code>sorted()</code> עם <code>key</code> ו-<code>reverse</code>:<br>
-          <code>sorted(clients, key=lambda c: c["traffic"], reverse=True)</code><br>
-          <code>lambda c: c["traffic"]</code> אומר "תמיין לפי ערך השדה traffic של כל dict".
-        </p>
+        <summary>רמז 2 — איך ממיינים רשימה לפי שדה ב-dict?</summary>
+        <p>הפונקציה <code>sorted()</code> מקבלת פרמטר <code>key</code> שאומר לה לפי מה למיין. עבור רשימה של dicts, נשתמש ב-<code>lambda</code> (שכרגע למדנו) כדי לבחור איזה שדה לבדוק. כדי למיין מהגבוה לנמוך — תוסיף <code>reverse=True</code>.</p>
       </details>
 
       <details class="hint">
-        <summary>רמז 3 — איך לוקחים רק 5 ראשונים?</summary>
-        <p>
-          השתמש ב-slicing: <code>[:5]</code>.<br>
-          אפשר לשרשר ישירות: <code>sorted(...)[:5]</code>.
-        </p>
+        <summary>רמז 3 — איך לוקחים רק את 5 הראשונים?</summary>
+        <p>רשימות תומכות ב-slicing. <code>[start:end]</code> מחזיר חתיכה. כדי לקבל את 5 הראשונים בלבד — <code>[:5]</code>.</p>
       </details>
 
       <details class="solution">
@@ -639,6 +775,6 @@ for client in top_5:
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-5"></script>
+  <script src="../assets/js/app.js?v=20260521-6"></script>
 </body>
 </html>

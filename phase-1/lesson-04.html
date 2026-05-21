@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 4 — n8n + Portal Setup · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-5">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-6">
 </head>
 <body>
 
@@ -267,6 +267,14 @@
       <ol>
         <li>הוסף <span class="term" data-term-id="node">node</span> → "Gmail" או "Email (SMTP)"</li>
         <li>הגדר <span class="term" data-term-id="credential">Credential</span> — פרטי ה-Gmail שלך</li>
+      </ol>
+
+      <div class="callout callout--info">
+        <div class="callout__title">📎 לעזרה בהגדרת Gmail OAuth ב-n8n</div>
+        <p>הולך ל-<a href="https://docs.n8n.io/integrations/builtin/credentials/google/oauth-single-service/" target="_blank" rel="noopener">docs.n8n.io</a> — שם יש מדריך step-by-step עם screenshots. תהליך ה-OAuth דורש שתיצור Project ב-Google Cloud Console ותגדיר OAuth consent screen. זה לוקח 10-15 דקות בפעם הראשונה.</p>
+      </div>
+
+      <ol start="3">
         <li><code>To:</code> הכנס את כתובת המייל שלך</li>
         <li><code>Subject:</code> <code>&#123;&#123;$json.subject&#125;&#125;</code></li>
         <li><code>Body:</code> <code>קיבלת הודעה מ: &#123;&#123;$json.name&#125;&#125; — &#123;&#123;$json.message&#125;&#125;</code></li>
@@ -286,6 +294,27 @@
       </div>
 
       <p>אם הכל תקין — תקבל מייל תוך שניות.</p>
+
+      <hr class="mini-divider">
+
+      <h3>Troubleshooting — אם המייל לא הגיע</h3>
+      <table>
+        <thead>
+          <tr><th>תופעה</th><th>מה לבדוק</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>curl מחזיר 404</td><td>הוודא שה-workflow ב-mode "Active" (לא רק "Test"). אם ב-Test — חייב ללחוץ "Execute Workflow" קודם, אז curl.</td></tr>
+          <tr><td>curl מחזיר 200 אבל אין מייל</td><td>פתח את <strong>Executions</strong> ב-n8n.cloud (תפריט שמאל). תראה אם ה-workflow רץ ואיפה נכשל. בדוק את ה-Email node ספציפית.</td></tr>
+          <tr><td>שגיאה ב-Email node</td><td>פרטי ה-Gmail credential לא הוגדרו כראוי. אם אתה משתמש ב-Gmail OAuth — וודא שאישרת את n8n לגשת לחשבון שלך.</td></tr>
+          <tr><td>המייל בספאם</td><td>בדוק את תיבת הספאם. הוסף את כתובת ה-from לרשימת השולחים המהימנים.</td></tr>
+          <tr><td>מקבל "Email not configured"</td><td>חזור ל-credentials. ב-n8n.cloud, הולך ל-Credentials → New → Gmail OAuth2, ועוקב אחרי המדריך.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">Executions log</div>
+        <p>זה הכלי הכי חשוב שלך — שם רואים בדיוק מה קרה בכל ריצה.</p>
+      </div>
 
       <hr class="mini-divider">
 
@@ -443,6 +472,23 @@ content-type: application/json</code></pre>
         </p>
       </div>
 
+      <hr class="mini-divider">
+
+      <h3>תרגיל אישי — בנה workflow שלישי משלך</h3>
+      <p>עכשיו שיש לך 2 workflows שעובדים — בנה אחד שלישי משלך. רעיונות:</p>
+      <ol>
+        <li><strong>Daily SEO digest:</strong> Cron Trigger כל יום ב-7:00 → HTTP Request לקבלת נתוני GA4 (mock — איזה JSON שתרצה) → Claude לסיכום → Email</li>
+        <li><strong>Quick translator:</strong> Webhook מקבל טקסט באנגלית → Claude מתרגם → תגובה ישירה ב-Webhook response</li>
+        <li><strong>Slack notifier:</strong> Webhook מקבל לקוח חדש → Claude מנסח הודעת ברכה → Slack node שולח לערוץ</li>
+      </ol>
+
+      <p>בחר אחד, ובנה אותו ב-15-30 דקות. אם תקעת — חזור ל-Executions log ול-troubleshooting.</p>
+
+      <div class="callout callout--success">
+        <div class="callout__title">זה התרגיל הכי חשוב של Phase 1</div>
+        <p>כי הוא דורש ממך <strong>לחשוב כמו Solution Architect</strong>.</p>
+      </div>
+
       <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
     </section>
 
@@ -510,10 +556,12 @@ content-type: application/json</code></pre>
         <div class="code-block__header">
           <span class="code-block__filename">מבנה תיקיית exercises/</span>
         </div>
-<pre><code>exercises/lesson-01/hello_world.py
-exercises/lesson-02/seo_data.py
-exercises/lesson-03/claude_summary.py
-exercises/lesson-04/n8n_test.sh</code></pre>
+<pre><code>exercises/lesson-01/hello.py
+exercises/lesson-01/domain_extractor.py
+exercises/lesson-02/top_clients.py
+exercises/lesson-02/clients.json
+exercises/lesson-03/claude_call.py
+exercises/lesson-04/n8n_curl_test.sh</code></pre>
       </div>
 
       <h4>4. כתוב <code>notes/phase-1-retro.md</code></h4>
@@ -688,6 +736,6 @@ git push</code></pre>
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-5"></script>
+  <script src="../assets/js/app.js?v=20260521-6"></script>
 </body>
 </html>

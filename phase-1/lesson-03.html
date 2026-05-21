@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 3 — APIs + Git + Errors · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-5">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-6">
 </head>
 <body>
 
@@ -310,6 +310,51 @@ print(data.get("current_user_url"))
 
       <hr class="mini-divider">
 
+      <h3>לפני הקריאה ל-Claude: איך מגדירים מפתח API בסביבה</h3>
+      <p>ה-API key הוא <strong>סוד</strong>. כמו סיסמה. הוא לעולם לא צריך להופיע בקוד שלך — לא ב-<code>.py</code>, לא ב-Git, ולא ב-screenshot.</p>
+      <p>הפתרון הסטנדרטי: <strong>environment variables</strong> (משתני סביבה). אתה שם את המפתח פעם אחת ב-Terminal/במערכת, והקוד שולף משם.</p>
+
+      <h4>דרך 1: לפעם אחת (מתאים לבדיקות)</h4>
+      <p>ב-Terminal, לפני שאתה מריץ את הסקריפט:</p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>export ANTHROPIC_API_KEY="sk-ant-..."   # שים פה את המפתח האמיתי
+python3 your_script.py</code></pre>
+      </div>
+      <p>ה-<code>export</code> תקף <strong>רק בחלון ה-Terminal הזה</strong>. אם תסגור אותו, המשתנה ייעלם.</p>
+
+      <h4>דרך 2: קבוע (מתאים לעבודה יומיומית)</h4>
+      <p>הוסף את ה-<code>export</code> ל-<code>~/.zshrc</code> (במאק) כדי שיטעון אוטומטית בכל Terminal חדש:</p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>echo 'export ANTHROPIC_API_KEY="sk-ant-..."' &gt;&gt; ~/.zshrc
+source ~/.zshrc</code></pre>
+      </div>
+      <p>עכשיו בכל Terminal חדש שתפתח, המשתנה יהיה זמין.</p>
+
+      <h4>בדיקה שזה עבד</h4>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>echo $ANTHROPIC_API_KEY</code></pre>
+      </div>
+      <p>אם רואה את המפתח — מצוין. אם לא רואה כלום — תחזור על השלבים.</p>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">אם <code>API_KEY</code> מקבל <code>None</code></div>
+        <p>סימן שמשתנה הסביבה לא הוגדר נכון. סגור את ה-Terminal, פתח חדש, נסה שוב.</p>
+      </div>
+
+      <hr class="mini-divider">
+
       <h3>קריאת POST ל-Claude API</h3>
       <p>
         זו הקריאה האמיתית. שים לב ל-<span class="term" data-term-id="header">headers</span> ולמבנה ה-body.
@@ -349,20 +394,39 @@ else:
     print(f"שגיאה: {response.status_code}")</code></pre>
       </div>
 
-      <p>נקודות חשובות בקוד:</p>
+      <p><strong>שים לב:</strong></p>
       <ul>
-        <li><code>os.environ.get("ANTHROPIC_API_KEY")</code> — מפתח מגיע מהסביבה, לא מהקוד</li>
-        <li><code>json={...}</code> — requests ממיר אוטומטית ל-JSON ומוסיף Content-Type header</li>
-        <li><code>data["content"][0]["text"]</code> — זה המבנה הספציפי של תגובת Claude</li>
+        <li><code>os.environ.get("ANTHROPIC_API_KEY")</code> — המפתח מגיע מהסביבה (שהגדרנו למעלה), לא מהקוד</li>
+        <li><code>json={...}</code> — requests אוטומטית ממיר ל-JSON ומוסיף Content-Type header</li>
+        <li><code>data["content"][0]["text"]</code> — זה המבנה של תגובת Claude (ראה הסבר למטה)</li>
       </ul>
 
+      <h3>מבנה תגובת Claude — למה <code>content[0].text</code>?</h3>
+      <p>Claude מחזיר JSON שנראה ככה:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">תגובת Claude (JSON)</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>{
+  "id": "msg_abc123",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    { "type": "text", "text": "כאן הסיכום של Claude..." }
+  ],
+  "model": "claude-opus-4-7",
+  "stop_reason": "end_turn",
+  "usage": { "input_tokens": 25, "output_tokens": 87 }
+}</code></pre>
+      </div>
+
+      <p><code>content</code> היא <strong>רשימה</strong> של "content blocks", כי תגובה יכולה לכלול יותר מבלוק טקסט אחד (למשל גם תמונה או tool call). ברוב המקרים יש בלוק אחד, ולכן <code>[0]</code>. בתוכו, <code>.text</code> הוא הטקסט עצמו.</p>
+
       <div class="callout callout--tip">
-        <div class="callout__title">איך מגדירים environment variable?</div>
-        <p>
-          ב-Terminal: <code>export ANTHROPIC_API_KEY="sk-ant-..."</code><br>
-          או תוסיף לקובץ <code>.env</code> ותשתמש בספרייה <code>python-dotenv</code>.<br>
-          <strong>לא לשים את ה-.env ב-git commit!</strong>
-        </p>
+        <div class="callout__title">כלל</div>
+        <p>הקוד <code>data["content"][0]["text"]</code> קורא: "קח את הרשימה content, קח את האיבר הראשון <code>[0]</code>, וממנו קח את השדה <code>text</code>".</p>
       </div>
 
       <hr class="mini-divider">
@@ -460,21 +524,37 @@ else:
 
       <hr class="mini-divider">
 
-      <h3><span class="term" data-term-id="try-except">try / except</span> — הסינטקס הבסיסי</h3>
+      <h3><span class="term" data-term-id="try-except">try / except</span> — נתחיל פשוט</h3>
+      <p>הסינטקס הבסיסי תופס <strong>כל</strong> שגיאה:</p>
 
       <div class="code-block">
         <div class="code-block__header">
-          <span class="code-block__filename">try_except_demo.py</span>
+          <span class="code-block__filename">דוגמה — פשוטה</span>
           <button class="code-block__copy">העתק</button>
         </div>
-<pre><code>import requests
-
-try:
+<pre><code>try:
     # קוד שעלול להיכשל
+    response = requests.get("https://api.github.com", timeout=5)
+    data = response.json()
+    print(data)
+except Exception as e:
+    print(f"משהו השתבש: {e}")</code></pre>
+      </div>
+
+      <p>זה הצורה הפשוטה ביותר. <code>Exception</code> תופס <strong>הכל</strong> — Timeout, ConnectionError, KeyError, וכל שאר השגיאות. הקוד לא קורס, רק מדפיס את השגיאה וממשיך.</p>
+
+      <h3>עכשיו ספציפי יותר — נבחין בין סוגי שגיאות</h3>
+      <p>לפעמים אתה רוצה להגיב אחרת לפי סוג השגיאה — למשל retry על Timeout, אבל לעצור על שגיאת אימות:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה — ספציפי</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>try:
     response = requests.get("https://api.github.com", timeout=5)
     response.raise_for_status()   # זורק exception אם status code &gt;= 400
     data = response.json()
-    print(data)
 
 except requests.exceptions.Timeout:
     print("פסק זמן — השרת לא ענה תוך 5 שניות")
@@ -483,17 +563,13 @@ except requests.exceptions.HTTPError as e:
     print(f"שגיאת HTTP: {e}")
 
 except requests.exceptions.ConnectionError:
-    print("שגיאת חיבור — בדוק אינטרנט")
-
-except Exception as e:
-    # תופס כל שגיאה אחרת שלא ציפינו לה
-    print(f"שגיאה לא צפויה: {e}")</code></pre>
+    print("שגיאת חיבור — בדוק אינטרנט")</code></pre>
       </div>
 
-      <p>שים לב ל-<code>response.raise_for_status()</code> — זה כלי חשוב:
-        אם ה-<span class="term" data-term-id="status-code">status code</span> הוא 4xx או 5xx,
-        הוא אוטומטית זורק <code>HTTPError</code>. בלעדיו תצטרך לבדוק בעצמך.
-      </p>
+      <div class="callout callout--tip">
+        <div class="callout__title">הסדר חשוב</div>
+        <p>except ספציפי יותר תמיד לפני except כללי. Python בודק אותם מלמעלה למטה.</p>
+      </div>
 
       <hr class="mini-divider">
 
@@ -535,7 +611,12 @@ except requests.exceptions.HTTPError as e:
 
       <hr class="mini-divider">
 
-      <h3>retry פשוט עם try/except</h3>
+      <h3>Bonus — retry פשוט (לחקירה אישית, לא חובה)</h3>
+
+      <div class="callout callout--info">
+        <div class="callout__title">לדלג בשלב הזה</div>
+        <p>הקטע הבא משתמש במושגים שעדיין לא הוסברו בשיעור (default parameters, while loop, raise). תרגיש חופשי לדלג ולחזור אליו אחרי Lesson 4 כשתתעמק יותר.</p>
+      </div>
 
       <div class="code-block">
         <div class="code-block__header">
@@ -567,6 +648,13 @@ def call_api_with_retry(url, max_tries=3):
 # שימוש:
 data = call_api_with_retry("https://api.github.com")</code></pre>
       </div>
+
+      <hr class="mini-divider">
+
+      <h3>תרגיל מהיר — תפוס שגיאה אמיתית</h3>
+      <p>קח את קוד Claude API שלך, ועוטף אותו ב-try/except. אחר כך <strong>בכוונה</strong> קלקל את ה-API key (החלף תו אחד), והרץ שוב.</p>
+      <p>תקבל שגיאה — אבל הסקריפט שלך לא יקרוס. במקום זה הוא יציג הודעה ידידותית. <strong>זה החוזק של try/except.</strong></p>
+      <p>חזור על המפתח התקין אחרי הבדיקה.</p>
 
       <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
     </section>
@@ -792,6 +880,6 @@ __pycache__/        # קבצי cache של Python
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-5"></script>
+  <script src="../assets/js/app.js?v=20260521-6"></script>
 </body>
 </html>
