@@ -13,7 +13,7 @@
 
 | מסמך | מה זה |
 |------|--------|
-| [פורטל הלימודי](https://shai-vma.pages.dev) | האתר הראשי — שיעורים, שבועות, מעקב |
+| [פורטל הלימודי](https://selectedsem-stack.github.io/vibe-master-academy/) | האתר הראשי — שיעורים, שבועות, מעקב |
 | [Spec הקורס](docs/superpowers/specs/2026-05-21-vibe-master-academy-design.md) | תכנון מלא של 5 הפאזות |
 | [Bootstrap Plan](docs/superpowers/plans/2026-05-21-vma-bootstrap.md) | תוכנית ההקמה |
 | [PROGRESS.md](PROGRESS.md) | מעקב התקדמות שבועי |
