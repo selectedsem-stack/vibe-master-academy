@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 3 — APIs + Git + Errors · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-7">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-8">
 </head>
 <body>
 
@@ -306,6 +306,57 @@ print(data.get("current_user_url"))
       <div class="callout callout--info">
         <div class="callout__title">זיכרון מ-Lesson 2</div>
         <p>כשעשינו <code>json.load(f)</code> מקובץ — קיבלנו dict Python. כשעושים <code>response.json()</code> מ-API — מקבלים בדיוק אותו דבר. הכלים זהים, רק המקור שונה.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>שלב 0: השגת מפתח API מ-Claude Console</h3>
+      <p>לפני שאתה יכול לקרוא ל-Claude, צריך מפתח API. הנה הצעדים:</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">1</div>
+          <div class="step__body">
+            <div class="step__title">היכנס ל-Console</div>
+            <p>פתח בדפדפן: <a href="https://platform.claude.com/" target="_blank" rel="noopener">https://platform.claude.com/</a></p>
+            <p>אם עדיין אין לך חשבון — הירשם עם Gmail או כתובת אימייל. (החשבון נפרד מ-Claude.ai לצ'אט.)</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <div class="step__body">
+            <div class="step__title">היכנס לעמוד API Keys</div>
+            <p>פתח ישירות: <a href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener">https://platform.claude.com/settings/keys</a></p>
+            <p>או נווט: <strong>Settings → API Keys</strong> מתפריט הצד.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <div class="step__body">
+            <div class="step__title">צור מפתח חדש</div>
+            <p>לחץ <strong>Create Key</strong>. תן שם תיאורי (למשל <code>vibe-master-academy-mac</code>) כדי לזכור איפה הוא בשימוש. לחץ Create.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">4</div>
+          <div class="step__body">
+            <div class="step__title">העתק את המפתח עכשיו</div>
+            <p><strong>חשוב מאוד:</strong> המפתח יוצג <strong>פעם אחת בלבד</strong>. ברגע שתסגור את החלון לא תוכל לראות אותו שוב — תצטרך ליצור חדש. העתק אותו עכשיו לאיזשהו מקום זמני (לא לקוד שלך, רק לדקה).</p>
+            <p>המפתח מתחיל ב-<code>sk-ant-api03-</code> ואחריו ~95 תווים.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step__num">5</div>
+          <div class="step__body">
+            <div class="step__title">הוסף שיטת תשלום (אם זו פעם ראשונה)</div>
+            <p>בחשבון חדש קיבלת לרוב $5 קרדיט חינמי לבדיקות. כדי לעבור את זה — תצטרך להוסיף כרטיס אשראי דרך <strong>Settings → Billing</strong>. השיעורים בקורס משתמשים במעט מאוד טוקנים (גרושים בודדים בסך הכל), אבל בלי שיטת תשלום אחרי שהקרדיט נגמר — תקבל שגיאת <code>credit_balance_too_low</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">אם המפתח לא עובד</div>
+        <p>בעיות נפוצות: (א) הקרדיט נגמר — בדוק ב-Settings → Billing. (ב) המפתח בוטל — בדוק שהוא עדיין מופיע ברשימה ב-Settings → API Keys. (ג) השתמשת ב-key של חשבון אחר — צור חדש בחשבון הנכון.</p>
       </div>
 
       <hr class="mini-divider">
@@ -672,6 +723,28 @@ data = call_api_with_retry("https://api.github.com")</code></pre>
         <p>ב-Lessons 1 ו-2 עשינו <span class="term" data-term-id="git">Git</span> <span class="term" data-term-id="commit">commit</span> + <span class="term" data-term-id="push">push</span>. עכשיו נלמד את הרוטינה המלאה וגם branching בסיסי.</p>
       </div>
 
+      <h3>הגדרה חד-פעמית — מי אתה ב-Git</h3>
+      <p>Git רוצה לדעת מי עומד מאחורי כל commit. אם עוד לא הגדרת את זה, ה-commit הראשון שלך ייכשל עם הודעת "<em>Please tell me who you are</em>". הגדר פעם אחת — ההגדרה תקפה לכל הפרויקטים בכל המחשבים שלך:</p>
+
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal — Git first-time setup</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>git config --global user.name "Shai Berdugo"
+git config --global user.email "selectedsem@gmail.com"
+
+# בדיקה
+git config --global --list</code></pre>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">איזה אימייל לשים?</div>
+        <p>אותו אימייל שאיתו נרשמת ל-GitHub. ככה כל ה-commits שלך יוצגו ב-GitHub עם הפרופיל שלך (אווטאר, סטטיסטיקות). אם אתה משתמש באימייל פרטי ולא רוצה לחשוף אותו — GitHub נותן לך <code>USERNAME@users.noreply.github.com</code> דרך Settings → Emails.</p>
+      </div>
+
+      <hr class="mini-divider">
+
       <h3>הפקודות שתשתמש בהן יום-יום</h3>
 
       <div class="code-block">
@@ -880,6 +953,6 @@ __pycache__/        # קבצי cache של Python
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-7"></script>
+  <script src="../assets/js/app.js?v=20260521-8"></script>
 </body>
 </html>

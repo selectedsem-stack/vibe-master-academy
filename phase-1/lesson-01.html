@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 1 — Python יום ראשון · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-7">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-8">
 </head>
 <body>
 
@@ -174,7 +174,9 @@
           <div class="step__num">2</div>
           <div class="step__body">
             <div class="step__title">VS Code על המאק</div>
-            <p>אם אין לך <span class="term" data-term-id="vscode">VS Code</span>:</p>
+            <p>אם אין לך <span class="term" data-term-id="vscode">VS Code</span>, יש שתי אפשרויות התקנה (תבחר אחת):</p>
+
+            <p><strong>אפשרות א' (מומלץ — אוטומטי):</strong> דרך Homebrew:</p>
             <div class="code-block">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
@@ -182,10 +184,75 @@
               </div>
 <pre><code>brew install --cask visual-studio-code</code></pre>
             </div>
-            <p>
-              פתח את VS Code. בצד שמאל יש סמל של <span class="term" data-term-id="extension">extensions</span>.
-              לחץ עליו, חפש <strong>Python</strong>, ולחץ Install על ה-extension של Microsoft.
-            </p>
+
+            <p><strong>אפשרות ב' (ידני):</strong> הורד מ-<a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a> וגרור את האפליקציה ל-Applications.</p>
+
+            <p>אחרי ההתקנה — פתח את VS Code. בצד שמאל יש סמל של <span class="term" data-term-id="extension">extensions</span>. לחץ עליו, חפש <strong>Python</strong>, ולחץ Install על ה-extension של <strong>Microsoft</strong>.</p>
+
+            <hr class="mini-divider">
+
+            <h4>הפעלת פקודת <code>code</code> ב-Terminal</h4>
+            <p>כדי שתוכל להריץ <code>code &lt;קובץ&gt;</code> מה-Terminal ולפתוח קובץ ב-VS Code, צריך להוסיף את הפקודה ל-<strong>PATH</strong> (משתנה הסביבה שאומר ל-shell איפה לחפש פקודות). <strong>בלי הצעד הזה — תקבל <code>command not found: code</code></strong>.</p>
+
+            <div class="steps">
+              <div class="step">
+                <div class="step__num">A</div>
+                <div class="step__body">
+                  <div class="step__title">פתח את Command Palette</div>
+                  <p>בתוך VS Code, לחץ <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step__num">B</div>
+                <div class="step__body">
+                  <div class="step__title">חפש את הפקודה</div>
+                  <p>הקלד: <code>shell command</code></p>
+                  <p>בחר ברשימה: <strong>Shell Command: Install 'code' command in PATH</strong></p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step__num">C</div>
+                <div class="step__body">
+                  <div class="step__title">סגור ופתח מחדש את ה-Terminal</div>
+                  <p>חשוב — שינוי PATH לא תופס בחלון Terminal פתוח. סגור את החלון ופתח אחד חדש.</p>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step__num">D</div>
+                <div class="step__body">
+                  <div class="step__title">בדוק שזה עובד</div>
+                  <div class="code-block">
+                    <div class="code-block__header">
+                      <span class="code-block__filename">Terminal</span>
+                      <button class="code-block__copy">העתק</button>
+                    </div>
+<pre><code>code --version</code></pre>
+                  </div>
+                  <div class="output">
+                    <div class="output__label">פלט צפוי</div>
+<pre>1.95.x
+abc123def456
+arm64</pre>
+                  </div>
+                  <p>אם רואה גרסה — מצוין. ✅</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout callout--warning">
+              <div class="callout__title">אם <code>code</code> עדיין לא נמצא</div>
+              <p>הוסף את VS Code ל-PATH ידנית. הרץ ב-Terminal:</p>
+              <div class="code-block">
+                <div class="code-block__header">
+                  <span class="code-block__filename">Terminal — Zsh (ברירת מחדל ב-macOS)</span>
+                  <button class="code-block__copy">העתק</button>
+                </div>
+<pre><code>echo 'export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"' >> ~/.zprofile
+source ~/.zprofile
+code --version</code></pre>
+              </div>
+              <p>הפקודה הזו מוסיפה שורה לקובץ ההגדרות של ה-shell (<code>~/.zprofile</code>), טוענת אותו מחדש, ובודקת שהפקודה עובדת.</p>
+            </div>
           </div>
         </div>
 
@@ -204,7 +271,14 @@ mkdir -p exercises/lesson-01
 cd exercises/lesson-01
 code hello.py</code></pre>
             </div>
-            <p>זה יפתח את VS Code עם קובץ ריק בשם <code>hello.py</code>. הכנס:</p>
+            <p>זה יפתח את VS Code עם קובץ ריק בשם <code>hello.py</code>.</p>
+
+            <div class="callout callout--info">
+              <div class="callout__title">אם <code>code hello.py</code> לא עובד</div>
+              <p>חזור לצעד 2 ובצע את ההפעלה של פקודת <code>code</code>. <strong>חלופה זמנית:</strong> פתח את VS Code ידנית, בחר <em>File → Open Folder</em> ובחר את התיקייה <code>~/projects/vibe-master-academy/exercises/lesson-01</code>, ואז <em>File → New File</em> → שמור בשם <code>hello.py</code>.</p>
+            </div>
+
+            <p>הכנס לקובץ:</p>
             <div class="code-block">
               <div class="code-block__header">
                 <span class="code-block__filename">hello.py</span>
@@ -497,6 +571,6 @@ print("הדומיין הוא:", domain)</code></pre>
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-7"></script>
+  <script src="../assets/js/app.js?v=20260521-8"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 2 — מבני נתונים + JSON · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-7">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-8">
 </head>
 <body>
 
@@ -618,9 +618,23 @@ sorted_clients = sorted(clients, key=lambda c: c["traffic"])
       <h3>המטרה</h3>
       <p>
         צור קובץ: <code>exercises/lesson-02/top_clients.py</code><br>
-        בתיקיה <code>exercises/lesson-02/</code> יש קובץ <code>clients.json</code> עם 8 לקוחות SEO.
+        בתיקיה <code>exercises/lesson-02/</code> כבר יש קובץ <code>clients.json</code> עם 8 לקוחות SEO (המגיע עם הריפו של הקורס).
         קרא אותו, מיין לפי תנועה (traffic), והדפס את 5 הלקוחות הגדולים ביותר.
       </p>
+
+      <div class="callout callout--info">
+        <div class="callout__title">לפני שמתחילים</div>
+        <p>היכנס לתיקיית התרגיל ב-Terminal:</p>
+        <div class="code-block">
+          <div class="code-block__header">
+            <span class="code-block__filename">Terminal</span>
+            <button class="code-block__copy">העתק</button>
+          </div>
+<pre><code>cd ~/projects/vibe-master-academy/exercises/lesson-02
+ls       # אמור להופיע: clients.json</code></pre>
+        </div>
+        <p>אם <code>clients.json</code> לא מופיע — עשה <code>git pull</code> בשורש הריפו ונסה שוב.</p>
+      </div>
 
       <div class="output">
         <div class="output__label">תוצאה צפויה</div>
@@ -775,6 +789,6 @@ for client in top_5:
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-7"></script>
+  <script src="../assets/js/app.js?v=20260521-8"></script>
 </body>
 </html>

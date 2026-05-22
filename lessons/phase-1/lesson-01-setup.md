@@ -69,13 +69,41 @@ python3 --version
 
 ### שלב 2: VS Code על המאק
 
-אם אין לך VS Code:
+אם אין לך VS Code — בחר אפשרות אחת:
+
+**אפשרות א' (מומלץ):** דרך Homebrew:
 
 ```bash
 brew install --cask visual-studio-code
 ```
 
-פתח את VS Code. בצד שמאל יש סמל של אפליקציות (extensions). לחץ עליו, חפש **Python**, ולחץ Install על ה-extension של Microsoft.
+**אפשרות ב':** הורד מ-[code.visualstudio.com/download](https://code.visualstudio.com/download) וגרור את האפליקציה ל-Applications.
+
+אחרי ההתקנה — פתח את VS Code. בצד שמאל יש סמל של אפליקציות (extensions). לחץ עליו, חפש **Python**, ולחץ Install על ה-extension של **Microsoft**.
+
+#### הפעלת פקודת `code` ב-Terminal
+
+כדי שתוכל להריץ `code <קובץ>` מה-Terminal ולפתוח קובץ ב-VS Code, צריך להוסיף את הפקודה ל-**PATH** (משתנה הסביבה שאומר ל-shell איפה לחפש פקודות). **בלי הצעד הזה — תקבל `command not found: code`**.
+
+1. בתוך VS Code, לחץ **Cmd+Shift+P** (Command Palette).
+2. הקלד: `shell command`
+3. בחר ברשימה: **Shell Command: Install 'code' command in PATH**
+4. **סגור ופתח מחדש את ה-Terminal** (שינוי PATH לא תופס בחלון פתוח).
+5. בדוק שזה עובד:
+
+```bash
+code --version
+```
+
+אמור להופיע מספר גרסה (למשל `1.95.x`). ✅
+
+**אם `code` עדיין לא נמצא**, הוסף ידנית ל-PATH:
+
+```bash
+echo 'export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"' >> ~/.zprofile
+source ~/.zprofile
+code --version
+```
 
 ---
 
@@ -90,7 +118,11 @@ cd exercises/lesson-01
 code hello.py
 ```
 
-זה יפתח את VS Code עם קובץ חדש בשם `hello.py`. הכנס לתוכו:
+זה יפתח את VS Code עם קובץ חדש בשם `hello.py`.
+
+> **אם `code hello.py` לא עובד:** חזור לשלב 2 ובצע את ההפעלה של הפקודה `code`. חלופה זמנית: פתח את VS Code ידנית, **File → Open Folder** → בחר את `~/projects/vibe-master-academy/exercises/lesson-01`, ואז **File → New File** → שמור בשם `hello.py`.
+
+הכנס לתוכו:
 
 ```python
 print("Hello, Shai!")
