@@ -2784,3 +2784,153 @@ kbd {
     font-size: 0.74rem;
   }
 }
+
+/* ============================================
+   Batch M — Code block "where" variants
+   Beginners must instantly see "Terminal vs VS Code" without
+   reading the filename. Two modifiers + a "where" badge.
+   ============================================ */
+
+/* Terminal variant — keeps the dark macOS-Terminal feel (default look
+   already implements this). We add a "Terminal" badge and a $ prompt
+   prefix on the first line via a pseudo-class. */
+.code-block--terminal {
+  --cb-bg: #0f172a;
+  --cb-accent: #f87171;
+}
+
+.code-block--terminal .code-block__header {
+  background: linear-gradient(180deg, #1e293b, #0f172a);
+}
+
+/* Editor variant — VS Code-like: very dark monochrome, no traffic
+   lights (replaced with a file icon), softer header gradient. */
+.code-block--editor .code-block__header {
+  background: linear-gradient(180deg, #2d2d30, #1e1e1e);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.code-block--editor .code-block__filename::before {
+  /* Replace traffic lights with a file-doc icon */
+  content: '📄';
+  background: transparent;
+  box-shadow: none;
+  width: auto;
+  height: auto;
+  margin-left: 0.5rem;
+  border-radius: 0;
+  font-size: 0.95em;
+}
+
+.code-block--editor pre {
+  background: #1e1e1e;
+}
+
+/* "Where" pill — a small badge that names the location inline in
+   the header. Visible on both variants if added in markup. */
+.code-block__where {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: auto; /* push toward the start of the header */
+  line-height: 1;
+}
+
+.code-block--terminal .code-block__where {
+  background: rgba(248, 113, 113, 0.15);
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.code-block--editor .code-block__where {
+  background: rgba(96, 165, 250, 0.15);
+  color: #93c5fd;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+/* Action lead-in line — a small Hebrew label rendered just above a
+   code block. Bold, colored to match the destination. */
+.do-here {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-md);
+  margin: var(--space-3) 0 0.5rem;
+}
+
+.do-here--terminal {
+  background: #fee2e2;
+  color: #991b1b;
+  border-right: 3px solid #ef4444;
+}
+
+.do-here--terminal::before {
+  content: '>_';
+  font-family: var(--font-mono);
+  font-weight: 700;
+  background: #991b1b;
+  color: white;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78em;
+}
+
+.do-here--editor {
+  background: #dbeafe;
+  color: #1e40af;
+  border-right: 3px solid #3b82f6;
+}
+
+.do-here--editor::before {
+  content: '📝';
+  font-size: 0.95em;
+}
+
+.do-here--output {
+  background: #d1fae5;
+  color: #065f46;
+  border-right: 3px solid #10b981;
+}
+
+.do-here--output::before {
+  content: '✓';
+  font-weight: 900;
+  background: #10b981;
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75em;
+}
+
+/* Mobile — keep the labels readable but smaller */
+@media (max-width: 720px) {
+  .do-here {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.7rem;
+    gap: 0.35rem;
+  }
+  .code-block__where {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.45rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .do-here {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

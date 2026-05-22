@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 1 — Python יום ראשון · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-10">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-11">
 </head>
 <body>
 
@@ -91,15 +91,16 @@
         ה<span class="term" data-term-id="script">סקריפט</span> עצמו הוא קובץ טקסט שמסתיים ב-<code>.py</code>.
       </p>
 
-      <div class="code-block">
+      <p class="do-here do-here--editor">דוגמה — איך נראה קוד Python:</p>
+      <div class="code-block code-block--editor">
         <div class="code-block__header">
-          <span class="code-block__filename">דוגמה ראשונה</span>
+          <span class="code-block__filename">hello.py</span>
           <button class="code-block__copy">העתק</button>
         </div>
 <pre><code>print("Hello, Shai!")</code></pre>
       </div>
 
-      <p>זאת שורה אחת — היא מבקשת מהמחשב להדפיס את המילים האלה למסך.</p>
+      <p>זאת שורה אחת — היא מבקשת מהמחשב להדפיס את המילים האלה למסך. <strong>עוד מעט נכתוב אותה בעצמנו ב-VS Code ונריץ אותה ב-Terminal.</strong></p>
 
       <hr class="mini-divider">
 
@@ -139,32 +140,40 @@
           <div class="step__body">
             <div class="step__title">התקנת Python על המאק</div>
             <p>המאק שלך בא עם גרסה ישנה של Python שלא משתמשים בה. נתקין את 3.12 דרך <span class="term" data-term-id="homebrew">Homebrew</span>.</p>
-            <p>פתח את ה-<span class="term" data-term-id="terminal">Terminal</span> (Cmd+Space, חפש "Terminal"). הרץ:</p>
-            <div class="code-block">
+            <p>פתח את ה-<span class="term" data-term-id="terminal">Terminal</span> ב-Mac (Cmd+Space, חפש "Terminal", Enter).</p>
+
+            <p class="do-here do-here--terminal">ב-Terminal — הקלד את הפקודה והרץ (Enter):</p>
+            <div class="code-block code-block--terminal">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
                 <button class="code-block__copy">העתק</button>
               </div>
 <pre><code>brew install python@3.12</code></pre>
             </div>
-            <p>אם brew לא מותקן, תקבל הודעה. תתקין אותו דרך:</p>
-            <div class="code-block">
+            <p>אם brew לא מותקן, תקבל הודעה. במקרה כזה — קודם תתקין את Homebrew:</p>
+
+            <p class="do-here do-here--terminal">ב-Terminal — הרץ (רק אם brew לא מותקן):</p>
+            <div class="code-block code-block--terminal">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
                 <button class="code-block__copy">העתק</button>
               </div>
 <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
             </div>
-            <p>בדוק שזה עבד:</p>
-            <div class="code-block">
+            <p>אחרי שהתקנה הסתיימה, בדוק שהכל עובד:</p>
+
+            <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
+            <div class="code-block code-block--terminal">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
                 <button class="code-block__copy">העתק</button>
               </div>
 <pre><code>python3 --version</code></pre>
             </div>
+
+            <p class="do-here do-here--output">צריך להופיע ב-Terminal:</p>
             <div class="output">
-              <div class="output__label">פלט צפוי</div>
+              <div class="output__label">פלט ב-Terminal</div>
 <pre>Python 3.12.x</pre>
             </div>
           </div>
@@ -176,8 +185,10 @@
             <div class="step__title">VS Code על המאק</div>
             <p>אם אין לך <span class="term" data-term-id="vscode">VS Code</span>, יש שתי אפשרויות התקנה (תבחר אחת):</p>
 
-            <p><strong>אפשרות א' (מומלץ — אוטומטי):</strong> דרך Homebrew:</p>
-            <div class="code-block">
+            <p><strong>אפשרות א' (מומלץ — אוטומטי):</strong> דרך Homebrew.</p>
+
+            <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
+            <div class="code-block code-block--terminal">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
                 <button class="code-block__copy">העתק</button>
@@ -221,15 +232,17 @@
                 <div class="step__num">D</div>
                 <div class="step__body">
                   <div class="step__title">בדוק שזה עובד</div>
-                  <div class="code-block">
+                  <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
+                  <div class="code-block code-block--terminal">
                     <div class="code-block__header">
                       <span class="code-block__filename">Terminal</span>
                       <button class="code-block__copy">העתק</button>
                     </div>
 <pre><code>code --version</code></pre>
                   </div>
+                  <p class="do-here do-here--output">צריך להופיע ב-Terminal:</p>
                   <div class="output">
-                    <div class="output__label">פלט צפוי</div>
+                    <div class="output__label">פלט ב-Terminal</div>
 <pre>1.95.x
 abc123def456
 arm64</pre>
@@ -241,10 +254,11 @@ arm64</pre>
 
             <div class="callout callout--warning">
               <div class="callout__title">אם <code>code</code> עדיין לא נמצא</div>
-              <p>הוסף את VS Code ל-PATH ידנית. הרץ ב-Terminal:</p>
-              <div class="code-block">
+              <p>הוסף את VS Code ל-PATH ידנית.</p>
+              <p class="do-here do-here--terminal">ב-Terminal — הרץ (Zsh, ברירת המחדל ב-macOS):</p>
+              <div class="code-block code-block--terminal">
                 <div class="code-block__header">
-                  <span class="code-block__filename">Terminal — Zsh (ברירת מחדל ב-macOS)</span>
+                  <span class="code-block__filename">Terminal</span>
                   <button class="code-block__copy">העתק</button>
                 </div>
 <pre><code>echo 'export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"' >> ~/.zprofile
@@ -260,8 +274,10 @@ code --version</code></pre>
           <div class="step__num">3</div>
           <div class="step__body">
             <div class="step__title">הסקריפט הראשון</div>
-            <p>ב-Terminal:</p>
-            <div class="code-block">
+            <p>עכשיו ניצור תיקייה לתרגילים שלנו, ניצור קובץ Python ראשון, נכתוב בו קוד, ונריץ אותו.</p>
+
+            <p class="do-here do-here--terminal">ב-Terminal — הרץ את 4 הפקודות (אחת אחת או ביחד):</p>
+            <div class="code-block code-block--terminal">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
                 <button class="code-block__copy">העתק</button>
@@ -271,15 +287,15 @@ mkdir -p exercises/lesson-01
 cd exercises/lesson-01
 code hello.py</code></pre>
             </div>
-            <p>זה יפתח את VS Code עם קובץ ריק בשם <code>hello.py</code>.</p>
+            <p>השורה האחרונה (<code>code hello.py</code>) פותחת את <strong>VS Code</strong> עם קובץ ריק בשם <code>hello.py</code>. <strong>מעכשיו אנחנו עוברים לעבוד ב-VS Code.</strong></p>
 
             <div class="callout callout--info">
               <div class="callout__title">אם <code>code hello.py</code> לא עובד</div>
               <p>חזור לצעד 2 ובצע את ההפעלה של פקודת <code>code</code>. <strong>חלופה זמנית:</strong> פתח את VS Code ידנית, בחר <em>File → Open Folder</em> ובחר את התיקייה <code>~/projects/vibe-master-academy/exercises/lesson-01</code>, ואז <em>File → New File</em> → שמור בשם <code>hello.py</code>.</p>
             </div>
 
-            <p>הכנס לקובץ:</p>
-            <div class="code-block">
+            <p class="do-here do-here--editor">ב-VS Code — הקובץ <code>hello.py</code> פתוח. הדבק את הקוד הבא:</p>
+            <div class="code-block code-block--editor">
               <div class="code-block__header">
                 <span class="code-block__filename">hello.py</span>
                 <button class="code-block__copy">העתק</button>
@@ -287,16 +303,20 @@ code hello.py</code></pre>
 <pre><code>print("Hello, Shai!")
 print("This is my first Python script.")</code></pre>
             </div>
-            <p>שמור (Cmd+S), חזור ל-Terminal והרץ:</p>
-            <div class="code-block">
+            <p>שמור עם <kbd>Cmd</kbd>+<kbd>S</kbd>. <strong>עכשיו חוזרים ל-Terminal כדי להריץ את הקובץ.</strong></p>
+
+            <p class="do-here do-here--terminal">ב-Terminal — ודא שאתה ב-<code>exercises/lesson-01</code> והרץ:</p>
+            <div class="code-block code-block--terminal">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
                 <button class="code-block__copy">העתק</button>
               </div>
 <pre><code>python3 hello.py</code></pre>
             </div>
+
+            <p class="do-here do-here--output">אמור להופיע ב-Terminal:</p>
             <div class="output">
-              <div class="output__label">פלט צפוי</div>
+              <div class="output__label">פלט ב-Terminal</div>
 <pre>Hello, Shai!
 This is my first Python script.</pre>
             </div>
@@ -571,6 +591,6 @@ print("הדומיין הוא:", domain)</code></pre>
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-10"></script>
+  <script src="../assets/js/app.js?v=20260521-11"></script>
 </body>
 </html>
