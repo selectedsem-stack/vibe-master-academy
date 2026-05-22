@@ -2391,23 +2391,56 @@ summary:focus-visible,
 
 /* --- Universal safety net (all viewports) --- */
 
+/* Outermost overflow guard: nothing on the page may push horizontal scroll */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* Grid/flex children must allow shrinking — without this, long pre/code blocks
-   push the layout wider than the viewport. */
+   push the layout wider than the viewport. min-width: 0 on every flex child
+   that contains scrollable content is the critical fix. */
 .lesson-section,
 .lesson-hero,
 .code-block,
 .output,
 .glossary-grid .term,
 .lesson-card,
-.phase-card {
+.phase-card,
+.step,
+.step__body,
+.lesson-section__header,
+.lesson-section__title,
+.callout,
+.refresher,
+.hint,
+.solution,
+.objectives {
   min-width: 0;
   max-width: 100%;
 }
 
-/* Code block: keep border-radius but allow internal horizontal scroll */
-.code-block {
+/* Code block: keep border-radius but allow internal horizontal scroll.
+   direction:ltr is critical — in an RTL ancestor, the pre's default
+   scroll position would otherwise start at the right (end of content). */
+.code-block, .output {
   overflow: hidden;
   width: 100%;
+  direction: ltr;
+  text-align: left;
+}
+
+/* Header inside code-block stays in its original layout (filename left,
+   copy button right in LTR — visually filename right / copy button left
+   because the header itself reads LTR). */
+.code-block__header {
+  direction: ltr;
+}
+
+/* Output label should still read RTL for Hebrew text */
+.output__label {
+  direction: rtl;
+  text-align: right;
 }
 
 .code-block pre {
@@ -2416,9 +2449,13 @@ summary:focus-visible,
   max-width: 100%;
 }
 
+/* pre code: keep code inline-block. Default `white-space: pre` on <pre>
+   keeps long lines on one line; pre's overflow-x: auto handles the scroll.
+   DO NOT set min-width: max-content here — it propagates the content's
+   width up through flex containers and breaks layout on mobile. */
 .code-block pre code {
-  display: block;
-  min-width: max-content; /* lets pre's overflow-x kick in cleanly */
+  display: inline-block;
+  min-width: 0;
 }
 
 /* Output pre — same treatment */
