@@ -66,16 +66,18 @@ n8n רץ את ה-workflow כשה-**trigger** מופעל — בין אם זה HTT
 
 ## חלק 2: התקנה + Hello Workflow (1.5 שעות)
 
-### שלב 1: הרשמה ל-n8n.cloud
+### שלב 1: הרשמה ל-n8n Cloud
 
 אפשרויות התקנה:
-- **n8n.cloud (מומלץ לרגע זה):** פשוט, מנוהל, 14 יום ניסיון חינמי. לא צריך Docker, לא צריך שרת.
-- **Self-hosted (Docker):** מריצים על מחשב מקומי עם Docker. מדלגים עליו בפאזה 1 — אנחנו ב-n8n.cloud.
+- **n8n Cloud (מומלץ לרגע זה):** פשוט, מנוהל. יש ניסיון חינמי **בלי צורך בכרטיס אשראי**. לא צריך Docker, לא צריך שרת.
+- **Self-hosted (Docker):** מריצים על מחשב מקומי עם Docker. מדלגים עליו בפאזה 1 — אנחנו ב-n8n Cloud.
 
 כדי להירשם:
-1. כנס ל-[https://n8n.cloud](https://n8n.cloud)
-2. הרשם עם Gmail
-3. ה-instance שלך יהיה ב-`https://YOUR-NAME.app.n8n.cloud`
+1. פתח [https://app.n8n.cloud/register](https://app.n8n.cloud/register)
+2. הירשם עם Gmail או אימייל
+3. בחר תת-דומיין (למשל `shai-vma`) — ה-instance שלך יהיה ב-`https://shai-vma.app.n8n.cloud`
+
+**מה קורה אחרי שהניסיון נגמר?** הניסיון הוא ל-Starter plan שעולה **€20/חודש** (2,500 הפעלות workflow בחודש). לא נצטרך את זה לשיעור הזה — תרגיל ה-Hello Workflow נכלל בניסיון. אם תרצה להמשיך — או שדרוג ל-Starter, או מעבר ל-Self-hosted (חינם, נלמד ב-Phase 2).
 
 ---
 

@@ -294,7 +294,16 @@ sorted_clients = sorted(clients, key=lambda c: c["traffic"])
 
 צור קובץ: `exercises/lesson-02/top_clients.py`
 
-בתיקיה `exercises/lesson-02/` יש קובץ `clients.json` עם 8 לקוחות SEO. קרא אותו, מיין לפי תנועה, והדפס את 5 הטובים.
+בתיקיה `exercises/lesson-02/` כבר יש קובץ `clients.json` עם 8 לקוחות SEO (מגיע עם הריפו של הקורס). קרא אותו, מיין לפי תנועה, והדפס את 5 הטובים.
+
+**לפני שמתחילים — היכנס לתיקיית התרגיל:**
+
+```bash
+cd ~/projects/vibe-master-academy/exercises/lesson-02
+ls       # אמור להופיע: clients.json
+```
+
+אם `clients.json` לא מופיע — עשה `git pull` בשורש הריפו ונסה שוב.
 
 **תוצאה צפויה:**
 ```

@@ -141,6 +141,27 @@ print(data.get("current_user_url"))
 
 ---
 
+### שלב 0: השגת מפתח API מ-Claude Console
+
+לפני שאתה יכול לקרוא ל-Claude, צריך מפתח API. הצעדים:
+
+1. **היכנס ל-Console** — פתח בדפדפן: [https://platform.claude.com/](https://platform.claude.com/). אם עדיין אין לך חשבון — הירשם עם Gmail או אימייל. (החשבון נפרד מ-Claude.ai לצ'אט.)
+
+2. **לעמוד API Keys** — פתח ישירות: [https://platform.claude.com/settings/keys](https://platform.claude.com/settings/keys). או נווט: **Settings → API Keys**.
+
+3. **צור מפתח חדש** — לחץ **Create Key**. תן שם תיאורי (למשל `vibe-master-academy-mac`). לחץ Create.
+
+4. **העתק את המפתח עכשיו** — **חשוב מאוד:** המפתח יוצג **פעם אחת בלבד**. ברגע שתסגור את החלון לא תוכל לראות אותו שוב — תצטרך ליצור חדש. המפתח מתחיל ב-`sk-ant-api03-` ואחריו ~95 תווים.
+
+5. **הוסף שיטת תשלום (אם זו פעם ראשונה)** — חשבון חדש מקבל לרוב $5 קרדיט חינמי. כדי לעבור את זה — תצטרך להוסיף כרטיס אשראי דרך **Settings → Billing**. השיעורים בקורס משתמשים במעט מאוד טוקנים (גרושים בודדים בסך הכל).
+
+**אם המפתח לא עובד:**
+- הקרדיט נגמר — בדוק ב-Settings → Billing
+- המפתח בוטל — בדוק שהוא עדיין מופיע ב-Settings → API Keys
+- חשבון אחר — צור חדש בחשבון הנכון
+
+---
+
 ### לפני הקריאה ל-Claude: איך מגדירים מפתח API בסביבה
 
 ה-API key הוא **סוד**. כמו סיסמה. הוא לעולם לא צריך להופיע בקוד שלך — לא ב-`.py`, לא ב-Git, ולא ב-screenshot.
@@ -366,6 +387,22 @@ def call_api_with_retry(url, max_tries=3):
 ---
 
 ## חלק 4: Git Workflow היומי (30 דקות)
+
+### הגדרה חד-פעמית — מי אתה ב-Git
+
+Git רוצה לדעת מי עומד מאחורי כל commit. אם עוד לא הגדרת את זה, ה-commit הראשון שלך ייכשל עם "**Please tell me who you are**". הגדר פעם אחת — תקף לכל הפרויקטים בכל המחשבים:
+
+```bash
+git config --global user.name "Shai Berdugo"
+git config --global user.email "selectedsem@gmail.com"
+
+# בדיקה
+git config --global --list
+```
+
+**איזה אימייל לשים?** אותו אימייל שאיתו נרשמת ל-GitHub. ככה כל ה-commits שלך יוצגו עם הפרופיל שלך. אם אתה רוצה להסתיר אימייל פרטי — GitHub נותן לך `USERNAME@users.noreply.github.com` דרך Settings → Emails.
+
+---
 
 ### הפקודות שתשתמש בהן יום-יום
 
