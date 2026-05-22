@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 1 — Python יום ראשון · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-11">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-12">
 </head>
 <body>
 
@@ -44,18 +44,18 @@
       <h1 class="lesson-hero__title">Lesson 1 — Python יום ראשון</h1>
       <p class="lesson-hero__intro">
         בסוף השיעור הזה סביבת <span class="term" data-term-id="python">Python</span> תעבוד אצלך במאק,
-        אתה תדע מה זה משתנה, ויהיו לך שני סקריפטים שרצים.
+        תכיר את היסודות, תדע לעבוד עם מחרוזות לעומק, ויהיו לך שני סקריפטים שרצים — כולל אחד שמחלץ דומיין מכל URL שתיתן לו.
       </p>
 
       <div class="objectives">
         <div class="objectives__title">בסוף השיעור תדע</div>
         <ul class="objectives__list">
           <li>להתקין Python ו-VS Code על המאק דרך <span class="term" data-term-id="homebrew">Homebrew</span></li>
-          <li>לכתוב סקריפט Python ראשון ולהריץ אותו</li>
-          <li>מה זה <span class="term" data-term-id="variable">משתנה</span> ואיך משתמשים בו</li>
-          <li>4 הטיפוסים הבסיסיים: str, int, float, bool</li>
-          <li>להשתמש ב-print ו-input</li>
-          <li>לכתוב סקריפט שמחלץ דומיין מ-URL</li>
+          <li>לכתוב סקריפט Python ראשון ולהריץ אותו מה-Terminal</li>
+          <li>מה זה <span class="term" data-term-id="variable">משתנה</span>, 4 הטיפוסים הבסיסיים, ואיך משתמשים בכל אחד</li>
+          <li>להשתמש ב-print, input, f-strings, ואופרטורים בסיסיים</li>
+          <li><strong>לעבוד עם מחרוזות לעומק:</strong> אינדקסים, חיתוך, <code>.replace</code>, <code>.split</code>, ושרשור מתודות</li>
+          <li>לבנות סקריפט שמחלץ דומיין מ-URL — באמת לבד, עם הכלים שלמדת</li>
         </ul>
       </div>
 
@@ -66,15 +66,19 @@
         <span class="lesson-hero__chip">Homebrew</span>
         <span class="lesson-hero__chip">משתנים</span>
         <span class="lesson-hero__chip">str / int / float / bool</span>
+        <span class="lesson-hero__chip">מחרוזות</span>
+        <span class="lesson-hero__chip">.replace · .split</span>
+        <span class="lesson-hero__chip">f-strings</span>
       </div>
     </section>
 
     <!-- TOC -->
     <nav class="lesson-toc">
       <a href="#part-1" class="lesson-toc__item">חלק 1: Setup</a>
-      <a href="#part-2" class="lesson-toc__item">חלק 2: Concepts</a>
-      <a href="#part-3" class="lesson-toc__item">חלק 3: תרגול</a>
-      <a href="#part-4" class="lesson-toc__item">חלק 4: Review</a>
+      <a href="#part-2" class="lesson-toc__item">חלק 2: יסודות Python</a>
+      <a href="#part-3" class="lesson-toc__item">חלק 3: מחרוזות לעומק</a>
+      <a href="#part-4" class="lesson-toc__item">חלק 4: תרגול — domain_extractor</a>
+      <a href="#part-5" class="lesson-toc__item">חלק 5: Review</a>
     </nav>
 
     <!-- Part 1: Setup -->
@@ -328,87 +332,226 @@ This is my first Python script.</pre>
       <button class="section-complete-btn" data-section="part-1">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 2: Concepts -->
+    <!-- Part 2: Python fundamentals -->
     <section class="lesson-section" id="part-2">
       <div class="lesson-section__header">
         <div class="lesson-section__num">2</div>
-        <h2 class="lesson-section__title">Concepts בסיסיים</h2>
-        <span class="lesson-section__time">1.5 שעות</span>
+        <h2 class="lesson-section__title">יסודות Python</h2>
+        <span class="lesson-section__time">1 שעה</span>
       </div>
 
-      <h3>משתנים</h3>
+      <div class="refresher">
+        <div class="refresher__title">מאיפה אנחנו</div>
+        <p>סביבת Python מותקנת, VS Code מותקן, יש לנו <code>hello.py</code> שעובד. עכשיו נחבר את הכלים — איך לתת לקוד שלך לזכור ערכים, להבדיל בין סוגי נתונים, ולתקשר עם המשתמש.</p>
+      </div>
+
+      <h3>2.1 משתנים — תיבות לערכים</h3>
       <p>
-        <span class="term" data-term-id="variable">משתנה</span> הוא "תיבה" שמכילה ערך. ב-Python:
+        <span class="term" data-term-id="variable">משתנה</span> הוא "תיבה" עם שם, שמכילה ערך. ב-Python יוצרים אחד עם סימן שווה <code>=</code>:
       </p>
-      <div class="code-block">
+
+      <p class="do-here do-here--editor">ב-VS Code — פתח קובץ חדש <code>practice.py</code> בתיקיית <code>exercises/lesson-01/</code> והדבק:</p>
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">practice.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>name = "Shai"
+age = 35
+is_seo_head = True
+
+print(name)
+print(age)
+print(is_seo_head)</code></pre>
+      </div>
+
+      <p class="do-here do-here--terminal">ב-Terminal — מתיקיית <code>exercises/lesson-01</code> הרץ:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>python3 practice.py</code></pre>
+      </div>
+
+      <p class="do-here do-here--output">צריך להופיע ב-Terminal:</p>
+      <div class="output">
+        <div class="output__label">פלט ב-Terminal</div>
+<pre>Shai
+35
+True</pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">כללי שמות משתנים</div>
+        <p>שמות באנגלית קטנה, רווחים מוחלפים ב-underscore: <code>first_name</code>, <code>total_traffic</code>, <code>is_active</code>. לא מתחילים במספר (<code>2cool</code> ❌, <code>cool2</code> ✅).</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>2.2 ארבעת הטיפוסים הבסיסיים</h3>
+      <p>כל ערך ב-Python שייך לטיפוס מסוים. ארבעת הטיפוסים שתפגוש כל יום:</p>
+
+      <table>
+        <thead>
+          <tr><th>טיפוס</th><th>דוגמה</th><th>למה זה</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code><span class="term" data-term-id="str">str</span></code></td><td><code>"Shai"</code></td><td>מחרוזת — טקסט (תמיד בגרשיים)</td></tr>
+          <tr><td><code><span class="term" data-term-id="int">int</span></code></td><td><code>35</code></td><td>מספר שלם (בלי נקודה)</td></tr>
+          <tr><td><code><span class="term" data-term-id="float">float</span></code></td><td><code>3.14</code></td><td>מספר עם נקודה עשרונית</td></tr>
+          <tr><td><code><span class="term" data-term-id="bool">bool</span></code></td><td><code>True</code> / <code>False</code></td><td>בוליאני — רק שני ערכים אפשריים</td></tr>
+        </tbody>
+      </table>
+
+      <p>בשביל לבדוק טיפוס של ערך, יש פונקציה מובנית <code>type()</code>:</p>
+
+      <p class="do-here do-here--editor">ב-VS Code — הוסף ל-<code>practice.py</code>:</p>
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">practice.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>print(type(name))           # &lt;class 'str'&gt;
+print(type(age))            # &lt;class 'int'&gt;
+print(type(is_seo_head))    # &lt;class 'bool'&gt;
+print(type(3.14))           # &lt;class 'float'&gt;</code></pre>
+      </div>
+
+      <p>זה כלי שתשתמש בו כשמשהו לא עובד — לרוב הסיבה היא שהטיפוס לא מה שחשבת.</p>
+
+      <hr class="mini-divider">
+
+      <h3>2.3 אופרטורים אריתמטיים</h3>
+      <p>Python יודע לעשות חישובים. שש האופרטורים שתפגוש כל יום:</p>
+
+      <table>
+        <thead>
+          <tr><th>אופרטור</th><th>שם</th><th>דוגמה</th><th>תוצאה</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>+</code></td><td>חיבור</td><td><code>10 + 3</code></td><td><code>13</code></td></tr>
+          <tr><td><code>-</code></td><td>חיסור</td><td><code>10 - 3</code></td><td><code>7</code></td></tr>
+          <tr><td><code>*</code></td><td>כפל</td><td><code>10 * 3</code></td><td><code>30</code></td></tr>
+          <tr><td><code>/</code></td><td>חילוק</td><td><code>10 / 3</code></td><td><code>3.333...</code></td></tr>
+          <tr><td><code>//</code></td><td>חילוק שלם</td><td><code>10 // 3</code></td><td><code>3</code></td></tr>
+          <tr><td><code>%</code></td><td>שארית (modulo)</td><td><code>10 % 3</code></td><td><code>1</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--info">
+        <div class="callout__title">מתי בכלל צריך % ו-// ?</div>
+        <p><code>%</code> שימושי לבדיקה אם מספר מתחלק (למשל <code>n % 2 == 0</code> — האם n זוגי). <code>//</code> שימושי כשרוצים תוצאה שלמה ולא עשרונית — למשל "כמה דקות שלמות יש ב-200 שניות": <code>200 // 60 = 3</code>.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>2.4 השוואות — ולמה הן מחזירות bool</h3>
+      <p>אופרטורי השוואה משווים שני ערכים ומחזירים <code>True</code> או <code>False</code>:</p>
+
+      <table>
+        <thead>
+          <tr><th>אופרטור</th><th>משמעות</th><th>דוגמה</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>==</code></td><td>שווה (שים לב — <strong>שני סימני שווה</strong>)</td><td><code>age == 35</code></td></tr>
+          <tr><td><code>!=</code></td><td>לא שווה</td><td><code>name != "Marcel"</code></td></tr>
+          <tr><td><code>&gt;</code></td><td>גדול מ-</td><td><code>age &gt; 18</code></td></tr>
+          <tr><td><code>&lt;</code></td><td>קטן מ-</td><td><code>age &lt; 100</code></td></tr>
+          <tr><td><code>&gt;=</code></td><td>גדול או שווה</td><td><code>age &gt;= 18</code></td></tr>
+          <tr><td><code>&lt;=</code></td><td>קטן או שווה</td><td><code>traffic &lt;= 1000</code></td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">הטעות הכי נפוצה</div>
+        <p><code>=</code> זה השמה (<em>תכניס לתוך</em>), <code>==</code> זה השוואה (<em>האם שווה?</em>). <code>age = 18</code> אומר "מעכשיו age הוא 18". <code>age == 18</code> אומר "האם age שווה 18?" ומחזיר <code>True</code>/<code>False</code>.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>2.5 print ו-input</h3>
+      <p>
+        <span class="term" data-term-id="print">print</span> כבר השתמשת בו — הוא מדפיס ערך למסך.
+        <span class="term" data-term-id="input">input</span> עושה את ההפך: מחכה שהמשתמש יקליד משהו ב-Terminal, ומחזיר את מה שהוקלד כ-<code>str</code>.
+      </p>
+
+      <p class="do-here do-here--editor">ב-VS Code — פתח קובץ חדש <code>interactive.py</code> והדבק:</p>
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">interactive.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>name = input("מה השם שלך? ")
+print("שלום,", name)</code></pre>
+      </div>
+
+      <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>python3 interactive.py</code></pre>
+      </div>
+
+      <p>הסקריפט מחכה. הקלד שם ולחץ Enter — אמור להופיע "שלום, &lt;השם שלך&gt;".</p>
+
+      <div class="callout callout--info">
+        <div class="callout__title">input תמיד מחזיר str</div>
+        <p>אם תקליד <code>35</code> בתגובה ל-<code>input()</code> — Python יקבל את זה כמחרוזת <code>"35"</code>, לא כמספר. בשביל לבצע חישובים תצטרך להמיר עם <code>int()</code>. נראה את זה עוד שתי-שלוש דקות.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>2.6 המרת טיפוסים</h3>
+      <p>שלוש פונקציות שימושיות להמרה:</p>
+
+      <ul>
+        <li><code>int(x)</code> — ממיר מחרוזת/float למספר שלם</li>
+        <li><code>float(x)</code> — ממיר מחרוזת/int למספר עשרוני</li>
+        <li><code>str(x)</code> — ממיר כל דבר למחרוזת</li>
+      </ul>
+
+      <p class="do-here do-here--editor">ב-VS Code — צור <code>age_check.py</code> והדבק:</p>
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">age_check.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>age_text = input("מה הגיל שלך? ")   # input מחזיר str
+age = int(age_text)                  # ממירים ל-int
+print("בעוד 10 שנים תהיה בן", age + 10)</code></pre>
+      </div>
+
+      <p>אם לא היינו עושים <code>int()</code> ומנסים <code>age_text + 10</code> — Python היה זורק שגיאה <code>TypeError</code> כי לא אפשר לחבר מחרוזת ומספר.</p>
+
+      <hr class="mini-divider">
+
+      <h3>2.7 f-strings — הדרך הנקייה לבנות הודעות</h3>
+      <p>במקום <code>print("שלום,", name)</code>, יש דרך יותר נקייה — <strong>f-string</strong>:</p>
+
+      <div class="code-block code-block--editor">
         <div class="code-block__header">
           <span class="code-block__filename">דוגמה</span>
           <button class="code-block__copy">העתק</button>
         </div>
 <pre><code>name = "Shai"
 age = 35
-is_seo_head = True</code></pre>
-      </div>
-      <p>עכשיו תוכל להשתמש בהם:</p>
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>print(name)            # מדפיס: Shai
-print("שלום", name)    # מדפיס: שלום Shai</code></pre>
+
+print(f"שלום, {name}!")
+print(f"אתה בן {age}, בעוד 10 שנים תהיה בן {age + 10}")</code></pre>
       </div>
 
-      <h3>טיפוסים בסיסיים</h3>
-      <table>
-        <thead>
-          <tr><th>טיפוס</th><th>דוגמה</th><th>למה זה</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code><span class="term" data-term-id="str">str</span></code></td><td><code>"Shai"</code></td><td>מחרוזת — טקסט</td></tr>
-          <tr><td><code><span class="term" data-term-id="int">int</span></code></td><td><code>35</code></td><td>מספר שלם</td></tr>
-          <tr><td><code><span class="term" data-term-id="float">float</span></code></td><td><code>3.14</code></td><td>מספר עם נקודה עשרונית</td></tr>
-          <tr><td><code><span class="term" data-term-id="bool">bool</span></code></td><td><code>True</code> / <code>False</code></td><td>בוליאני — נכון/לא נכון</td></tr>
-        </tbody>
-      </table>
+      <p>ה-<code>f</code> לפני הגרשיים אומר ל-Python: "זה לא טקסט רגיל, תחפש משתנים או ביטויים בתוך <code>{}</code> והחלף אותם בערכים". זה הסטנדרט המודרני — נשתמש בו לאורך הקורס.</p>
 
-      <h3>Print ו-Input</h3>
-      <p>
-        <span class="term" data-term-id="print">print</span> כבר השתמשת בו. עכשיו <span class="term" data-term-id="input">input</span>:
-      </p>
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">interactive.py</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>print("מה השם שלך?")
-name = input()
-print("שלום,", name)</code></pre>
-      </div>
-      <p>הרץ את זה. המחשב יחכה שתכניס שם, ואז ידפיס לך שלום.</p>
+      <hr class="mini-divider">
 
-      <p><strong>הערה על print:</strong> הפסיק בין הארגומנטים (<code>"שלום", name</code>) גורם ל-Python להוסיף רווח אוטומטית בין הערכים.</p>
-
-      <h3>f-strings — הדרך המודרנית להדפיס</h3>
-      <p>יש דרך יותר נקייה לשלב משתנים בטקסט — <strong>f-string</strong>:</p>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>name = "Shai"
-print(f"שלום, {name}!")            # שלום, Shai!
-print(f"השם שלך הוא {name}, נכון?")  # השם שלך הוא Shai, נכון?</code></pre>
-      </div>
-
-      <p>ה-<code>f</code> לפני הגרשיים אומר ל-Python: "זה לא טקסט רגיל, תחפש משתנים בתוך <code>{}</code> והחלף אותם בערכים שלהם". זה הסטנדרט המודרני — תשתמש בו לאורך הקורס.</p>
-
-      <h3>הערות בקוד</h3>
+      <h3>2.8 הערות בקוד</h3>
       <p>
         <span class="term" data-term-id="comment">הערות</span> הן טקסט בקוד שה-Python מתעלם ממנו. הן בשבילך, לזכור מה הקוד עושה:
       </p>
-      <div class="code-block">
+      <div class="code-block code-block--editor">
         <div class="code-block__header">
           <span class="code-block__filename">דוגמה</span>
           <button class="code-block__copy">העתק</button>
@@ -422,12 +565,14 @@ name = "Shai"   # זאת גם הערה, אחרי קוד</code></pre>
         <p>הוסף הערה לפני כל שורה לא טריוויאלית. עוד שנה תודה לעצמך.</p>
       </div>
 
-      <h3>אינדנטציה — הסוד של Python</h3>
+      <hr class="mini-divider">
+
+      <h3>2.9 אינדנטציה — הסוד של Python</h3>
       <p>ב-Python, <strong>רווחים בתחילת השורה הם משמעותיים</strong>. שלא כמו בשפות אחרות שמשתמשות ב-<code>{ }</code>, Python מסתמך על אינדנטציה כדי להבין מה שייך לאן.</p>
 
       <p>לדוגמה, ב-<code>if</code>:</p>
 
-      <div class="code-block">
+      <div class="code-block code-block--editor">
         <div class="code-block__header">
           <span class="code-block__filename">דוגמה</span>
           <button class="code-block__copy">העתק</button>
@@ -444,20 +589,407 @@ print("זה לא תלוי בגיל")    # אין רווחים — מחוץ לב�
         <p><code>IndentationError</code>. אם תקבל את זה — תבדוק את הרווחים. השתמש תמיד ב-4 רווחים, לא tabs. ב-VS Code, אם תלחץ Tab, הוא יהפוך אותו לרווחים אוטומטית (זה הסטנדרט).</p>
       </div>
 
+      <hr class="mini-divider">
+
+      <h3>תרגיל מהיר — בדוק את עצמך</h3>
+      <p>לפני שעוברים הלאה, נסה לבד את שלושת התרגילים. <strong>תכתוב את התשובות לעצמך לפני שתסתכל בפתרון.</strong></p>
+
+      <details class="hint">
+        <summary>תרגיל 1 — מה הטיפוס?</summary>
+        <p>איזה טיפוס הם הערכים הבאים: <code>"35"</code>, <code>35</code>, <code>35.0</code>, <code>True</code>?</p>
+        <details class="solution">
+          <summary>פתרון</summary>
+          <ul>
+            <li><code>"35"</code> → <code>str</code> (יש גרשיים)</li>
+            <li><code>35</code> → <code>int</code> (מספר שלם, בלי נקודה)</li>
+            <li><code>35.0</code> → <code>float</code> (יש נקודה)</li>
+            <li><code>True</code> → <code>bool</code></li>
+          </ul>
+        </details>
+      </details>
+
+      <details class="hint">
+        <summary>תרגיל 2 — מחשבון רווחי</summary>
+        <p>כתוב סקריפט <code>profit.py</code> ששואל מהמשתמש כמה רווחו בחודש שעבר ובחודש הזה, ומדפיס את ההפרש.</p>
+        <details class="solution">
+          <summary>פתרון</summary>
+<div class="code-block code-block--editor">
+<div class="code-block__header">
+<span class="code-block__filename">profit.py</span>
+<button class="code-block__copy">העתק</button>
+</div>
+<pre><code>last_month = int(input("רווח חודש שעבר: "))
+this_month = int(input("רווח חודש הזה: "))
+diff = this_month - last_month
+print(f"ההפרש: {diff} ש\"ח")</code></pre>
+</div>
+          <p>שים לב ל-<code>int()</code> — בלעדיו תקבל <code>TypeError</code> כי <code>input()</code> מחזיר str.</p>
+        </details>
+      </details>
+
+      <details class="hint">
+        <summary>תרגיל 3 — ברכת יום הולדת</summary>
+        <p>כתוב סקריפט <code>birthday.py</code> ששואל שם וגיל, ומדפיס: "שלום &lt;שם&gt;, מזל טוב! בעוד שנה תהיה בן/בת &lt;גיל+1&gt;." — השתמש ב-f-string.</p>
+        <details class="solution">
+          <summary>פתרון</summary>
+<div class="code-block code-block--editor">
+<div class="code-block__header">
+<span class="code-block__filename">birthday.py</span>
+<button class="code-block__copy">העתק</button>
+</div>
+<pre><code>name = input("שם: ")
+age = int(input("גיל: "))
+print(f"שלום {name}, מזל טוב! בעוד שנה תהיה בן {age + 1}.")</code></pre>
+</div>
+        </details>
+      </details>
+
       <button class="section-complete-btn" data-section="part-2">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 3: Practice -->
+    <!-- Part 3: Strings deep dive (NEW — was missing) -->
     <section class="lesson-section" id="part-3">
       <div class="lesson-section__header">
         <div class="lesson-section__num">3</div>
-        <h2 class="lesson-section__title">תרגול: דומיין מ-URL</h2>
+        <h2 class="lesson-section__title">מחרוזות לעומק</h2>
         <span class="lesson-section__time">1.5 שעות</span>
       </div>
 
       <div class="refresher">
-        <div class="refresher__title">רענון מחלק 2</div>
-        <p>נשתמש בכלים שלמדנו עכשיו: משתנים, <span class="term" data-term-id="input">input</span> ו-<span class="term" data-term-id="print">print</span>. אם משהו לא ברור — חזור ל-<a href="#part-2">חלק 2</a>.</p>
+        <div class="refresher__title">למה זה החלק הכי חשוב בשיעור</div>
+        <p>בעבודת SEO וב-vibe coding באופן כללי, רוב הזמן אתה מטפל ב<strong>טקסט</strong> — URLs, כותרות, meta descriptions, תוצאות מ-API. ב-Python, כל טקסט הוא <code>str</code>. החלק הזה מלמד אותך לעבד מחרוזות לעומק: לחתוך, להחליף, לפצל. כל הכלים בתרגיל הסופי של השיעור מגיעים מכאן.</p>
+      </div>
+
+      <h3>3.1 יצירת מחרוזות — שלוש דרכים</h3>
+      <p>אפשר ליצור מחרוזת ב-3 אופנים:</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>a = "Shai Berdugo"           # גרשיים כפולים
+b = 'Head of SEO'            # גרש בודד
+c = """שורה ראשונה
+שורה שנייה
+שורה שלישית"""              # שלוש מרכאות — לטקסט רב-שורתי
+
+print(a)
+print(b)
+print(c)</code></pre>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">מתי להשתמש בכל אחת?</div>
+        <p><strong>גרשיים כפולים</strong> ("...") — ברירת המחדל. <strong>גרש בודד</strong> ('...') — אם המחרוזת מכילה גרשיים כפולים בתוכה. למשל <code>'הוא אמר "שלום"'</code>. <strong>שלוש מרכאות</strong> — לטקסט שמתפרש על כמה שורות (כמו prompts ל-Claude).</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>3.2 חיבור וכפל מחרוזות</h3>
+      <p>אפשר לחבר שתי מחרוזות עם <code>+</code>, ולכפול מחרוזת במספר:</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>first = "Shai"
+last = "Berdugo"
+full = first + " " + last
+print(full)              # Shai Berdugo
+
+line = "-" * 30
+print(line)              # ------------------------------</code></pre>
+      </div>
+
+      <p>שים לב — <code>first + " " + last</code> דורש להוסיף את הרווח באופן ידני. בדרך כלל יותר נקי להשתמש ב-f-string: <code>f"{first} {last}"</code>.</p>
+
+      <hr class="mini-divider">
+
+      <h3>3.3 אורך מחרוזת — <code>len()</code></h3>
+      <p>הפונקציה <code>len(s)</code> מחזירה את מספר התווים במחרוזת:</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>name = "Shai"
+print(len(name))           # 4
+
+empty = ""
+print(len(empty))          # 0
+
+sentence = "Head of SEO"
+print(len(sentence))       # 11 (כולל הרווחים!)</code></pre>
+      </div>
+
+      <p>שימוש מעשי: לבדוק אם משתמש הזין משהו (<code>if len(name) == 0</code>), או לבדוק שכותרת SEO לא חורגת מהאורך המומלץ של 60 תווים.</p>
+
+      <hr class="mini-divider">
+
+      <h3>3.4 אינדקסים — לקבל תו ספציפי</h3>
+      <p>במחרוזת ב-Python, לכל תו יש <strong>אינדקס</strong> (מספר סידורי). חשוב: <strong>הספירה מתחילה מ-0</strong>, לא מ-1.</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>s = "Python"
+#    P y t h o n
+#    0 1 2 3 4 5    ← אינדקסים חיוביים
+#   -6-5-4-3-2-1    ← אינדקסים שליליים
+
+print(s[0])    # P  — התו הראשון
+print(s[1])    # y  — השני
+print(s[5])    # n  — השישי (האחרון)
+print(s[-1])   # n  — האחרון, דרך קצרה
+print(s[-2])   # o  — לפני האחרון</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">למה להתחיל מ-0?</div>
+        <p>זה מוסכמה בכל שפות התכנות כמעט. תרגל אותה — בהתחלה זה מבלבל, אחרי שבוע זה הופך לטבעי. <strong>אינדקסים שליליים</strong> ((-1, -2, ...) שימושיים מאוד — תמיד מספרים מהסוף, גם אם לא יודעים את האורך.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>3.5 חיתוך (slicing) — לקחת קטע</h3>
+      <p>אם אתה רוצה קטע מהמחרוזת (לא תו בודד), השתמש בתחביר <code>s[start:end]</code> — נקרא <strong>slicing</strong>:</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>url = "https://beatport.com"
+
+print(url[0:8])      # https://
+print(url[8:])       # beatport.com   (מ-8 עד הסוף)
+print(url[:8])       # https://       (מההתחלה עד 8)
+print(url[-4:])      # .com           (4 התווים האחרונים)
+print(url[-4:-1])    # .co            (לא כולל האחרון)</code></pre>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">חשוב לזכור</div>
+        <p>בחיתוך, <code>start</code> כלול אבל <code>end</code> <strong>לא כלול</strong>. כלומר <code>s[0:3]</code> מחזיר את האינדקסים 0, 1, 2 — בלי 3. כשמשמיטים את <code>start</code> זה מתחיל מ-0, כשמשמיטים את <code>end</code> זה ממשיך עד הסוף.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>3.6 מתודות גודל ורווח — lower / upper / strip</h3>
+      <p>מתודה (method) זה כמו פונקציה ששייכת לערך. הסינטקס: <code>value.method()</code>. שלוש המתודות הראשונות שתשתמש בהן ב-99% מהמקרים שמטפלים ב-input מהמשתמש:</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>name = "  Shai Berdugo  "
+
+print(name.lower())     # "  shai berdugo  "  — הכל קטן
+print(name.upper())     # "  SHAI BERDUGO  "  — הכל גדול
+print(name.strip())     # "Shai Berdugo"      — בלי רווחים בקצוות
+
+# כל אחת מחזירה מחרוזת חדשה — name עצמו לא משתנה
+print(name)             # "  Shai Berdugo  "  — עדיין כמו שהיה</code></pre>
+      </div>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">חשוב — מחרוזות ב-Python הן "immutable"</div>
+        <p>קריאה ל-<code>name.lower()</code> לא משנה את <code>name</code>. היא מחזירה <strong>מחרוזת חדשה</strong>. אם אתה רוצה לשמור את התוצאה — צריך להציב חזרה: <code>name = name.lower()</code>.</p>
+      </div>
+
+      <p><strong>למה זה חשוב?</strong> כשמשתמש כותב לך URL, יכול להיות שהוא יקליד <code>" Beatport.COM "</code>. אם תשווה לזה <code>"beatport.com"</code> — לא יהיה matching. הפתרון: <code>url.strip().lower()</code> מנרמל את הקלט.</p>
+
+      <hr class="mini-divider">
+
+      <h3>3.7 <code>.replace(old, new)</code> — המתודה החשובה ביותר</h3>
+      <p>המתודה <code>.replace</code> מחזירה מחרוזת חדשה עם החלפה של כל מופע של <code>old</code> ב-<code>new</code>:</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>s = "hello world hello"
+
+print(s.replace("hello", "hi"))     # "hi world hi"   — מחליפה את כל המופעים
+print(s.replace("world", "Python")) # "hello Python hello"
+
+# החלפה במחרוזת ריקה = הסרה
+s2 = "https://beatport.com"
+print(s2.replace("https://", ""))   # "beatport.com"
+
+# הסרת רווחים מכל מקום (לא רק מהקצוות כמו strip):
+s3 = "S h a i"
+print(s3.replace(" ", ""))          # "Shai"</code></pre>
+      </div>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">הטריק: החלפה בריק = הסרה</div>
+        <p>זה מאוד שימושי. אם אתה רוצה להסיר משהו ממחרוזת — <code>.replace("מה_להסיר", "")</code>. למשל לנקות URL מ-<code>"https://"</code>, להסיר <code>"www."</code>, להסיר תו ספציפי.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>3.8 <code>.split(separator)</code> — לחתוך לחתיכות</h3>
+      <p>המתודה <code>.split(separator)</code> מחלקת את המחרוזת לחתיכות לפי תו או מחרוזת מפריד. <strong>היא מחזירה list</strong> (מבנה נתונים שנלמד עליו לעומק ב-Lesson 2, אבל יש לנו כאן הצצה).</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>csv = "Shai,Marcel,Niv"
+parts = csv.split(",")
+print(parts)            # ['Shai', 'Marcel', 'Niv']
+
+# גישה לחתיכה ספציפית עם אינדקס:
+print(parts[0])         # 'Shai'    — הראשון
+print(parts[1])         # 'Marcel'
+print(parts[-1])        # 'Niv'     — האחרון
+
+# חיתוך URL לפי סלאש:
+url = "beatport.com/genre/techno"
+url_parts = url.split("/")
+print(url_parts)        # ['beatport.com', 'genre', 'techno']
+print(url_parts[0])     # 'beatport.com'   ← הדומיין!</code></pre>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">מה זה list בעצם?</div>
+        <p>List זה סוגריים מרובעים <code>[...]</code> עם איברים מופרדים בפסיק. הפעולה <code>list[0]</code> לוקחת את האיבר הראשון. <strong>ההצצה הזו מספיקה כדי לפתור את התרגיל בסוף השיעור.</strong> את הכל לעומק (יצירה, הוספה, הסרה, lambda, sorted) נלמד ב-Lesson 2.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>3.9 שרשור מתודות — Method chaining</h3>
+      <p>כיוון שכל מתודה מחזירה מחרוזת חדשה, אפשר לקרוא למתודה הבאה ישר על התוצאה — <strong>שרשור</strong>:</p>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>messy = "  HTTPS://BeatPort.COM  "
+
+# שלוש מתודות, אחת אחרי השנייה
+clean = messy.strip().lower().replace("https://", "")
+print(clean)            # "beatport.com"</code></pre>
+      </div>
+
+      <p>הקוד הזה <strong>קריא יותר</strong> מאשר 3 שורות נפרדות. השרשור עובד כי כל מתודה מחזירה מחרוזת — והמתודה הבאה רצה על התוצאה.</p>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">איך לקרוא שרשור</div>
+        <p>קרא משמאל לימין (כי הקוד LTR): "קח את <code>messy</code>, תפעיל <code>.strip()</code> (תסיר רווחים מקצוות), אחר כך <code>.lower()</code> (תהפוך לקטנות), אחר כך <code>.replace</code> (תסיר את ה-https://). זאת התוצאה."</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>3.10 כל הכלים שלמדנו — סיכום</h3>
+      <p>סיכום מהיר לפני התרגילים:</p>
+
+      <table>
+        <thead>
+          <tr><th>כלי</th><th>מה הוא עושה</th><th>דוגמה</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>len(s)</code></td><td>אורך מחרוזת</td><td><code>len("Shai") → 4</code></td></tr>
+          <tr><td><code>s[0]</code></td><td>תו ראשון</td><td><code>"Shai"[0] → "S"</code></td></tr>
+          <tr><td><code>s[-1]</code></td><td>תו אחרון</td><td><code>"Shai"[-1] → "i"</code></td></tr>
+          <tr><td><code>s[0:3]</code></td><td>חיתוך (slicing)</td><td><code>"Shai"[0:3] → "Sha"</code></td></tr>
+          <tr><td><code>s.lower()</code></td><td>הכל קטן</td><td><code>"SHAI".lower() → "shai"</code></td></tr>
+          <tr><td><code>s.upper()</code></td><td>הכל גדול</td><td><code>"shai".upper() → "SHAI"</code></td></tr>
+          <tr><td><code>s.strip()</code></td><td>הסרת רווחים מקצוות</td><td><code>"  Shai  ".strip() → "Shai"</code></td></tr>
+          <tr><td><code>s.replace(a, b)</code></td><td>החלפה (a → b)</td><td><code>"hi".replace("i", "ello") → "hello"</code></td></tr>
+          <tr><td><code>s.split(sep)</code></td><td>חיתוך לרשימה</td><td><code>"a,b,c".split(",") → ['a','b','c']</code></td></tr>
+        </tbody>
+      </table>
+
+      <hr class="mini-divider">
+
+      <h3>תרגילים מהירים — לפני התרגיל הגדול</h3>
+      <p>3 תרגילים קטנים שבונים אותך לתרגיל הסופי. <strong>תכתוב את התשובות לבד לפני שאתה פותח את הפתרון.</strong></p>
+
+      <details class="hint">
+        <summary>תרגיל 3.A — נירמול קלט</summary>
+        <p>כתוב סקריפט <code>normalize.py</code> ששואל את המשתמש לשם שלו, ומדפיס את השם <strong>בלי רווחים בקצוות ובאותיות קטנות</strong>. למשל אם הקלט הוא <code>"  Shai Berdugo  "</code>, הפלט צריך להיות <code>"shai berdugo"</code>.</p>
+        <details class="solution">
+          <summary>פתרון</summary>
+<div class="code-block code-block--editor">
+<div class="code-block__header">
+<span class="code-block__filename">normalize.py</span>
+<button class="code-block__copy">העתק</button>
+</div>
+<pre><code>name = input("מה השם שלך? ")
+clean_name = name.strip().lower()
+print(f"השם המנורמל: {clean_name}")</code></pre>
+</div>
+          <p>שים לב לשרשור <code>.strip().lower()</code> — strip הסיר את הרווחים, lower הפך לקטנות.</p>
+        </details>
+      </details>
+
+      <details class="hint">
+        <summary>תרגיל 3.B — הסרת סיומת קובץ</summary>
+        <p>כתוב סקריפט <code>filename.py</code> ששואל שם קובץ עם סיומת (למשל <code>"report.pdf"</code>) ומדפיס רק את השם בלי הסיומת (<code>"report"</code>). <strong>רמז:</strong> השתמש ב-<code>.split(".")</code> וקח את האיבר הראשון.</p>
+        <details class="solution">
+          <summary>פתרון</summary>
+<div class="code-block code-block--editor">
+<div class="code-block__header">
+<span class="code-block__filename">filename.py</span>
+<button class="code-block__copy">העתק</button>
+</div>
+<pre><code>filename = input("שם קובץ: ")
+parts = filename.split(".")
+name_only = parts[0]
+print(f"השם בלי סיומת: {name_only}")</code></pre>
+</div>
+          <p>גרסה מקוצרת בשרשור: <code>name_only = filename.split(".")[0]</code></p>
+        </details>
+      </details>
+
+      <details class="hint">
+        <summary>תרגיל 3.C — נירמול URL</summary>
+        <p>כתוב סקריפט <code>url_normalize.py</code> ששואל URL ומדפיס אותו <strong>בלי</strong> <code>https://</code> או <code>http://</code> בהתחלה. למשל <code>"https://beatport.com"</code> → <code>"beatport.com"</code>. (שים לב — זה רק חלק ממה שהתרגיל הגדול ידרוש.)</p>
+        <details class="solution">
+          <summary>פתרון</summary>
+<div class="code-block code-block--editor">
+<div class="code-block__header">
+<span class="code-block__filename">url_normalize.py</span>
+<button class="code-block__copy">העתק</button>
+</div>
+<pre><code>url = input("הכנס URL: ")
+url = url.replace("https://", "").replace("http://", "")
+print(f"מנורמל: {url}")</code></pre>
+</div>
+          <p>שתי קריאות <code>.replace</code> בשרשור. הראשונה מסירה את https://, השנייה את http:// (לכל מקרה שאחד מהם קיים).</p>
+        </details>
+      </details>
+
+      <div class="callout callout--success">
+        <div class="callout__title">עכשיו יש לך את כל הכלים</div>
+        <p>אם הצלחת את 3 התרגילים האלה — אתה מוכן לתרגיל הסופי בחלק 4. אם משהו לא היה ברור, חזור לסעיף הספציפי לפני שאתה ממשיך.</p>
+      </div>
+
+      <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 4: Practice (was Part 3) -->
+    <section class="lesson-section" id="part-4">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">4</div>
+        <h2 class="lesson-section__title">תרגול — domain_extractor</h2>
+        <span class="lesson-section__time">1 שעה</span>
+      </div>
+
+      <div class="refresher">
+        <div class="refresher__title">כל מה שצריך כבר אצלך</div>
+        <p>בחלק 3 למדת <code>.replace</code>, <code>.split</code>, ו-list indexing. בחלק 2 למדת input ו-print. <strong>זה כל מה שצריך כדי לפתור את התרגיל הזה.</strong> אם משהו מוכר — חזור ל-<a href="#part-3">חלק 3</a>.</p>
       </div>
 
       <h3>המטרה</h3>
@@ -510,25 +1042,39 @@ print("הדומיין הוא:", domain)</code></pre>
         <p>הרץ עם 3 URLs שונים כדי לראות שזה עובד.</p>
       </details>
 
-      <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
+      <button class="section-complete-btn" data-section="part-4">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 4: Review -->
-    <section class="lesson-section" id="part-4">
+    <!-- Part 5: Review (was Part 4) -->
+    <section class="lesson-section" id="part-5">
       <div class="lesson-section__header">
-        <div class="lesson-section__num">4</div>
+        <div class="lesson-section__num">5</div>
         <h2 class="lesson-section__title">Review — מה למדת</h2>
         <span class="lesson-section__time">30 דקות</span>
       </div>
 
-      <h3>3 שאלות לפני שאתה ממשיך</h3>
-      <p>ענה לעצמך (בלי לגלול חזרה):</p>
+      <h3>6 שאלות לפני שאתה ממשיך</h3>
+      <p>ענה לעצמך בכתב (בלי לגלול חזרה). אם אתה לא בטוח על שאלה — חזור לסעיף הרלוונטי לפני Lesson 2.</p>
       <ol>
-        <li>מה ההבדל בין <code>print</code> ל-<code>input</code>?</li>
-        <li>מה השם של הטיפוס של <code>35</code>?</li>
-        <li>למה הוספנו <code>.replace("www.", "")</code> בתרגיל?</li>
+        <li>מה ההבדל בין <code>print</code> ל-<code>input</code>? ומה הטיפוס של מה ש-<code>input</code> מחזיר?</li>
+        <li>מה השם של הטיפוס של <code>35</code>? של <code>"35"</code>? של <code>35.0</code>?</li>
+        <li>מה ההבדל בין <code>=</code> ל-<code>==</code>?</li>
+        <li>למה אנחנו כותבים <code>name = name.lower()</code> ולא רק <code>name.lower()</code>?</li>
+        <li>מה <code>.replace("www.", "")</code> עושה ולמה זה שימושי?</li>
+        <li>מה <code>"a/b/c".split("/")[0]</code> מחזיר ולמה?</li>
       </ol>
-      <p>אם אתה לא בטוח על אחת מאלה — חזור על החלק הרלוונטי לפני שעוברים ל-Lesson 2.</p>
+
+      <details class="solution">
+        <summary>תשובות (אחרי שניסית בעצמך)</summary>
+        <ol>
+          <li><code>print</code> כותב למסך. <code>input</code> מחכה לקלט מהמשתמש ומחזיר אותו כ-<code>str</code>.</li>
+          <li><code>35</code> הוא <code>int</code>, <code>"35"</code> הוא <code>str</code> (יש גרשיים), <code>35.0</code> הוא <code>float</code>.</li>
+          <li><code>=</code> זה השמה (תכניס לתוך). <code>==</code> זה השוואה (האם שווה? מחזיר bool).</li>
+          <li>כי מחרוזות הן immutable — <code>.lower()</code> מחזירה <strong>מחרוזת חדשה</strong> במקום לשנות את המקורית. צריך להציב חזרה לתוך המשתנה.</li>
+          <li>מחליפה את <code>"www."</code> במחרוזת ריקה, כלומר מסירה את <code>"www."</code> מהמחרוזת. שימושי לנירמול URLs.</li>
+          <li>מחזיר <code>"a"</code>. <code>split("/")</code> חותך ל-<code>['a','b','c']</code>, ו-<code>[0]</code> לוקח את האיבר הראשון.</li>
+        </ol>
+      </details>
 
       <hr class="mini-divider">
 
@@ -540,7 +1086,26 @@ print("הדומיין הוא:", domain)</code></pre>
         <li><strong>הערות:</strong> מה הפתיע, מה לא היה ברור, מה רצית עוד</li>
       </ul>
 
-      <button class="section-complete-btn" data-section="part-4">סיימתי חלק זה ✓</button>
+      <hr class="mini-divider">
+
+      <h3>Git commit ראשון — סוגרים את השיעור בריפו</h3>
+      <p>עכשיו נשמור את כל מה שעשית בריפו של הקורס. (אם אתה עוד לא יודע git — אל תדאג, נלמד אותו לעומק ב-Lesson 3. כרגע פשוט תפעל לפי הפקודות.)</p>
+
+      <p class="do-here do-here--terminal">ב-Terminal — היכנס לשורש הפרויקט והרץ:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>cd ~/projects/vibe-master-academy
+git add exercises/lesson-01 PROGRESS.md
+git commit -m "Lesson 1 complete — Python setup + strings + domain_extractor"
+git push</code></pre>
+      </div>
+
+      <p>אם זאת הפעם הראשונה שלך עם git, יכול להיות שתקבל הודעה "<em>Please tell me who you are</em>". במקרה כזה — קופץ ל-Lesson 3 חלק 4 (Git first-time setup) ועושה את ה-config, ואז חוזר וריץ את ה-commit שוב.</p>
+
+      <button class="section-complete-btn" data-section="part-5">סיימתי חלק זה ✓</button>
     </section>
 
     <div class="section-divider" aria-hidden="true">
@@ -559,8 +1124,11 @@ print("הדומיין הוא:", domain)</code></pre>
       <div class="checklist">
         <ul>
           <li data-id="w1-python">Python 3.12 מותקן על המאק</li>
-          <li data-id="w1-vscode">VS Code עם extension של Python</li>
+          <li data-id="w1-vscode">VS Code מותקן + extension של Python + פקודת <code>code</code> ב-Terminal</li>
           <li data-id="w1-hello"><code>hello.py</code> רץ והדפיס שלום</li>
+          <li data-id="w1-types">מכיר את 4 הטיפוסים (str, int, float, bool) ויודע להמיר ביניהם</li>
+          <li data-id="w1-fstring">משתמש ב-f-strings בנוחות</li>
+          <li data-id="w1-strings">למד <code>.replace</code>, <code>.split</code>, ו-string indexing — תרגילים 3.A/3.B/3.C עברו</li>
           <li data-id="w1-domain"><code>domain_extractor.py</code> עובד עם 3 URLs לפחות</li>
           <li data-id="w1-progress"><code>PROGRESS.md</code> מעודכן</li>
           <li data-id="w1-commit"><span class="term" data-term-id="git">Git</span> <span class="term" data-term-id="commit">commit</span> + <span class="term" data-term-id="push">push</span></li>
@@ -591,6 +1159,6 @@ print("הדומיין הוא:", domain)</code></pre>
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-11"></script>
+  <script src="../assets/js/app.js?v=20260521-12"></script>
 </body>
 </html>
