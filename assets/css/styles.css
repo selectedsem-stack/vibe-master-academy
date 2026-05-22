@@ -2603,3 +2603,147 @@ img, iframe, video, svg {
   .breadcrumbs { font-size: 0.8rem; gap: var(--space-1); }
   .breadcrumbs a, .breadcrumbs__current { padding: 0.2rem 0.4rem; }
 }
+
+/* ============================================
+   Batch L — Mobile polish for new lesson content
+   Covers: <kbd>, nested .steps inside .step,
+   long URL links inside paragraphs, h4 inside
+   lesson sections, callouts inside steps.
+   ============================================ */
+
+/* Long URL links inside paragraphs / step bodies / callouts must wrap */
+.lesson-section p,
+.lesson-section li,
+.step__body,
+.callout {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* But code/kbd should NEVER wrap mid-character — keep them atomic */
+.lesson-section p code,
+.lesson-section li code,
+.step__body code,
+.callout code,
+kbd {
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+/* Anchor links may have long URLs — let them wrap at character boundary */
+.lesson-section a,
+.step__body a,
+.callout a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* H4 inside lesson sections — proper hierarchy */
+.lesson-section h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: var(--space-5) 0 var(--space-3);
+  color: var(--color-text);
+}
+
+/* Nested steps (steps inside a step body) — visually subordinate */
+.step__body .steps {
+  margin: var(--space-4) 0;
+  gap: var(--space-3);
+}
+
+.step__body .step {
+  background: white;
+  border: 1px solid var(--color-border);
+  border-right-width: 3px;
+}
+
+/* Callout inside a step — slightly tighter so it doesn't dominate */
+.step__body .callout {
+  margin: var(--space-4) 0 0;
+}
+
+/* --- Tablet (≤ 1024px) --- */
+@media (max-width: 1024px) {
+  .step__body .step { padding: var(--space-4); }
+}
+
+/* --- Mobile (≤ 720px) --- */
+@media (max-width: 720px) {
+  /* kbd — slightly smaller, doesn't break lines */
+  kbd {
+    padding: 0.05rem 0.4rem;
+    font-size: 0.78em;
+    margin: 0 0.05rem;
+  }
+
+  /* Lesson section h4 sizes down */
+  .lesson-section h4 { font-size: 1rem; margin: var(--space-4) 0 var(--space-2); }
+
+  /* Nested steps — much tighter than top-level steps */
+  .step__body .steps { gap: var(--space-2); margin: var(--space-3) 0; }
+  .step__body .step {
+    padding: var(--space-3);
+    gap: var(--space-3);
+    border-radius: var(--radius-md);
+  }
+  .step__body .step__num {
+    width: 26px;
+    height: 26px;
+    font-size: 0.78rem;
+  }
+  .step__body .step__title { font-size: 0.95rem; }
+
+  /* Code blocks inside nested step bodies — even smaller padding/font */
+  .step__body .code-block pre {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.78rem;
+  }
+  .step__body .code-block__header {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.72rem;
+  }
+
+  /* Output inside nested step body */
+  .step__body .output pre {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.78rem;
+  }
+
+  /* Callouts inside steps — tighter padding */
+  .step__body .callout {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  /* Long anchor URLs visually clear they wrap */
+  .lesson-section a[href^="http"] {
+    color: var(--color-primary-dark);
+  }
+}
+
+/* --- Small mobile (≤ 480px) --- */
+@media (max-width: 480px) {
+  kbd { padding: 0.05rem 0.35rem; font-size: 0.75em; }
+
+  .lesson-section h4 { font-size: 0.95rem; }
+
+  /* Nested step — go even tighter on small screens */
+  .step__body .step {
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+  .step__body .step__num {
+    width: 24px;
+    height: 24px;
+    font-size: 0.72rem;
+  }
+  .step__body .step__title { font-size: 0.9rem; }
+
+  /* Code/output inside nested step on small mobile */
+  .step__body .code-block pre,
+  .step__body .output pre {
+    padding: var(--space-2);
+    font-size: 0.74rem;
+  }
+}
