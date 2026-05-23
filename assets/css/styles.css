@@ -1096,6 +1096,28 @@ kbd {
   text-decoration: none;
 }
 
+.lesson-card--completed {
+  border-color: var(--color-success);
+  background: linear-gradient(135deg, #fff 75%, #ecfdf5 100%);
+}
+
+.lesson-card--completed:hover {
+  border-color: var(--color-success);
+}
+
+.lesson-card__completion-badge {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: 0.25rem 0.7rem;
+  background: var(--color-success);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
 .lesson-card__num {
   font-family: var(--font-display);
   font-size: 0.8rem;

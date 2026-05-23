@@ -206,6 +206,33 @@
     }
   };
 
+  // === Lesson completion manifest ===
+  // Maps lesson number -> checkpoint item data-ids. A lesson is "complete" when
+  // all of its checkpoint items are checked in localStorage. Single source of
+  // truth — used by the home page progress bar and the phase index lesson cards.
+  const LESSON_CHECKPOINTS = {
+    1: ['w1-python', 'w1-greet', 'w1-domain', 'w1-claude', 'w1-system', 'w1-progress'],
+    2: ['w2-list', 'w2-dict', 'w2-function', 'w2-json', 'w2-exercise', 'w2-commit'],
+    3: ['w3-first-api', 'w3-claude-api', 'w3-exception', 'w3-commit', 'w3-push', 'w3-progress', 'w3-get-post'],
+    4: ['w4-n8n-account', 'w4-hello-workflow', 'w4-claude-workflow', 'w4-progress', 'w4-exercises', 'w4-retro', 'w4-commit', 'w4-phase2-ready']
+  };
+
+  const TOTAL_LESSONS_IN_COURSE = 32;
+
+  function isLessonComplete(num) {
+    const ids = LESSON_CHECKPOINTS[num];
+    if (!ids || !ids.length) return false;
+    return ids.every(id => localStorage.getItem('vma-check-' + id) === '1');
+  }
+
+  function getCompletedLessonsCount() {
+    let count = 0;
+    for (let n = 1; n <= TOTAL_LESSONS_IN_COURSE; n++) {
+      if (isLessonComplete(n)) count++;
+    }
+    return count;
+  }
+
   // === Highlight current nav item ===
   function highlightNav() {
     const links = document.querySelectorAll('.site-nav a');
@@ -366,6 +393,50 @@
     if (tocItem) tocItem.classList.remove('completed');
   }
 
+  // === Aggregate lesson progress (home page) ===
+  // Updates the "X / 32 שיעורים" counter and the progress bar width based on
+  // how many lessons are fully checked off in localStorage. Runs only on pages
+  // that have a .progress section.
+  function setupGlobalProgress() {
+    const progressSection = document.querySelector('.progress');
+    if (!progressSection) return;
+
+    const completed = getCompletedLessonsCount();
+    const pct = (completed / TOTAL_LESSONS_IN_COURSE) * 100;
+
+    const counterEl = progressSection.querySelector('.progress__label strong');
+    if (counterEl) counterEl.textContent = String(completed);
+
+    const fillEl = progressSection.querySelector('.progress__fill');
+    if (fillEl) {
+      fillEl.dataset.pct = pct.toFixed(2);
+      fillEl.style.width = pct + '%';
+    }
+  }
+
+  // === Mark completed lessons on phase index pages ===
+  // Each .lesson-card[href="lesson-NN.html"] is matched against the manifest.
+  // If complete, the card gets .lesson-card--completed and a small badge.
+  function setupLessonCards() {
+    const cards = document.querySelectorAll('.lesson-card[href*="lesson-"]');
+    cards.forEach(card => {
+      const match = card.getAttribute('href').match(/lesson-(\d+)/);
+      if (!match) return;
+      const num = parseInt(match[1], 10);
+      if (!isLessonComplete(num)) return;
+
+      card.classList.add('lesson-card--completed');
+
+      // Inject badge into card body if not already present
+      const body = card.querySelector('.lesson-card__body') || card;
+      if (body.querySelector('.lesson-card__completion-badge')) return;
+      const badge = document.createElement('span');
+      badge.className = 'lesson-card__completion-badge';
+      badge.textContent = 'הושלם ✓';
+      body.appendChild(badge);
+    });
+  }
+
   // === Active TOC on scroll ===
   function setupActiveToc() {
     const sections = document.querySelectorAll('.lesson-section[id]');
@@ -510,6 +581,8 @@
   // === Init ===
   document.addEventListener('DOMContentLoaded', () => {
     highlightNav();
+    setupGlobalProgress();
+    setupLessonCards();
     fillProgress();
     setupChecklist();
     setupTooltips();
