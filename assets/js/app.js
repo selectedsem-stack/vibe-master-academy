@@ -219,6 +219,30 @@
 
   const TOTAL_LESSONS_IN_COURSE = 32;
 
+  // Lesson metadata for the dynamic home CTA. Update when a lesson is rebuilt.
+  const LESSONS = {
+    1: {
+      title: 'Lesson 1 — Python יום ראשון',
+      href: 'phase-1/lesson-01.html',
+      desc: '3 שעות · התקנת Python, 3 סקריפטים מוכנים שאתה קורא ומשנה — כולל אחד שמדבר עם Claude API.'
+    },
+    2: {
+      title: 'Lesson 2 — Data + AI',
+      href: 'phase-1/lesson-02.html',
+      desc: '3.5 שעות · קורא נתוני לקוחות מ-JSON, מסנן וממיין, ובונה advisor SEO שמייצר המלצות עם Claude.'
+    },
+    3: {
+      title: 'Lesson 3 — APIs חיצוניים + Git',
+      href: 'phase-1/lesson-03.html',
+      desc: '4 שעות · בונה pipeline שמושך מידע ממקור חיצוני, מטפל בשגיאות, ומשתלב עם Claude. Git workflow יומי.'
+    },
+    4: {
+      title: 'Lesson 4 — n8n + אוטומציה',
+      href: 'phase-1/lesson-04.html',
+      desc: '3 שעות · בונה את אותה אוטומציה ב-n8n ויזואלי, בלי קוד. Retrospective של Phase 1.'
+    }
+  };
+
   function isLessonComplete(num) {
     const ids = LESSON_CHECKPOINTS[num];
     if (!ids || !ids.length) return false;
@@ -231,6 +255,16 @@
       if (isLessonComplete(n)) count++;
     }
     return count;
+  }
+
+  // Returns the next lesson the user should tackle: lowest-numbered lesson
+  // that is NOT yet complete. Returns null when everything we have is done.
+  function getNextIncompleteLesson() {
+    const nums = Object.keys(LESSONS).map(Number).sort((a, b) => a - b);
+    for (const n of nums) {
+      if (!isLessonComplete(n)) return { num: n, ...LESSONS[n] };
+    }
+    return null;
   }
 
   // === Highlight current nav item ===
@@ -414,9 +448,48 @@
     }
   }
 
+  // === Dynamic home CTA — points at the next incomplete lesson ===
+  // If the user has finished Lesson 1, the CTA flips to Lesson 2; same for
+  // any subsequent lesson. Updates label, title, description, and href.
+  // No-op on pages without a .home-cta block.
+  function setupHomeCta() {
+    const cta = document.querySelector('.home-cta');
+    if (!cta) return;
+
+    const next = getNextIncompleteLesson();
+    const labelEl = cta.querySelector('.home-cta__label');
+    const titleEl = cta.querySelector('.home-cta__title');
+    const descEl = cta.querySelector('.home-cta__desc');
+    const btnEl = cta.querySelector('.home-cta__btn');
+
+    if (!next) {
+      // Everything we have is complete — celebrate
+      if (labelEl) labelEl.textContent = 'סיימת את הכל 🏆';
+      if (titleEl) titleEl.textContent = 'כל הכבוד!';
+      if (descEl) descEl.textContent = 'השלמת את כל השיעורים הפעילים. תוכן חדש בדרך.';
+      if (btnEl) {
+        btnEl.textContent = '← חזרה לשיעורים';
+        btnEl.setAttribute('href', 'phase-1/index.html');
+      }
+      cta.classList.add('home-cta--complete');
+      return;
+    }
+
+    const isFirst = next.num === 1;
+    if (labelEl) labelEl.textContent = isFirst ? 'מתחילים כאן' : 'השיעור הבא שלך';
+    if (titleEl) titleEl.textContent = next.title;
+    if (descEl) descEl.textContent = next.desc;
+    if (btnEl) {
+      btnEl.textContent = isFirst ? '→ התחל עכשיו' : '→ המשך';
+      btnEl.setAttribute('href', next.href);
+    }
+  }
+
   // === Mark completed lessons on phase index pages ===
   // Each .lesson-card[href="lesson-NN.html"] is matched against the manifest.
-  // If complete, the card gets .lesson-card--completed and a small badge.
+  // If complete, the WHOLE card gets a distinct "done" treatment (full color
+  // wash + corner checkmark + CTA flipped to "צפה שוב"). Pure CSS does the
+  // heavy lifting; JS only flips the class and rewrites the CTA text.
   function setupLessonCards() {
     const cards = document.querySelectorAll('.lesson-card[href*="lesson-"]');
     cards.forEach(card => {
@@ -427,13 +500,9 @@
 
       card.classList.add('lesson-card--completed');
 
-      // Inject badge into card body if not already present
-      const body = card.querySelector('.lesson-card__body') || card;
-      if (body.querySelector('.lesson-card__completion-badge')) return;
-      const badge = document.createElement('span');
-      badge.className = 'lesson-card__completion-badge';
-      badge.textContent = 'הושלם ✓';
-      body.appendChild(badge);
+      // Flip the CTA text inside the card from "התחל" to "צפה שוב"
+      const ctaEl = card.querySelector('.lesson-card__cta');
+      if (ctaEl) ctaEl.textContent = 'צפה שוב';
     });
   }
 
@@ -582,6 +651,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     highlightNav();
     setupGlobalProgress();
+    setupHomeCta();
     setupLessonCards();
     fillProgress();
     setupChecklist();
