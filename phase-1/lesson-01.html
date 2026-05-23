@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 1 — Python יום ראשון · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-13">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-14">
 </head>
 <body>
 
@@ -594,16 +594,21 @@ print(f"הדומיין הוא: {domain}")</code></pre>
 code .env</code></pre>
       </div>
 
-      <p class="do-here do-here--editor">ב-VS Code — הדבק את השורה הבאה (החלף את ה-X-ים ב-API key האמיתי שלך):</p>
+      <p class="do-here do-here--editor">ב-VS Code — הדבק את השורה הבאה ואחר כך הדבק את ה-API key אחרי הסימן <code>=</code>:</p>
       <div class="code-block code-block--editor">
         <div class="code-block__header">
           <span class="code-block__filename">.env</span>
           <button class="code-block__copy">העתק</button>
         </div>
-<pre><code>ANTHROPIC_API_KEY=sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxx</code></pre>
+<pre><code>ANTHROPIC_API_KEY=</code></pre>
       </div>
 
       <p>שמור (<kbd>Cmd</kbd>+<kbd>S</kbd>). <strong>אין מרכאות מסביב, אין רווחים סביב ה-=.</strong></p>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">מלכודת נפוצה — אל תכפיל את הקידומת</div>
+        <p>ה-API key שתעתיק מ-<code>console.anthropic.com</code> <strong>כבר מתחיל ב-<code>sk-ant-api03-</code></strong>. אל תכתוב את הקידומת הזאת בעצמך — פשוט הדבק את כל המפתח כפי שהוא, אחרי הסימן <code>=</code>. אם תכתוב <code>sk-ant-api03-</code> בעצמך ואז תדביק — הקידומת תוכפל וכל קריאה תחזיר <code>401 invalid x-api-key</code>.</p>
+      </div>
 
       <div class="callout callout--tip">
         <div class="callout__title">למה .env ולא משתנה בקוד?</div>
@@ -878,6 +883,6 @@ git push</code></pre>
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-13"></script>
+  <script src="../assets/js/app.js?v=20260521-14"></script>
 </body>
 </html>

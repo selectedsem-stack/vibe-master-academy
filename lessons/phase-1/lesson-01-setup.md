@@ -216,13 +216,15 @@ cd ~/projects/vibe-master-academy/exercises/lesson-01
 code .env
 ```
 
-הדבק (החלף את ה-X-ים ב-key האמיתי):
+הדבק את השורה ואחר כך הדבק את ה-key המלא אחרי הסימן `=`:
 
 ```
-ANTHROPIC_API_KEY=sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxx
+ANTHROPIC_API_KEY=
 ```
 
 ללא מרכאות, ללא רווחים סביב ה-`=`.
+
+⚠️ **מלכודת:** ה-key שמעתיק `console.anthropic.com` כבר מתחיל ב-`sk-ant-api03-`. אל תוסיף את הקידומת הזאת בעצמך — תדביק את הכל כפי שהוא, אחרת תקבל `401 invalid x-api-key`.
 
 ### 4.4 הקוד
 
