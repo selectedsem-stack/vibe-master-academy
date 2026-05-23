@@ -213,7 +213,7 @@
   const LESSON_CHECKPOINTS = {
     1: ['w1-python', 'w1-greet', 'w1-domain', 'w1-claude', 'w1-system', 'w1-progress'],
     2: ['w2-list', 'w2-dict', 'w2-function', 'w2-json', 'w2-exercise', 'w2-commit'],
-    3: ['w3-first-api', 'w3-claude-api', 'w3-exception', 'w3-commit', 'w3-push', 'w3-progress', 'w3-get-post'],
+    3: ['w3-http', 'w3-wiki', 'w3-pipeline', 'w3-errors', 'w3-git', 'w3-commit'],
     4: ['w4-n8n-account', 'w4-hello-workflow', 'w4-claude-workflow', 'w4-progress', 'w4-exercises', 'w4-retro', 'w4-commit', 'w4-phase2-ready']
   };
 
@@ -232,9 +232,9 @@
       desc: '3.5 שעות · קורא נתוני לקוחות מ-JSON, מסנן וממיין, ובונה advisor SEO שמייצר המלצות עם Claude.'
     },
     3: {
-      title: 'Lesson 3 — APIs חיצוניים + Git',
+      title: 'Lesson 3 — APIs + Errors + Git',
       href: 'phase-1/lesson-03.html',
-      desc: '4 שעות · בונה pipeline שמושך מידע ממקור חיצוני, מטפל בשגיאות, ומשתלב עם Claude. Git workflow יומי.'
+      desc: '4 שעות · בונה Topic Researcher שמשלב Wikipedia + Claude, עם error handling אמיתי ו-Git workflow יומי.'
     },
     4: {
       title: 'Lesson 4 — n8n + אוטומציה',
