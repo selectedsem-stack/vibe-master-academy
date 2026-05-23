@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lesson 1 — Python יום ראשון · VMA</title>
-  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-12">
+  <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-13">
 </head>
 <body>
 
@@ -38,46 +38,50 @@
     <section class="lesson-hero">
       <div class="lesson-hero__badges">
         <a href="index.html" class="lesson-hero__badge lesson-hero__badge--phase">Phase 1 · Foundations</a>
-        <span class="lesson-hero__badge lesson-hero__badge--time">5 שעות לימוד</span>
+        <span class="lesson-hero__badge lesson-hero__badge--time">3 שעות לימוד</span>
         <span class="lesson-hero__badge lesson-hero__badge--level">למתחילים מאפס</span>
       </div>
       <h1 class="lesson-hero__title">Lesson 1 — Python יום ראשון</h1>
       <p class="lesson-hero__intro">
-        בסוף השיעור הזה סביבת <span class="term" data-term-id="python">Python</span> תעבוד אצלך במאק,
-        תכיר את היסודות, תדע לעבוד עם מחרוזות לעומק, ויהיו לך שני סקריפטים שרצים — כולל אחד שמחלץ דומיין מכל URL שתיתן לו.
+        בסוף השיעור הזה תכיר את <span class="term" data-term-id="python">Python</span> דרך <strong>3 סקריפטים שאתה קורא איתי, מריץ במאק שלך, ומשנה בעצמך</strong> — כולל אחד שמדבר עם Claude API.
+        אתה <strong>לא תכתוב קוד מאפס היום</strong>. אתה תקרא קוד שעובד, תבין מה הוא עושה, ותעשה שינוי קטן. זה הצעד הראשון של vibe coder.
       </p>
 
       <div class="objectives">
         <div class="objectives__title">בסוף השיעור תדע</div>
         <ul class="objectives__list">
           <li>להתקין Python ו-VS Code על המאק דרך <span class="term" data-term-id="homebrew">Homebrew</span></li>
-          <li>לכתוב סקריפט Python ראשון ולהריץ אותו מה-Terminal</li>
-          <li>מה זה <span class="term" data-term-id="variable">משתנה</span>, 4 הטיפוסים הבסיסיים, ואיך משתמשים בכל אחד</li>
-          <li>להשתמש ב-print, input, f-strings, ואופרטורים בסיסיים</li>
-          <li><strong>לעבוד עם מחרוזות לעומק:</strong> אינדקסים, חיתוך, <code>.replace</code>, <code>.split</code>, ושרשור מתודות</li>
-          <li>לבנות סקריפט שמחלץ דומיין מ-URL — באמת לבד, עם הכלים שלמדת</li>
+          <li>להריץ קובץ Python מה-<span class="term" data-term-id="terminal">Terminal</span> ולקרוא את הפלט</li>
+          <li>לזהות מה זה <span class="term" data-term-id="variable">משתנה</span>, מה זה <span class="term" data-term-id="str">str</span> / <span class="term" data-term-id="int">int</span>, ולמה הם חשובים — בלי לשנן תחביר</li>
+          <li>להבין מה <code>.replace</code> ו-<code>.split</code> עושים כשאתה רואה אותם בקוד</li>
+          <li>לחבר את Python ל-<span class="term" data-term-id="anthropic-api">Claude API</span>, ולשלוח שאלה ראשונה דרך קוד שאתה הרצת</li>
         </ul>
       </div>
 
       <div class="lesson-hero__chips">
         <span class="lesson-hero__chip lesson-hero__chip--accent">Python</span>
-        <span class="lesson-hero__chip">Terminal</span>
         <span class="lesson-hero__chip">VS Code</span>
+        <span class="lesson-hero__chip">Terminal</span>
         <span class="lesson-hero__chip">Homebrew</span>
-        <span class="lesson-hero__chip">משתנים</span>
-        <span class="lesson-hero__chip">str / int / float / bool</span>
-        <span class="lesson-hero__chip">מחרוזות</span>
+        <span class="lesson-hero__chip">משתנים · טיפוסים</span>
+        <span class="lesson-hero__chip">input · print · f-string</span>
         <span class="lesson-hero__chip">.replace · .split</span>
-        <span class="lesson-hero__chip">f-strings</span>
+        <span class="lesson-hero__chip lesson-hero__chip--accent">Claude API</span>
       </div>
     </section>
+
+    <!-- Philosophy Callout -->
+    <div class="callout callout--info">
+      <div class="callout__title">למה השיעור הזה שונה ממה שהיה קודם</div>
+      <p>השיעור הזה נבנה מחדש לפי <strong>גישת ה-vibe coder</strong>: רוב הקוד שתפגוש בקריירה — Claude יכתוב לך. התפקיד שלך הוא לקרוא קוד, להבין אותו, ולשנות אותו. לכן אנחנו לא מתרגלים <em>לכתוב</em> פונקציות מאפס היום, אלא <em>קוראים</em> סקריפטים שלמים, מריצים, ומשנים. אם בעבר ניסית את השיעור והתעייפת מהתחביר — זה בדיוק מה שאני מנסה לסדר.</p>
+    </div>
 
     <!-- TOC -->
     <nav class="lesson-toc">
       <a href="#part-1" class="lesson-toc__item">חלק 1: Setup</a>
-      <a href="#part-2" class="lesson-toc__item">חלק 2: יסודות Python</a>
-      <a href="#part-3" class="lesson-toc__item">חלק 3: מחרוזות לעומק</a>
-      <a href="#part-4" class="lesson-toc__item">חלק 4: תרגול — domain_extractor</a>
+      <a href="#part-2" class="lesson-toc__item">חלק 2: דוגמה 1 — greet.py</a>
+      <a href="#part-3" class="lesson-toc__item">חלק 3: דוגמה 2 — domain_extractor</a>
+      <a href="#part-4" class="lesson-toc__item">חלק 4: דוגמה 3 — Claude API ⭐</a>
       <a href="#part-5" class="lesson-toc__item">חלק 5: Review</a>
     </nav>
 
@@ -86,13 +90,13 @@
       <div class="lesson-section__header">
         <div class="lesson-section__num">1</div>
         <h2 class="lesson-section__title">Setup — מתקינים את הסביבה</h2>
-        <span class="lesson-section__time">1.5 שעות</span>
+        <span class="lesson-section__time">45 דקות</span>
       </div>
 
       <h3>מה זה Python בכלל?</h3>
       <p>
-        <span class="term" data-term-id="python">Python</span> היא שפת תכנות. כשאתה כותב קוד Python, אתה כותב הוראות למחשב שלך בשפה שיותר קלה לבני אדם לקרוא.
-        ה<span class="term" data-term-id="script">סקריפט</span> עצמו הוא קובץ טקסט שמסתיים ב-<code>.py</code>.
+        <span class="term" data-term-id="python">Python</span> היא שפת תכנות. כשאתה כותב קוד Python, אתה כותב הוראות למחשב בשפה שיחסית קלה לבני אדם לקרוא.
+        קובץ Python (סקריפט) הוא קובץ טקסט שמסתיים ב-<code>.py</code> ושמריצים אותו מה-Terminal.
       </p>
 
       <p class="do-here do-here--editor">דוגמה — איך נראה קוד Python:</p>
@@ -108,30 +112,23 @@
 
       <hr class="mini-divider">
 
-      <h3>Terminal — לפני שמתחילים</h3>
-      <p>ה-Terminal הוא חלון שבו אתה מקליד פקודות ישירות למחשב. <strong>5 פקודות שתשתמש בהן בלי הפסקה:</strong></p>
+      <h3>Terminal — שלוש פקודות שתשתמש בהן כל הזמן</h3>
+      <p>ה-Terminal הוא חלון שבו אתה מקליד פקודות ישירות למחשב. שלוש הפקודות הבסיסיות:</p>
 
       <table>
         <thead>
-          <tr><th>פקודה</th><th>מה היא עושה</th><th>דוגמה</th></tr>
+          <tr><th>פקודה</th><th>מה היא עושה</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>pwd</code></td><td>מציג את התיקייה הנוכחית</td><td><code>pwd</code> → <code>/Users/shai</code></td></tr>
-          <tr><td><code>ls</code></td><td>מציג את הקבצים בתיקייה</td><td><code>ls</code></td></tr>
-          <tr><td><code>cd &lt;תיקייה&gt;</code></td><td>נכנס לתיקייה</td><td><code>cd projects</code></td></tr>
-          <tr><td><code>cd ~</code></td><td>חוזר לתיקיית הבית</td><td><code>~</code> = home directory</td></tr>
-          <tr><td><code>mkdir &lt;שם&gt;</code></td><td>יוצר תיקייה חדשה</td><td><code>mkdir my-folder</code></td></tr>
+          <tr><td><code>pwd</code></td><td>מציגה את התיקייה הנוכחית</td></tr>
+          <tr><td><code>ls</code></td><td>מציגה את הקבצים בתיקייה</td></tr>
+          <tr><td><code>cd &lt;תיקייה&gt;</code></td><td>נכנסת לתיקייה. <code>cd ~</code> חוזר לתיקיית הבית.</td></tr>
         </tbody>
       </table>
 
-      <div class="callout callout--tip">
-        <div class="callout__title">טיפ חשוב</div>
-        <p>הסימן <code>~</code> תמיד מצביע על תיקיית הבית שלך (במאק: <code>/Users/USERNAME</code>). אז <code>cd ~/projects</code> = "לך לתיקיית projects שבתוך הבית שלי".</p>
-      </div>
-
       <div class="callout callout--info">
         <div class="callout__title">אם פקודה לא עובדת</div>
-        <p>קרא את הודעת השגיאה. <code>command not found</code> = הכלי לא מותקן. <code>Permission denied</code> = חסרות הרשאות — נסה להוסיף <code>sudo</code> לפני הפקודה, יבקש סיסמה.</p>
+        <p>קרא את הודעת השגיאה. <code>command not found</code> = הכלי לא מותקן. <code>Permission denied</code> = חסרות הרשאות (נסה <code>sudo</code> לפני הפקודה — יבקש סיסמה).</p>
       </div>
 
       <hr class="mini-divider">
@@ -143,8 +140,8 @@
           <div class="step__num">1</div>
           <div class="step__body">
             <div class="step__title">התקנת Python על המאק</div>
-            <p>המאק שלך בא עם גרסה ישנה של Python שלא משתמשים בה. נתקין את 3.12 דרך <span class="term" data-term-id="homebrew">Homebrew</span>.</p>
-            <p>פתח את ה-<span class="term" data-term-id="terminal">Terminal</span> ב-Mac (Cmd+Space, חפש "Terminal", Enter).</p>
+            <p>המאק מגיע עם גרסה ישנה של Python שלא נשתמש בה. נתקין את 3.12 דרך <span class="term" data-term-id="homebrew">Homebrew</span>.</p>
+            <p>פתח את ה-<span class="term" data-term-id="terminal">Terminal</span> (Cmd+Space, חפש "Terminal", Enter).</p>
 
             <p class="do-here do-here--terminal">ב-Terminal — הקלד את הפקודה והרץ (Enter):</p>
             <div class="code-block code-block--terminal">
@@ -154,7 +151,7 @@
               </div>
 <pre><code>brew install python@3.12</code></pre>
             </div>
-            <p>אם brew לא מותקן, תקבל הודעה. במקרה כזה — קודם תתקין את Homebrew:</p>
+            <p>אם brew לא מותקן, תקבל הודעה. במקרה כזה התקן קודם את Homebrew:</p>
 
             <p class="do-here do-here--terminal">ב-Terminal — הרץ (רק אם brew לא מותקן):</p>
             <div class="code-block code-block--terminal">
@@ -164,7 +161,7 @@
               </div>
 <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
             </div>
-            <p>אחרי שהתקנה הסתיימה, בדוק שהכל עובד:</p>
+            <p>אחרי שההתקנה הסתיימה, בדוק שהכל עובד:</p>
 
             <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
             <div class="code-block code-block--terminal">
@@ -187,9 +184,7 @@
           <div class="step__num">2</div>
           <div class="step__body">
             <div class="step__title">VS Code על המאק</div>
-            <p>אם אין לך <span class="term" data-term-id="vscode">VS Code</span>, יש שתי אפשרויות התקנה (תבחר אחת):</p>
-
-            <p><strong>אפשרות א' (מומלץ — אוטומטי):</strong> דרך Homebrew.</p>
+            <p>אם אין לך <span class="term" data-term-id="vscode">VS Code</span>:</p>
 
             <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
             <div class="code-block code-block--terminal">
@@ -200,66 +195,24 @@
 <pre><code>brew install --cask visual-studio-code</code></pre>
             </div>
 
-            <p><strong>אפשרות ב' (ידני):</strong> הורד מ-<a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a> וגרור את האפליקציה ל-Applications.</p>
-
             <p>אחרי ההתקנה — פתח את VS Code. בצד שמאל יש סמל של <span class="term" data-term-id="extension">extensions</span>. לחץ עליו, חפש <strong>Python</strong>, ולחץ Install על ה-extension של <strong>Microsoft</strong>.</p>
 
             <hr class="mini-divider">
 
             <h4>הפעלת פקודת <code>code</code> ב-Terminal</h4>
-            <p>כדי שתוכל להריץ <code>code &lt;קובץ&gt;</code> מה-Terminal ולפתוח קובץ ב-VS Code, צריך להוסיף את הפקודה ל-<strong>PATH</strong> (משתנה הסביבה שאומר ל-shell איפה לחפש פקודות). <strong>בלי הצעד הזה — תקבל <code>command not found: code</code></strong>.</p>
+            <p>בשביל שתוכל להריץ <code>code &lt;קובץ&gt;</code> מה-Terminal ולפתוח קובץ ב-VS Code, צריך לרשום את הפקודה ל-PATH. <strong>בלי הצעד הזה — תקבל <code>command not found: code</code></strong>.</p>
 
-            <div class="steps">
-              <div class="step">
-                <div class="step__num">A</div>
-                <div class="step__body">
-                  <div class="step__title">פתח את Command Palette</div>
-                  <p>בתוך VS Code, לחץ <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step__num">B</div>
-                <div class="step__body">
-                  <div class="step__title">חפש את הפקודה</div>
-                  <p>הקלד: <code>shell command</code></p>
-                  <p>בחר ברשימה: <strong>Shell Command: Install 'code' command in PATH</strong></p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step__num">C</div>
-                <div class="step__body">
-                  <div class="step__title">סגור ופתח מחדש את ה-Terminal</div>
-                  <p>חשוב — שינוי PATH לא תופס בחלון Terminal פתוח. סגור את החלון ופתח אחד חדש.</p>
-                </div>
-              </div>
-              <div class="step">
-                <div class="step__num">D</div>
-                <div class="step__body">
-                  <div class="step__title">בדוק שזה עובד</div>
-                  <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
-                  <div class="code-block code-block--terminal">
-                    <div class="code-block__header">
-                      <span class="code-block__filename">Terminal</span>
-                      <button class="code-block__copy">העתק</button>
-                    </div>
-<pre><code>code --version</code></pre>
-                  </div>
-                  <p class="do-here do-here--output">צריך להופיע ב-Terminal:</p>
-                  <div class="output">
-                    <div class="output__label">פלט ב-Terminal</div>
-<pre>1.95.x
-abc123def456
-arm64</pre>
-                  </div>
-                  <p>אם רואה גרסה — מצוין. ✅</p>
-                </div>
-              </div>
-            </div>
+            <ol>
+              <li>בתוך VS Code, לחץ <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>.</li>
+              <li>הקלד: <code>shell command</code>. בחר <strong>Shell Command: Install 'code' command in PATH</strong>.</li>
+              <li>סגור את חלון ה-Terminal הפתוח ופתח חדש (שינויי PATH לא תופסים בחלון פתוח).</li>
+              <li>בדוק: <code>code --version</code>. אם רואה גרסה — מצוין. ✅</li>
+            </ol>
 
             <div class="callout callout--warning">
               <div class="callout__title">אם <code>code</code> עדיין לא נמצא</div>
-              <p>הוסף את VS Code ל-PATH ידנית.</p>
-              <p class="do-here do-here--terminal">ב-Terminal — הרץ (Zsh, ברירת המחדל ב-macOS):</p>
+              <p>הוסף את VS Code ל-PATH ידנית:</p>
+              <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
               <div class="code-block code-block--terminal">
                 <div class="code-block__header">
                   <span class="code-block__filename">Terminal</span>
@@ -269,7 +222,6 @@ arm64</pre>
 source ~/.zprofile
 code --version</code></pre>
               </div>
-              <p>הפקודה הזו מוסיפה שורה לקובץ ההגדרות של ה-shell (<code>~/.zprofile</code>), טוענת אותו מחדש, ובודקת שהפקודה עובדת.</p>
             </div>
           </div>
         </div>
@@ -278,9 +230,9 @@ code --version</code></pre>
           <div class="step__num">3</div>
           <div class="step__body">
             <div class="step__title">הסקריפט הראשון</div>
-            <p>עכשיו ניצור תיקייה לתרגילים שלנו, ניצור קובץ Python ראשון, נכתוב בו קוד, ונריץ אותו.</p>
+            <p>ניצור תיקיית תרגילים, ניצור קובץ ראשון, נריץ אותו.</p>
 
-            <p class="do-here do-here--terminal">ב-Terminal — הרץ את 4 הפקודות (אחת אחת או ביחד):</p>
+            <p class="do-here do-here--terminal">ב-Terminal — הרץ את הפקודות:</p>
             <div class="code-block code-block--terminal">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
@@ -291,14 +243,9 @@ mkdir -p exercises/lesson-01
 cd exercises/lesson-01
 code hello.py</code></pre>
             </div>
-            <p>השורה האחרונה (<code>code hello.py</code>) פותחת את <strong>VS Code</strong> עם קובץ ריק בשם <code>hello.py</code>. <strong>מעכשיו אנחנו עוברים לעבוד ב-VS Code.</strong></p>
+            <p>השורה האחרונה פותחת את <strong>VS Code</strong> עם קובץ ריק בשם <code>hello.py</code>.</p>
 
-            <div class="callout callout--info">
-              <div class="callout__title">אם <code>code hello.py</code> לא עובד</div>
-              <p>חזור לצעד 2 ובצע את ההפעלה של פקודת <code>code</code>. <strong>חלופה זמנית:</strong> פתח את VS Code ידנית, בחר <em>File → Open Folder</em> ובחר את התיקייה <code>~/projects/vibe-master-academy/exercises/lesson-01</code>, ואז <em>File → New File</em> → שמור בשם <code>hello.py</code>.</p>
-            </div>
-
-            <p class="do-here do-here--editor">ב-VS Code — הקובץ <code>hello.py</code> פתוח. הדבק את הקוד הבא:</p>
+            <p class="do-here do-here--editor">ב-VS Code — הדבק:</p>
             <div class="code-block code-block--editor">
               <div class="code-block__header">
                 <span class="code-block__filename">hello.py</span>
@@ -307,9 +254,9 @@ code hello.py</code></pre>
 <pre><code>print("Hello, Shai!")
 print("This is my first Python script.")</code></pre>
             </div>
-            <p>שמור עם <kbd>Cmd</kbd>+<kbd>S</kbd>. <strong>עכשיו חוזרים ל-Terminal כדי להריץ את הקובץ.</strong></p>
+            <p>שמור עם <kbd>Cmd</kbd>+<kbd>S</kbd>.</p>
 
-            <p class="do-here do-here--terminal">ב-Terminal — ודא שאתה ב-<code>exercises/lesson-01</code> והרץ:</p>
+            <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
             <div class="code-block code-block--terminal">
               <div class="code-block__header">
                 <span class="code-block__filename">Terminal</span>
@@ -318,7 +265,7 @@ print("This is my first Python script.")</code></pre>
 <pre><code>python3 hello.py</code></pre>
             </div>
 
-            <p class="do-here do-here--output">אמור להופיע ב-Terminal:</p>
+            <p class="do-here do-here--output">אמור להופיע:</p>
             <div class="output">
               <div class="output__label">פלט ב-Terminal</div>
 <pre>Hello, Shai!
@@ -332,159 +279,290 @@ This is my first Python script.</pre>
       <button class="section-complete-btn" data-section="part-1">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 2: Python fundamentals -->
+    <!-- Part 2: Demo 1 — greet.py -->
     <section class="lesson-section" id="part-2">
       <div class="lesson-section__header">
         <div class="lesson-section__num">2</div>
-        <h2 class="lesson-section__title">יסודות Python</h2>
-        <span class="lesson-section__time">1 שעה</span>
+        <h2 class="lesson-section__title">דוגמה 1 — סקריפט שמדבר איתך</h2>
+        <span class="lesson-section__time">30 דקות</span>
       </div>
 
       <div class="refresher">
         <div class="refresher__title">מאיפה אנחנו</div>
-        <p>סביבת Python מותקנת, VS Code מותקן, יש לנו <code>hello.py</code> שעובד. עכשיו נחבר את הכלים — איך לתת לקוד שלך לזכור ערכים, להבדיל בין סוגי נתונים, ולתקשר עם המשתמש.</p>
+        <p>Python ו-VS Code מותקנים. הרצת <code>hello.py</code>. עכשיו נראה סקריפט קצת יותר מעניין — כזה ששואל אותך שאלה, מקבל ממך תשובה, ומשתמש בה. <strong>אתה לא כותב אותו מאפס. אתה מקבל אותו מוכן, קורא, מריץ, ומשנה שורה אחת.</strong></p>
       </div>
 
-      <h3>2.1 משתנים — תיבות לערכים</h3>
-      <p>
-        <span class="term" data-term-id="variable">משתנה</span> הוא "תיבה" עם שם, שמכילה ערך. ב-Python יוצרים אחד עם סימן שווה <code>=</code>:
-      </p>
+      <h3>הקוד</h3>
+      <p>פתח את הקובץ הזה ב-VS Code (אני נתתי לך אותו בריפו, בתיקייה <code>exercises/lesson-01/</code>):</p>
 
-      <p class="do-here do-here--editor">ב-VS Code — פתח קובץ חדש <code>practice.py</code> בתיקיית <code>exercises/lesson-01/</code> והדבק:</p>
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">practice.py</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>name = "Shai"
-age = 35
-is_seo_head = True
-
-print(name)
-print(age)
-print(is_seo_head)</code></pre>
-      </div>
-
-      <p class="do-here do-here--terminal">ב-Terminal — מתיקיית <code>exercises/lesson-01</code> הרץ:</p>
+      <p class="do-here do-here--terminal">ב-Terminal — מתיקיית הריפו, הרץ:</p>
       <div class="code-block code-block--terminal">
         <div class="code-block__header">
           <span class="code-block__filename">Terminal</span>
           <button class="code-block__copy">העתק</button>
         </div>
-<pre><code>python3 practice.py</code></pre>
+<pre><code>code exercises/lesson-01/greet.py</code></pre>
       </div>
 
-      <p class="do-here do-here--output">צריך להופיע ב-Terminal:</p>
-      <div class="output">
-        <div class="output__label">פלט ב-Terminal</div>
-<pre>Shai
-35
-True</pre>
-      </div>
-
-      <div class="callout callout--tip">
-        <div class="callout__title">כללי שמות משתנים</div>
-        <p>שמות באנגלית קטנה, רווחים מוחלפים ב-underscore: <code>first_name</code>, <code>total_traffic</code>, <code>is_active</code>. לא מתחילים במספר (<code>2cool</code> ❌, <code>cool2</code> ✅).</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>2.2 ארבעת הטיפוסים הבסיסיים</h3>
-      <p>כל ערך ב-Python שייך לטיפוס מסוים. ארבעת הטיפוסים שתפגוש כל יום:</p>
-
-      <table>
-        <thead>
-          <tr><th>טיפוס</th><th>דוגמה</th><th>למה זה</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code><span class="term" data-term-id="str">str</span></code></td><td><code>"Shai"</code></td><td>מחרוזת — טקסט (תמיד בגרשיים)</td></tr>
-          <tr><td><code><span class="term" data-term-id="int">int</span></code></td><td><code>35</code></td><td>מספר שלם (בלי נקודה)</td></tr>
-          <tr><td><code><span class="term" data-term-id="float">float</span></code></td><td><code>3.14</code></td><td>מספר עם נקודה עשרונית</td></tr>
-          <tr><td><code><span class="term" data-term-id="bool">bool</span></code></td><td><code>True</code> / <code>False</code></td><td>בוליאני — רק שני ערכים אפשריים</td></tr>
-        </tbody>
-      </table>
-
-      <p>בשביל לבדוק טיפוס של ערך, יש פונקציה מובנית <code>type()</code>:</p>
-
-      <p class="do-here do-here--editor">ב-VS Code — הוסף ל-<code>practice.py</code>:</p>
+      <p>זה התוכן של הקובץ:</p>
       <div class="code-block code-block--editor">
         <div class="code-block__header">
-          <span class="code-block__filename">practice.py</span>
+          <span class="code-block__filename">greet.py</span>
           <button class="code-block__copy">העתק</button>
         </div>
-<pre><code>print(type(name))           # &lt;class 'str'&gt;
-print(type(age))            # &lt;class 'int'&gt;
-print(type(is_seo_head))    # &lt;class 'bool'&gt;
-print(type(3.14))           # &lt;class 'float'&gt;</code></pre>
-      </div>
+<pre><code># greet.py — סקריפט Python ראשון שמדבר איתך
 
-      <p>זה כלי שתשתמש בו כשמשהו לא עובד — לרוב הסיבה היא שהטיפוס לא מה שחשבת.</p>
+name = input("מה השם שלך? ")
+age_text = input("בן כמה אתה? ")
+
+age = int(age_text)
+
+print(f"שלום {name}!")
+print(f"בעוד 10 שנים תהיה בן {age + 10}.")</code></pre>
+      </div>
 
       <hr class="mini-divider">
 
-      <h3>2.3 אופרטורים אריתמטיים</h3>
-      <p>Python יודע לעשות חישובים. שש האופרטורים שתפגוש כל יום:</p>
+      <h3>קוראים שורה־שורה</h3>
 
-      <table>
-        <thead>
-          <tr><th>אופרטור</th><th>שם</th><th>דוגמה</th><th>תוצאה</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>+</code></td><td>חיבור</td><td><code>10 + 3</code></td><td><code>13</code></td></tr>
-          <tr><td><code>-</code></td><td>חיסור</td><td><code>10 - 3</code></td><td><code>7</code></td></tr>
-          <tr><td><code>*</code></td><td>כפל</td><td><code>10 * 3</code></td><td><code>30</code></td></tr>
-          <tr><td><code>/</code></td><td>חילוק</td><td><code>10 / 3</code></td><td><code>3.333...</code></td></tr>
-          <tr><td><code>//</code></td><td>חילוק שלם</td><td><code>10 // 3</code></td><td><code>3</code></td></tr>
-          <tr><td><code>%</code></td><td>שארית (modulo)</td><td><code>10 % 3</code></td><td><code>1</code></td></tr>
-        </tbody>
-      </table>
+      <p><strong>שורה 1:</strong> <code># greet.py — ...</code> — זה <span class="term" data-term-id="comment">הערה</span>. כל מה שמתחיל ב-<code>#</code> ש-Python מתעלם ממנו. ההערות בשבילך, לזכור מה הקוד עושה.</p>
+
+      <p><strong>שורה 3:</strong> <code>name = input("מה השם שלך? ")</code> — כאן קורים שני דברים:</p>
+      <ul>
+        <li><code>input(...)</code> מציג טקסט ב-Terminal ומחכה שתקליד תשובה. כשאתה לוחץ Enter — הוא מחזיר את מה שהקלדת.</li>
+        <li><code>name = ...</code> שומר את התשובה בתוך <span class="term" data-term-id="variable">משתנה</span> בשם <code>name</code>. משתנה זה כמו "תיבה עם שם" — מעכשיו אפשר לכתוב <code>name</code> בקוד וזה יתייחס לתשובה שלך.</li>
+      </ul>
+
+      <p><strong>שורה 4:</strong> אותו דבר — שואל גיל, שומר במשתנה <code>age_text</code>.</p>
 
       <div class="callout callout--info">
-        <div class="callout__title">מתי בכלל צריך % ו-// ?</div>
-        <p><code>%</code> שימושי לבדיקה אם מספר מתחלק (למשל <code>n % 2 == 0</code> — האם n זוגי). <code>//</code> שימושי כשרוצים תוצאה שלמה ולא עשרונית — למשל "כמה דקות שלמות יש ב-200 שניות": <code>200 // 60 = 3</code>.</p>
+        <div class="callout__title">למה <code>age_text</code> ולא סתם <code>age</code>?</div>
+        <p>כי <code>input()</code> תמיד מחזיר טקסט (<span class="term" data-term-id="str">str</span>), גם אם המשתמש הקליד מספר. אם תקליד <code>35</code> — Python יקבל את זה כמחרוזת <code>"35"</code>, לא כמספר. כדי לעשות חשבון עם זה — צריך להמיר.</p>
       </div>
+
+      <p><strong>שורה 6:</strong> <code>age = int(age_text)</code> — הפונקציה <code>int()</code> ממירה מחרוזת למספר שלם. <strong>זה החלק הקריטי.</strong> בלי השורה הזו, השורה האחרונה הייתה זורקת שגיאה כי לא אפשר לעשות <code>"35" + 10</code> (טקסט + מספר).</p>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">העיקרון: כל ערך יש לו טיפוס</div>
+        <p>ב-Python כל ערך שייך ל<span class="term" data-term-id="type">טיפוס</span>: <code>str</code> (טקסט), <code>int</code> (מספר שלם), <code>float</code> (מספר עם נקודה), <code>bool</code> (<code>True</code>/<code>False</code>). רוב הבאגים של מתחילים הם כי הטיפוס לא היה מה שחשבת. <strong>לא צריך לזכור את זה — צריך לזהות את זה כשתראה שגיאה.</strong></p>
+      </div>
+
+      <p><strong>שורות 8-9:</strong> <code>print(f"שלום {name}!")</code> — זה <strong><span class="term" data-term-id="f-string">f-string</span></strong>. ה-<code>f</code> לפני המרכאות אומר ל-Python: "תחפש בתוך <code>{ }</code> משתנים או ביטויים, ותחליף אותם בערכים שלהם". כלומר, אם <code>name = "Shai"</code>, אז <code>f"שלום {name}!"</code> הופך ל-<code>"שלום Shai!"</code>.</p>
+
+      <p>שים לב לביטוי <code>{age + 10}</code> — אפשר לשים בתוך הסוגריים גם <em>חישוב</em>, לא רק שם של משתנה. f-string הוא הדרך המודרנית והנקייה לבנות טקסט עם משתנים, ונשתמש בו לאורך כל הקורס.</p>
 
       <hr class="mini-divider">
 
-      <h3>2.4 השוואות — ולמה הן מחזירות bool</h3>
-      <p>אופרטורי השוואה משווים שני ערכים ומחזירים <code>True</code> או <code>False</code>:</p>
-
-      <table>
-        <thead>
-          <tr><th>אופרטור</th><th>משמעות</th><th>דוגמה</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>==</code></td><td>שווה (שים לב — <strong>שני סימני שווה</strong>)</td><td><code>age == 35</code></td></tr>
-          <tr><td><code>!=</code></td><td>לא שווה</td><td><code>name != "Marcel"</code></td></tr>
-          <tr><td><code>&gt;</code></td><td>גדול מ-</td><td><code>age &gt; 18</code></td></tr>
-          <tr><td><code>&lt;</code></td><td>קטן מ-</td><td><code>age &lt; 100</code></td></tr>
-          <tr><td><code>&gt;=</code></td><td>גדול או שווה</td><td><code>age &gt;= 18</code></td></tr>
-          <tr><td><code>&lt;=</code></td><td>קטן או שווה</td><td><code>traffic &lt;= 1000</code></td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout callout--warning">
-        <div class="callout__title">הטעות הכי נפוצה</div>
-        <p><code>=</code> זה השמה (<em>תכניס לתוך</em>), <code>==</code> זה השוואה (<em>האם שווה?</em>). <code>age = 18</code> אומר "מעכשיו age הוא 18". <code>age == 18</code> אומר "האם age שווה 18?" ומחזיר <code>True</code>/<code>False</code>.</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>2.5 print ו-input</h3>
-      <p>
-        <span class="term" data-term-id="print">print</span> כבר השתמשת בו — הוא מדפיס ערך למסך.
-        <span class="term" data-term-id="input">input</span> עושה את ההפך: מחכה שהמשתמש יקליד משהו ב-Terminal, ומחזיר את מה שהוקלד כ-<code>str</code>.
-      </p>
-
-      <p class="do-here do-here--editor">ב-VS Code — פתח קובץ חדש <code>interactive.py</code> והדבק:</p>
-      <div class="code-block code-block--editor">
+      <h3>הרצה</h3>
+      <p class="do-here do-here--terminal">ב-Terminal — מתיקיית <code>exercises/lesson-01</code>, הרץ:</p>
+      <div class="code-block code-block--terminal">
         <div class="code-block__header">
-          <span class="code-block__filename">interactive.py</span>
+          <span class="code-block__filename">Terminal</span>
           <button class="code-block__copy">העתק</button>
         </div>
-<pre><code>name = input("מה השם שלך? ")
-print("שלום,", name)</code></pre>
+<pre><code>cd ~/projects/vibe-master-academy/exercises/lesson-01
+python3 greet.py</code></pre>
       </div>
+
+      <p>הסקריפט מחכה. ענה על השאלות. הפלט אמור להיראות בערך כך:</p>
+      <div class="output">
+        <div class="output__label">פלט ב-Terminal</div>
+<pre>מה השם שלך? Shai
+בן כמה אתה? 35
+שלום Shai!
+בעוד 10 שנים תהיה בן 45.</pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>המשימה שלך — שינוי קטן</h3>
+      <p>פתח את <code>greet.py</code> ב-VS Code. שנה את ההודעה האחרונה מ-<em>"בעוד 10 שנים תהיה בן..."</em> ל-<em>"בעוד 25 שנים תהיה בן..."</em>. שמור. הרץ שוב. ראה שהתוצאה השתנתה.</p>
+
+      <div class="callout callout--success">
+        <div class="callout__title">למה זה כל מה שאני מבקש</div>
+        <p>אני <strong>לא</strong> מבקש ממך לכתוב סקריפט מאפס. אני מבקש שתבין את הקוד מספיק טוב כדי לשנות בו דבר אחד ולחזות מה יקרה. <strong>זה כל היכולת שאתה צריך ל-day 1.</strong> כשתרצה סקריפט חדש — תבקש מ-Claude. כשלא תבין מה הוא החזיר — תקרא כמו שעשינו עכשיו.</p>
+      </div>
+
+      <button class="section-complete-btn" data-section="part-2">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 3: Demo 2 — domain_extractor -->
+    <section class="lesson-section" id="part-3">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">3</div>
+        <h2 class="lesson-section__title">דוגמה 2 — מחלץ דומיין מ-URL</h2>
+        <span class="lesson-section__time">30 דקות</span>
+      </div>
+
+      <div class="refresher">
+        <div class="refresher__title">למה הדוגמה הזו</div>
+        <p>בעבודת SEO מטפלים כל הזמן בטקסט — URLs, כותרות, meta descriptions, פלט מ-API. הדוגמה הזו לוקחת URL ומחלצת ממנו את הדומיין. <strong>היא מדגימה את שתי הפעולות הכי שימושיות על מחרוזות:</strong> להחליף חלק אחד באחר, ולחתוך מחרוזת לחלקים. כשתבקש מ-Claude לעבד טקסט — סביר שהוא ישתמש בדיוק בדברים האלה.</p>
+      </div>
+
+      <h3>הקוד</h3>
+
+      <p class="do-here do-here--terminal">ב-Terminal — מהריפו, פתח את הקובץ:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>code exercises/lesson-01/domain_extractor.py</code></pre>
+      </div>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">domain_extractor.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code># domain_extractor.py — מקבל URL ומחזיר רק את הדומיין
+
+url = input("הכנס URL: ")
+
+url = url.replace("https://", "").replace("http://", "")
+url = url.replace("www.", "")
+
+domain = url.split("/")[0]
+
+print(f"הדומיין הוא: {domain}")</code></pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>קוראים שורה־שורה</h3>
+
+      <p><strong>שורה 3:</strong> <code>url = input(...)</code> — מבקש URL מהמשתמש, שומר במשתנה <code>url</code>. זה כבר מוכר משיעור 2.</p>
+
+      <p><strong>שורה 5:</strong> כאן יש משהו חדש —</p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>url = url.replace("https://", "").replace("http://", "")</code></pre>
+      </div>
+
+      <p>זה נקרא <strong>מתודה</strong> — פונקציה ששייכת לערך. <code>url.replace("https://", "")</code> אומר: "קח את <code>url</code>, החלף כל מופע של <code>"https://"</code> במחרוזת ריקה <code>""</code>". <strong>החלפה במחרוזת ריקה = הסרה.</strong></p>
+
+      <p>למה יש שתי קריאות ל-<code>.replace</code> אחת אחרי השנייה? כי URLs יכולים להיות עם <code>https://</code> או <code>http://</code>. אנחנו מסירים את שניהם, ליתר ביטחון. שרשור המתודות עובד כי <code>.replace</code> מחזירה מחרוזת חדשה, ולתוצאה אפשר ישר לקרוא ל-<code>.replace</code> נוספת.</p>
+
+      <p><strong>שורה 6:</strong> <code>url = url.replace("www.", "")</code> — אותו טריק. מסיר את <code>www.</code> אם הוא קיים.</p>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">העיקרון: <code>.replace(X, "")</code> = "תסיר את X"</div>
+        <p>זה דפוס שתפגוש כל הזמן בעבודה עם טקסט. רוצה להסיר רווחים? <code>s.replace(" ", "")</code>. רוצה לנקות מפסיקים? <code>s.replace(",", "")</code>. <strong>תזהה את הדפוס — לא תצטרך לזכור את התחביר, Claude יכתוב אותו.</strong></p>
+      </div>
+
+      <p><strong>שורה 8:</strong></p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>domain = url.split("/")[0]</code></pre>
+      </div>
+
+      <p>אחרי שהסרנו <code>https://</code> ו-<code>www.</code>, נשארת מחרוזת כמו <code>beatport.com/genre/techno</code>. שני דברים קורים בשורה הזו:</p>
+      <ul>
+        <li><code>url.split("/")</code> — חותך את המחרוזת לפי הסימן <code>/</code> ומחזיר רשימה: <code>["beatport.com", "genre", "techno"]</code>.</li>
+        <li><code>[0]</code> — לוקח את האיבר הראשון ברשימה. ב-Python מתחילים לספור מ-0, אז <code>[0]</code> = ראשון, <code>[1]</code> = שני וכו'. <strong>במקרה שלנו, <code>[0]</code> הוא הדומיין.</strong></li>
+      </ul>
+
+      <p><strong>שורה 10:</strong> <code>print(f"הדומיין הוא: {domain}")</code> — אותו f-string שהכרנו, מדפיס את התוצאה.</p>
+
+      <hr class="mini-divider">
+
+      <h3>על slicing — בקצרה (לא צריך לזכור)</h3>
+      <p>אם תסתכל בקוד שאחרים כתבו ב-Python, תראה לפעמים תחביר כמו <code>s[0:5]</code> או <code>s[-4:]</code>. זה נקרא <strong>slicing</strong> — לקיחת חתיכה מאמצע מחרוזת. הוא דומה ל-<code>[0]</code> שעשינו, רק שהוא לוקח טווח של תווים, לא תו בודד.</p>
+      <p><strong>אני לא מצפה שתזכור את התחביר הזה.</strong> כשתצטרך — תבקש מ-Claude, הוא יכתוב לך. העיקר שתזהה: <em>"אה, זה לוקח חתיכה ממחרוזת"</em>. זהו. ממשיכים.</p>
+
+      <hr class="mini-divider">
+
+      <h3>הרצה</h3>
+      <p class="do-here do-here--terminal">ב-Terminal — מתיקיית <code>exercises/lesson-01</code>, הרץ:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>python3 domain_extractor.py</code></pre>
+      </div>
+
+      <p>נסה עם כמה URLs שונים:</p>
+      <div class="output">
+        <div class="output__label">פלט ב-Terminal</div>
+<pre>הכנס URL: https://www.beatport.com/genre/techno
+הדומיין הוא: beatport.com
+
+הכנס URL: http://example.com/about
+הדומיין הוא: example.com
+
+הכנס URL: https://selected.co.il
+הדומיין הוא: selected.co.il</pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>המשימה שלך — שינוי קטן</h3>
+      <p>הסקריפט הנוכחי לא מסיר פרמטרי URL כמו <code>?utm_source=...</code>. אם תיתן לו <code>https://beatport.com?utm_source=newsletter</code>, התוצאה תהיה <code>beatport.com?utm_source=newsletter</code> — לא נקי.</p>
+      <p><strong>המשימה:</strong> הוסף שורה אחת לפני שורת ה-<code>split</code> שתסיר הכל החל מסימן השאלה.</p>
+
+      <details class="hint">
+        <summary>רמז</summary>
+        <p>אותו טריק כמו <code>split("/")[0]</code> — רק עם <code>?</code> במקום <code>/</code>. שורה אחת בלבד.</p>
+      </details>
+
+      <details class="solution">
+        <summary>פתרון</summary>
+        <div class="code-block code-block--editor">
+          <div class="code-block__header">
+            <span class="code-block__filename">domain_extractor.py (אחרי השינוי)</span>
+            <button class="code-block__copy">העתק</button>
+          </div>
+<pre><code>url = input("הכנס URL: ")
+url = url.replace("https://", "").replace("http://", "")
+url = url.replace("www.", "")
+url = url.split("?")[0]   # ← השורה החדשה: זורק את כל מה שאחרי סימן השאלה
+domain = url.split("/")[0]
+print(f"הדומיין הוא: {domain}")</code></pre>
+        </div>
+        <p>אם הסתבכת — לא נורא. בעבודה האמיתית תבקש מ-Claude: "הסקריפט הזה לא מתמודד עם UTM params. תקן." זה היה הוקח 3 שניות.</p>
+      </details>
+
+      <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
+    </section>
+
+    <!-- Part 4: Demo 3 — Claude API -->
+    <section class="lesson-section" id="part-4">
+      <div class="lesson-section__header">
+        <div class="lesson-section__num">4</div>
+        <h2 class="lesson-section__title">דוגמה 3 — Python מדבר עם Claude ⭐</h2>
+        <span class="lesson-section__time">45 דקות</span>
+      </div>
+
+      <div class="refresher">
+        <div class="refresher__title">למה זה השיא של היום</div>
+        <p>עד עכשיו ראית Python מטפל בטקסט מקומי. <strong>החלק הזה מראה למה אתה בכלל לומד Python:</strong> בשביל לדבר עם Claude (או GPT, או כל AI אחר) דרך קוד — לא רק דרך הצ'אט. ברגע שהסקריפט הזה רץ אצלך, יש לך את התשתית לכל ה-vibe coding ולכל ה-AI agents שתבנה בקורס. <strong>שווה את ה-45 דקות.</strong></p>
+      </div>
+
+      <h3>4.1 קבלת API key מאנתרופיק</h3>
+      <p>API key הוא "סיסמה" שמזהה את החשבון שלך כשאתה שולח בקשות ל-Claude מתוך קוד. בלי key — Claude לא יעבוד.</p>
+
+      <ol>
+        <li>היכנס ל-<a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a>. הירשם עם המייל שלך (אפשר אותו מייל שאתה משתמש בו ל-Claude.ai).</li>
+        <li>בתפריט בצד שמאל — <strong>Settings → Billing</strong>. הוסף <strong>$5 קרדיט</strong> (מינימום). זה יספיק לאלפי קריאות API קטנות לאורך הקורס.</li>
+        <li>בתפריט — <strong>Settings → API Keys</strong>. לחץ <strong>Create Key</strong>. תן לו שם (למשל "vma-learning"). <strong>העתק את ה-key מיד</strong> — הוא יוצג רק פעם אחת.</li>
+      </ol>
+
+      <div class="callout callout--warning">
+        <div class="callout__title">חשוב — אל תפרסם את ה-key</div>
+        <p>API key הוא כמו סיסמה. <strong>אל תכניס אותו לקוד שאתה מעלה ל-GitHub.</strong> בקובץ <code>.gitignore</code> של הריפו הזה כבר רשום <code>.env</code> — קובץ שמיועד ל-keys ושלא יועלה לפומבי. אנחנו נשתמש בו עוד רגע.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>4.2 התקנת חבילות Python</h3>
+      <p>נשתמש בשתי <span class="term" data-term-id="package">חבילות</span>: <code>anthropic</code> (ה-SDK הרשמי לדבר עם Claude) ו-<code>python-dotenv</code> (קוראת את ה-key מקובץ <code>.env</code>).</p>
 
       <p class="do-here do-here--terminal">ב-Terminal — הרץ:</p>
       <div class="code-block code-block--terminal">
@@ -492,588 +570,232 @@ print("שלום,", name)</code></pre>
           <span class="code-block__filename">Terminal</span>
           <button class="code-block__copy">העתק</button>
         </div>
-<pre><code>python3 interactive.py</code></pre>
+<pre><code>pip3 install anthropic python-dotenv</code></pre>
       </div>
 
-      <p>הסקריפט מחכה. הקלד שם ולחץ Enter — אמור להופיע "שלום, &lt;השם שלך&gt;".</p>
+      <p>אם רואה הודעות על הורדה והתקנה ובסוף <em>Successfully installed ...</em> — מצוין.</p>
 
       <div class="callout callout--info">
-        <div class="callout__title">input תמיד מחזיר str</div>
-        <p>אם תקליד <code>35</code> בתגובה ל-<code>input()</code> — Python יקבל את זה כמחרוזת <code>"35"</code>, לא כמספר. בשביל לבצע חישובים תצטרך להמיר עם <code>int()</code>. נראה את זה עוד שתי-שלוש דקות.</p>
+        <div class="callout__title">מה זה pip?</div>
+        <p><span class="term" data-term-id="pip">pip</span> הוא <em>מנהל החבילות</em> של Python — דרך להוריד ולהתקין קוד שאנשים אחרים כתבו. <code>pip3 install anthropic</code> אומר: "הורד את החבילה <code>anthropic</code> מ-PyPI (מאגר חבילות Python) והתקן אותה כדי שאוכל להשתמש בה בקוד שלי". זה כמו <code>brew install</code>, רק שזה ספציפי לחבילות Python.</p>
       </div>
 
       <hr class="mini-divider">
 
-      <h3>2.6 המרת טיפוסים</h3>
-      <p>שלוש פונקציות שימושיות להמרה:</p>
+      <h3>4.3 קובץ <code>.env</code> — איפה שומרים את ה-key</h3>
 
+      <p class="do-here do-here--terminal">ב-Terminal — מתיקיית <code>exercises/lesson-01</code>, צור קובץ <code>.env</code>:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>cd ~/projects/vibe-master-academy/exercises/lesson-01
+code .env</code></pre>
+      </div>
+
+      <p class="do-here do-here--editor">ב-VS Code — הדבק את השורה הבאה (החלף את ה-X-ים ב-API key האמיתי שלך):</p>
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">.env</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>ANTHROPIC_API_KEY=sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxx</code></pre>
+      </div>
+
+      <p>שמור (<kbd>Cmd</kbd>+<kbd>S</kbd>). <strong>אין מרכאות מסביב, אין רווחים סביב ה-=.</strong></p>
+
+      <div class="callout callout--tip">
+        <div class="callout__title">למה .env ולא משתנה בקוד?</div>
+        <p>כי קוד עולה ל-GitHub. <code>.env</code> לא עולה (הוא ב-<code>.gitignore</code>). הפרדת סודות מהקוד היא <strong>עקרון בסיסי שתשתמש בו בכל פרויקט ב-Python ומחוצה לו</strong>. אותו דפוס בדיוק יעבוד אחר כך עם n8n, OpenAI, Stripe — כל מערכת שדורשת מפתח.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>4.4 הקוד</h3>
+      <p class="do-here do-here--terminal">ב-Terminal — פתח את הסקריפט שאני נתתי לך:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header">
+          <span class="code-block__filename">Terminal</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>code ~/projects/vibe-master-academy/exercises/lesson-01/ask_claude.py</code></pre>
+      </div>
+
+      <div class="code-block code-block--editor">
+        <div class="code-block__header">
+          <span class="code-block__filename">ask_claude.py</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>import os
+from dotenv import load_dotenv
+from anthropic import Anthropic
+
+load_dotenv()
+
+client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+
+question = input("מה לשאול את Claude? ")
+
+response = client.messages.create(
+    model="claude-haiku-4-5",
+    max_tokens=1024,
+    system="אתה עוזר ידידותי שעונה בעברית, בצורה קצרה וברורה.",
+    messages=[
+        {"role": "user", "content": question}
+    ]
+)
+
+answer = response.content[0].text
+print("\nClaude עונה:\n")
+print(answer)</code></pre>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>4.5 קוראים את הקוד — לא לזכור, רק לזהות</h3>
+
+      <p><strong>שורות 1-3:</strong> <code>import</code> — "תביא לי את הכלים האלה". <code>os</code> מובנה ב-Python וקורא משתני סביבה. <code>dotenv</code> ו-<code>anthropic</code> אלה החבילות שהתקנו עכשיו.</p>
+
+      <p><strong>שורה 5:</strong> <code>load_dotenv()</code> — קוראת את הקובץ <code>.env</code> וטוענת את המשתנים שבתוכו לזיכרון, כך שהקוד יוכל להגיע אליהם.</p>
+
+      <p><strong>שורה 7:</strong> <code>client = Anthropic(api_key=...)</code> — יוצרים "לקוח" שיודע לדבר עם Claude. ה-<code>os.environ["ANTHROPIC_API_KEY"]</code> שולף את ה-key מתוך משתני הסביבה שנטענו ב-<code>load_dotenv()</code>.</p>
+
+      <p><strong>שורה 9:</strong> <code>question = input(...)</code> — מבקש מהמשתמש שאלה. מוכר.</p>
+
+      <p><strong>שורות 11-18 — לב הסקריפט:</strong></p>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__filename">דוגמה</span>
+          <button class="code-block__copy">העתק</button>
+        </div>
+<pre><code>response = client.messages.create(
+    model="claude-haiku-4-5",
+    max_tokens=1024,
+    system="אתה עוזר ידידותי שעונה בעברית, בצורה קצרה וברורה.",
+    messages=[
+        {"role": "user", "content": question}
+    ]
+)</code></pre>
+      </div>
+
+      <p>זאת הקריאה ל-Claude. ארבעה דברים שכדאי לזהות:</p>
       <ul>
-        <li><code>int(x)</code> — ממיר מחרוזת/float למספר שלם</li>
-        <li><code>float(x)</code> — ממיר מחרוזת/int למספר עשרוני</li>
-        <li><code>str(x)</code> — ממיר כל דבר למחרוזת</li>
+        <li><code>model</code> — איזה מודל של Claude משתמשים. <code>claude-haiku-4-5</code> הוא הזול והמהיר.</li>
+        <li><code>max_tokens</code> — אורך תשובה מקסימלי. <code>1024</code> מספיק לתשובה בינונית.</li>
+        <li><code>system</code> — "האישיות" של Claude לשיחה הזו. כאן אמרנו לו: "אתה עוזר ידידותי שעונה בעברית בצורה קצרה". <strong>זה מה שתשנה בקרוב.</strong></li>
+        <li><code>messages</code> — השיחה עצמה. כאן יש הודעה אחת מהמשתמש (השאלה שהוקלדה).</li>
       </ul>
 
-      <p class="do-here do-here--editor">ב-VS Code — צור <code>age_check.py</code> והדבק:</p>
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">age_check.py</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>age_text = input("מה הגיל שלך? ")   # input מחזיר str
-age = int(age_text)                  # ממירים ל-int
-print("בעוד 10 שנים תהיה בן", age + 10)</code></pre>
-      </div>
+      <p><strong>שורה 20:</strong> <code>answer = response.content[0].text</code> — התשובה חוזרת כאובייקט מורכב. הטקסט עצמו נמצא בעומק (<code>content[0].text</code>). זה תחביר שיופיע שוב ושוב — אל תזכור, תזהה.</p>
 
-      <p>אם לא היינו עושים <code>int()</code> ומנסים <code>age_text + 10</code> — Python היה זורק שגיאה <code>TypeError</code> כי לא אפשר לחבר מחרוזת ומספר.</p>
+      <p><strong>שורות 21-22:</strong> מדפיסים את התשובה.</p>
 
       <hr class="mini-divider">
 
-      <h3>2.7 f-strings — הדרך הנקייה לבנות הודעות</h3>
-      <p>במקום <code>print("שלום,", name)</code>, יש דרך יותר נקייה — <strong>f-string</strong>:</p>
+      <h3>4.6 הרצה — הרגע שבו Python מדבר עם Claude</h3>
 
-      <div class="code-block code-block--editor">
+      <p class="do-here do-here--terminal">ב-Terminal — מתיקיית <code>exercises/lesson-01</code>, הרץ:</p>
+      <div class="code-block code-block--terminal">
         <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
+          <span class="code-block__filename">Terminal</span>
           <button class="code-block__copy">העתק</button>
         </div>
-<pre><code>name = "Shai"
-age = 35
-
-print(f"שלום, {name}!")
-print(f"אתה בן {age}, בעוד 10 שנים תהיה בן {age + 10}")</code></pre>
+<pre><code>python3 ask_claude.py</code></pre>
       </div>
 
-      <p>ה-<code>f</code> לפני הגרשיים אומר ל-Python: "זה לא טקסט רגיל, תחפש משתנים או ביטויים בתוך <code>{}</code> והחלף אותם בערכים". זה הסטנדרט המודרני — נשתמש בו לאורך הקורס.</p>
+      <p>שאל אותו משהו. דוגמה:</p>
+      <div class="output">
+        <div class="output__label">פלט ב-Terminal</div>
+<pre>מה לשאול את Claude? תן לי 3 רעיונות לכותרות בלוג על SEO
+
+Claude עונה:
+
+1. "5 השגיאות הנפוצות שעושים ב-SEO בלי לדעת"
+2. "מה זה Core Web Vitals ולמה זה משנה ב-2026?"
+3. "איך לבנות אסטרטגיית תוכן ב-SEO בצעדים פשוטים"</pre>
+      </div>
+
+      <p>🎉 <strong>זה הרגע. Python הריץ את הקוד שלך, התחבר ל-Claude, קיבל תשובה, והדפיס.</strong> מעכשיו כל מה שאתה לומד בקורס יבנה על המקרה הזה.</p>
 
       <hr class="mini-divider">
 
-      <h3>2.8 הערות בקוד</h3>
-      <p>
-        <span class="term" data-term-id="comment">הערות</span> הן טקסט בקוד שה-Python מתעלם ממנו. הן בשבילך, לזכור מה הקוד עושה:
-      </p>
-      <div class="code-block code-block--editor">
+      <h3>המשימה שלך — שינוי ה-system prompt</h3>
+      <p>השורה <code>system="אתה עוזר ידידותי שעונה בעברית..."</code> זה מה שמגדיר את ההתנהגות של Claude בשיחה. <strong>שנה אותה ל:</strong></p>
+      <div class="code-block">
         <div class="code-block__header">
           <span class="code-block__filename">דוגמה</span>
           <button class="code-block__copy">העתק</button>
         </div>
-<pre><code># זאת הערה — לא משפיעה על ההרצה
-name = "Shai"   # זאת גם הערה, אחרי קוד</code></pre>
+<pre><code>system="אתה יועץ SEO בכיר עם 15 שנות ניסיון. אתה עונה בעברית, בצורה ישירה, ותמיד נותן 3 צעדים פרקטיים שאפשר לבצע מיד.",</code></pre>
       </div>
 
-      <div class="callout callout--tip">
-        <div class="callout__title">הרגל מצוין</div>
-        <p>הוסף הערה לפני כל שורה לא טריוויאלית. עוד שנה תודה לעצמך.</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>2.9 אינדנטציה — הסוד של Python</h3>
-      <p>ב-Python, <strong>רווחים בתחילת השורה הם משמעותיים</strong>. שלא כמו בשפות אחרות שמשתמשות ב-<code>{ }</code>, Python מסתמך על אינדנטציה כדי להבין מה שייך לאן.</p>
-
-      <p>לדוגמה, ב-<code>if</code>:</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>age = 18
-if age &gt;= 18:
-    print("מבוגר")          # 4 רווחים בהתחלה
-    print("יכול להצביע")     # אותם 4 רווחים — באותו הבלוק
-print("זה לא תלוי בגיל")    # אין רווחים — מחוץ לבלוק</code></pre>
-      </div>
-
-      <div class="callout callout--warning">
-        <div class="callout__title">שגיאה ראשונה של כל מתחיל ב-Python</div>
-        <p><code>IndentationError</code>. אם תקבל את זה — תבדוק את הרווחים. השתמש תמיד ב-4 רווחים, לא tabs. ב-VS Code, אם תלחץ Tab, הוא יהפוך אותו לרווחים אוטומטית (זה הסטנדרט).</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>תרגיל מהיר — בדוק את עצמך</h3>
-      <p>לפני שעוברים הלאה, נסה לבד את שלושת התרגילים. <strong>תכתוב את התשובות לעצמך לפני שתסתכל בפתרון.</strong></p>
-
-      <details class="hint">
-        <summary>תרגיל 1 — מה הטיפוס?</summary>
-        <p>איזה טיפוס הם הערכים הבאים: <code>"35"</code>, <code>35</code>, <code>35.0</code>, <code>True</code>?</p>
-        <details class="solution">
-          <summary>פתרון</summary>
-          <ul>
-            <li><code>"35"</code> → <code>str</code> (יש גרשיים)</li>
-            <li><code>35</code> → <code>int</code> (מספר שלם, בלי נקודה)</li>
-            <li><code>35.0</code> → <code>float</code> (יש נקודה)</li>
-            <li><code>True</code> → <code>bool</code></li>
-          </ul>
-        </details>
-      </details>
-
-      <details class="hint">
-        <summary>תרגיל 2 — מחשבון רווחי</summary>
-        <p>כתוב סקריפט <code>profit.py</code> ששואל מהמשתמש כמה רווחו בחודש שעבר ובחודש הזה, ומדפיס את ההפרש.</p>
-        <details class="solution">
-          <summary>פתרון</summary>
-<div class="code-block code-block--editor">
-<div class="code-block__header">
-<span class="code-block__filename">profit.py</span>
-<button class="code-block__copy">העתק</button>
-</div>
-<pre><code>last_month = int(input("רווח חודש שעבר: "))
-this_month = int(input("רווח חודש הזה: "))
-diff = this_month - last_month
-print(f"ההפרש: {diff} ש\"ח")</code></pre>
-</div>
-          <p>שים לב ל-<code>int()</code> — בלעדיו תקבל <code>TypeError</code> כי <code>input()</code> מחזיר str.</p>
-        </details>
-      </details>
-
-      <details class="hint">
-        <summary>תרגיל 3 — ברכת יום הולדת</summary>
-        <p>כתוב סקריפט <code>birthday.py</code> ששואל שם וגיל, ומדפיס: "שלום &lt;שם&gt;, מזל טוב! בעוד שנה תהיה בן/בת &lt;גיל+1&gt;." — השתמש ב-f-string.</p>
-        <details class="solution">
-          <summary>פתרון</summary>
-<div class="code-block code-block--editor">
-<div class="code-block__header">
-<span class="code-block__filename">birthday.py</span>
-<button class="code-block__copy">העתק</button>
-</div>
-<pre><code>name = input("שם: ")
-age = int(input("גיל: "))
-print(f"שלום {name}, מזל טוב! בעוד שנה תהיה בן {age + 1}.")</code></pre>
-</div>
-        </details>
-      </details>
-
-      <button class="section-complete-btn" data-section="part-2">סיימתי חלק זה ✓</button>
-    </section>
-
-    <!-- Part 3: Strings deep dive (NEW — was missing) -->
-    <section class="lesson-section" id="part-3">
-      <div class="lesson-section__header">
-        <div class="lesson-section__num">3</div>
-        <h2 class="lesson-section__title">מחרוזות לעומק</h2>
-        <span class="lesson-section__time">1.5 שעות</span>
-      </div>
-
-      <div class="refresher">
-        <div class="refresher__title">למה זה החלק הכי חשוב בשיעור</div>
-        <p>בעבודת SEO וב-vibe coding באופן כללי, רוב הזמן אתה מטפל ב<strong>טקסט</strong> — URLs, כותרות, meta descriptions, תוצאות מ-API. ב-Python, כל טקסט הוא <code>str</code>. החלק הזה מלמד אותך לעבד מחרוזות לעומק: לחתוך, להחליף, לפצל. כל הכלים בתרגיל הסופי של השיעור מגיעים מכאן.</p>
-      </div>
-
-      <h3>3.1 יצירת מחרוזות — שלוש דרכים</h3>
-      <p>אפשר ליצור מחרוזת ב-3 אופנים:</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>a = "Shai Berdugo"           # גרשיים כפולים
-b = 'Head of SEO'            # גרש בודד
-c = """שורה ראשונה
-שורה שנייה
-שורה שלישית"""              # שלוש מרכאות — לטקסט רב-שורתי
-
-print(a)
-print(b)
-print(c)</code></pre>
-      </div>
-
-      <div class="callout callout--info">
-        <div class="callout__title">מתי להשתמש בכל אחת?</div>
-        <p><strong>גרשיים כפולים</strong> ("...") — ברירת המחדל. <strong>גרש בודד</strong> ('...') — אם המחרוזת מכילה גרשיים כפולים בתוכה. למשל <code>'הוא אמר "שלום"'</code>. <strong>שלוש מרכאות</strong> — לטקסט שמתפרש על כמה שורות (כמו prompts ל-Claude).</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>3.2 חיבור וכפל מחרוזות</h3>
-      <p>אפשר לחבר שתי מחרוזות עם <code>+</code>, ולכפול מחרוזת במספר:</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>first = "Shai"
-last = "Berdugo"
-full = first + " " + last
-print(full)              # Shai Berdugo
-
-line = "-" * 30
-print(line)              # ------------------------------</code></pre>
-      </div>
-
-      <p>שים לב — <code>first + " " + last</code> דורש להוסיף את הרווח באופן ידני. בדרך כלל יותר נקי להשתמש ב-f-string: <code>f"{first} {last}"</code>.</p>
-
-      <hr class="mini-divider">
-
-      <h3>3.3 אורך מחרוזת — <code>len()</code></h3>
-      <p>הפונקציה <code>len(s)</code> מחזירה את מספר התווים במחרוזת:</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>name = "Shai"
-print(len(name))           # 4
-
-empty = ""
-print(len(empty))          # 0
-
-sentence = "Head of SEO"
-print(len(sentence))       # 11 (כולל הרווחים!)</code></pre>
-      </div>
-
-      <p>שימוש מעשי: לבדוק אם משתמש הזין משהו (<code>if len(name) == 0</code>), או לבדוק שכותרת SEO לא חורגת מהאורך המומלץ של 60 תווים.</p>
-
-      <hr class="mini-divider">
-
-      <h3>3.4 אינדקסים — לקבל תו ספציפי</h3>
-      <p>במחרוזת ב-Python, לכל תו יש <strong>אינדקס</strong> (מספר סידורי). חשוב: <strong>הספירה מתחילה מ-0</strong>, לא מ-1.</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>s = "Python"
-#    P y t h o n
-#    0 1 2 3 4 5    ← אינדקסים חיוביים
-#   -6-5-4-3-2-1    ← אינדקסים שליליים
-
-print(s[0])    # P  — התו הראשון
-print(s[1])    # y  — השני
-print(s[5])    # n  — השישי (האחרון)
-print(s[-1])   # n  — האחרון, דרך קצרה
-print(s[-2])   # o  — לפני האחרון</code></pre>
-      </div>
-
-      <div class="callout callout--tip">
-        <div class="callout__title">למה להתחיל מ-0?</div>
-        <p>זה מוסכמה בכל שפות התכנות כמעט. תרגל אותה — בהתחלה זה מבלבל, אחרי שבוע זה הופך לטבעי. <strong>אינדקסים שליליים</strong> ((-1, -2, ...) שימושיים מאוד — תמיד מספרים מהסוף, גם אם לא יודעים את האורך.</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>3.5 חיתוך (slicing) — לקחת קטע</h3>
-      <p>אם אתה רוצה קטע מהמחרוזת (לא תו בודד), השתמש בתחביר <code>s[start:end]</code> — נקרא <strong>slicing</strong>:</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>url = "https://beatport.com"
-
-print(url[0:8])      # https://
-print(url[8:])       # beatport.com   (מ-8 עד הסוף)
-print(url[:8])       # https://       (מההתחלה עד 8)
-print(url[-4:])      # .com           (4 התווים האחרונים)
-print(url[-4:-1])    # .co            (לא כולל האחרון)</code></pre>
-      </div>
-
-      <div class="callout callout--info">
-        <div class="callout__title">חשוב לזכור</div>
-        <p>בחיתוך, <code>start</code> כלול אבל <code>end</code> <strong>לא כלול</strong>. כלומר <code>s[0:3]</code> מחזיר את האינדקסים 0, 1, 2 — בלי 3. כשמשמיטים את <code>start</code> זה מתחיל מ-0, כשמשמיטים את <code>end</code> זה ממשיך עד הסוף.</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>3.6 מתודות גודל ורווח — lower / upper / strip</h3>
-      <p>מתודה (method) זה כמו פונקציה ששייכת לערך. הסינטקס: <code>value.method()</code>. שלוש המתודות הראשונות שתשתמש בהן ב-99% מהמקרים שמטפלים ב-input מהמשתמש:</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>name = "  Shai Berdugo  "
-
-print(name.lower())     # "  shai berdugo  "  — הכל קטן
-print(name.upper())     # "  SHAI BERDUGO  "  — הכל גדול
-print(name.strip())     # "Shai Berdugo"      — בלי רווחים בקצוות
-
-# כל אחת מחזירה מחרוזת חדשה — name עצמו לא משתנה
-print(name)             # "  Shai Berdugo  "  — עדיין כמו שהיה</code></pre>
-      </div>
-
-      <div class="callout callout--warning">
-        <div class="callout__title">חשוב — מחרוזות ב-Python הן "immutable"</div>
-        <p>קריאה ל-<code>name.lower()</code> לא משנה את <code>name</code>. היא מחזירה <strong>מחרוזת חדשה</strong>. אם אתה רוצה לשמור את התוצאה — צריך להציב חזרה: <code>name = name.lower()</code>.</p>
-      </div>
-
-      <p><strong>למה זה חשוב?</strong> כשמשתמש כותב לך URL, יכול להיות שהוא יקליד <code>" Beatport.COM "</code>. אם תשווה לזה <code>"beatport.com"</code> — לא יהיה matching. הפתרון: <code>url.strip().lower()</code> מנרמל את הקלט.</p>
-
-      <hr class="mini-divider">
-
-      <h3>3.7 <code>.replace(old, new)</code> — המתודה החשובה ביותר</h3>
-      <p>המתודה <code>.replace</code> מחזירה מחרוזת חדשה עם החלפה של כל מופע של <code>old</code> ב-<code>new</code>:</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>s = "hello world hello"
-
-print(s.replace("hello", "hi"))     # "hi world hi"   — מחליפה את כל המופעים
-print(s.replace("world", "Python")) # "hello Python hello"
-
-# החלפה במחרוזת ריקה = הסרה
-s2 = "https://beatport.com"
-print(s2.replace("https://", ""))   # "beatport.com"
-
-# הסרת רווחים מכל מקום (לא רק מהקצוות כמו strip):
-s3 = "S h a i"
-print(s3.replace(" ", ""))          # "Shai"</code></pre>
-      </div>
-
-      <div class="callout callout--tip">
-        <div class="callout__title">הטריק: החלפה בריק = הסרה</div>
-        <p>זה מאוד שימושי. אם אתה רוצה להסיר משהו ממחרוזת — <code>.replace("מה_להסיר", "")</code>. למשל לנקות URL מ-<code>"https://"</code>, להסיר <code>"www."</code>, להסיר תו ספציפי.</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>3.8 <code>.split(separator)</code> — לחתוך לחתיכות</h3>
-      <p>המתודה <code>.split(separator)</code> מחלקת את המחרוזת לחתיכות לפי תו או מחרוזת מפריד. <strong>היא מחזירה list</strong> (מבנה נתונים שנלמד עליו לעומק ב-Lesson 2, אבל יש לנו כאן הצצה).</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>csv = "Shai,Marcel,Niv"
-parts = csv.split(",")
-print(parts)            # ['Shai', 'Marcel', 'Niv']
-
-# גישה לחתיכה ספציפית עם אינדקס:
-print(parts[0])         # 'Shai'    — הראשון
-print(parts[1])         # 'Marcel'
-print(parts[-1])        # 'Niv'     — האחרון
-
-# חיתוך URL לפי סלאש:
-url = "beatport.com/genre/techno"
-url_parts = url.split("/")
-print(url_parts)        # ['beatport.com', 'genre', 'techno']
-print(url_parts[0])     # 'beatport.com'   ← הדומיין!</code></pre>
-      </div>
-
-      <div class="callout callout--info">
-        <div class="callout__title">מה זה list בעצם?</div>
-        <p>List זה סוגריים מרובעים <code>[...]</code> עם איברים מופרדים בפסיק. הפעולה <code>list[0]</code> לוקחת את האיבר הראשון. <strong>ההצצה הזו מספיקה כדי לפתור את התרגיל בסוף השיעור.</strong> את הכל לעומק (יצירה, הוספה, הסרה, lambda, sorted) נלמד ב-Lesson 2.</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>3.9 שרשור מתודות — Method chaining</h3>
-      <p>כיוון שכל מתודה מחזירה מחרוזת חדשה, אפשר לקרוא למתודה הבאה ישר על התוצאה — <strong>שרשור</strong>:</p>
-
-      <div class="code-block code-block--editor">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>messy = "  HTTPS://BeatPort.COM  "
-
-# שלוש מתודות, אחת אחרי השנייה
-clean = messy.strip().lower().replace("https://", "")
-print(clean)            # "beatport.com"</code></pre>
-      </div>
-
-      <p>הקוד הזה <strong>קריא יותר</strong> מאשר 3 שורות נפרדות. השרשור עובד כי כל מתודה מחזירה מחרוזת — והמתודה הבאה רצה על התוצאה.</p>
-
-      <div class="callout callout--tip">
-        <div class="callout__title">איך לקרוא שרשור</div>
-        <p>קרא משמאל לימין (כי הקוד LTR): "קח את <code>messy</code>, תפעיל <code>.strip()</code> (תסיר רווחים מקצוות), אחר כך <code>.lower()</code> (תהפוך לקטנות), אחר כך <code>.replace</code> (תסיר את ה-https://). זאת התוצאה."</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>3.10 כל הכלים שלמדנו — סיכום</h3>
-      <p>סיכום מהיר לפני התרגילים:</p>
-
-      <table>
-        <thead>
-          <tr><th>כלי</th><th>מה הוא עושה</th><th>דוגמה</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><code>len(s)</code></td><td>אורך מחרוזת</td><td><code>len("Shai") → 4</code></td></tr>
-          <tr><td><code>s[0]</code></td><td>תו ראשון</td><td><code>"Shai"[0] → "S"</code></td></tr>
-          <tr><td><code>s[-1]</code></td><td>תו אחרון</td><td><code>"Shai"[-1] → "i"</code></td></tr>
-          <tr><td><code>s[0:3]</code></td><td>חיתוך (slicing)</td><td><code>"Shai"[0:3] → "Sha"</code></td></tr>
-          <tr><td><code>s.lower()</code></td><td>הכל קטן</td><td><code>"SHAI".lower() → "shai"</code></td></tr>
-          <tr><td><code>s.upper()</code></td><td>הכל גדול</td><td><code>"shai".upper() → "SHAI"</code></td></tr>
-          <tr><td><code>s.strip()</code></td><td>הסרת רווחים מקצוות</td><td><code>"  Shai  ".strip() → "Shai"</code></td></tr>
-          <tr><td><code>s.replace(a, b)</code></td><td>החלפה (a → b)</td><td><code>"hi".replace("i", "ello") → "hello"</code></td></tr>
-          <tr><td><code>s.split(sep)</code></td><td>חיתוך לרשימה</td><td><code>"a,b,c".split(",") → ['a','b','c']</code></td></tr>
-        </tbody>
-      </table>
-
-      <hr class="mini-divider">
-
-      <h3>תרגילים מהירים — לפני התרגיל הגדול</h3>
-      <p>3 תרגילים קטנים שבונים אותך לתרגיל הסופי. <strong>תכתוב את התשובות לבד לפני שאתה פותח את הפתרון.</strong></p>
-
-      <details class="hint">
-        <summary>תרגיל 3.A — נירמול קלט</summary>
-        <p>כתוב סקריפט <code>normalize.py</code> ששואל את המשתמש לשם שלו, ומדפיס את השם <strong>בלי רווחים בקצוות ובאותיות קטנות</strong>. למשל אם הקלט הוא <code>"  Shai Berdugo  "</code>, הפלט צריך להיות <code>"shai berdugo"</code>.</p>
-        <details class="solution">
-          <summary>פתרון</summary>
-<div class="code-block code-block--editor">
-<div class="code-block__header">
-<span class="code-block__filename">normalize.py</span>
-<button class="code-block__copy">העתק</button>
-</div>
-<pre><code>name = input("מה השם שלך? ")
-clean_name = name.strip().lower()
-print(f"השם המנורמל: {clean_name}")</code></pre>
-</div>
-          <p>שים לב לשרשור <code>.strip().lower()</code> — strip הסיר את הרווחים, lower הפך לקטנות.</p>
-        </details>
-      </details>
-
-      <details class="hint">
-        <summary>תרגיל 3.B — הסרת סיומת קובץ</summary>
-        <p>כתוב סקריפט <code>filename.py</code> ששואל שם קובץ עם סיומת (למשל <code>"report.pdf"</code>) ומדפיס רק את השם בלי הסיומת (<code>"report"</code>). <strong>רמז:</strong> השתמש ב-<code>.split(".")</code> וקח את האיבר הראשון.</p>
-        <details class="solution">
-          <summary>פתרון</summary>
-<div class="code-block code-block--editor">
-<div class="code-block__header">
-<span class="code-block__filename">filename.py</span>
-<button class="code-block__copy">העתק</button>
-</div>
-<pre><code>filename = input("שם קובץ: ")
-parts = filename.split(".")
-name_only = parts[0]
-print(f"השם בלי סיומת: {name_only}")</code></pre>
-</div>
-          <p>גרסה מקוצרת בשרשור: <code>name_only = filename.split(".")[0]</code></p>
-        </details>
-      </details>
-
-      <details class="hint">
-        <summary>תרגיל 3.C — נירמול URL</summary>
-        <p>כתוב סקריפט <code>url_normalize.py</code> ששואל URL ומדפיס אותו <strong>בלי</strong> <code>https://</code> או <code>http://</code> בהתחלה. למשל <code>"https://beatport.com"</code> → <code>"beatport.com"</code>. (שים לב — זה רק חלק ממה שהתרגיל הגדול ידרוש.)</p>
-        <details class="solution">
-          <summary>פתרון</summary>
-<div class="code-block code-block--editor">
-<div class="code-block__header">
-<span class="code-block__filename">url_normalize.py</span>
-<button class="code-block__copy">העתק</button>
-</div>
-<pre><code>url = input("הכנס URL: ")
-url = url.replace("https://", "").replace("http://", "")
-print(f"מנורמל: {url}")</code></pre>
-</div>
-          <p>שתי קריאות <code>.replace</code> בשרשור. הראשונה מסירה את https://, השנייה את http:// (לכל מקרה שאחד מהם קיים).</p>
-        </details>
-      </details>
+      <p>שמור. הרץ שוב את הסקריפט עם <em>אותה</em> שאלה. <strong>שים לב איך התשובה שונה</strong> — אותו מודל, אותה שאלה, ה-system prompt שינה הכל.</p>
 
       <div class="callout callout--success">
-        <div class="callout__title">עכשיו יש לך את כל הכלים</div>
-        <p>אם הצלחת את 3 התרגילים האלה — אתה מוכן לתרגיל הסופי בחלק 4. אם משהו לא היה ברור, חזור לסעיף הספציפי לפני שאתה ממשיך.</p>
+        <div class="callout__title">למה זה הדבר הכי חשוב בשיעור</div>
+        <p>הקטע הזה — <strong>שינוי system prompt</strong> — הוא הסוד של 90% מבניית AI agents. כל סוכן AI שתבנה בקורס יתבסס בעצם על זה: מודל + system prompt טוב + הקשר מתאים = סוכן חכם. <strong>תרגיל בית:</strong> נסה 3 system prompts שונים על אותה שאלה. תראה כמה זה משנה.</p>
       </div>
-
-      <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
-    </section>
-
-    <!-- Part 4: Practice (was Part 3) -->
-    <section class="lesson-section" id="part-4">
-      <div class="lesson-section__header">
-        <div class="lesson-section__num">4</div>
-        <h2 class="lesson-section__title">תרגול — domain_extractor</h2>
-        <span class="lesson-section__time">1 שעה</span>
-      </div>
-
-      <div class="refresher">
-        <div class="refresher__title">כל מה שצריך כבר אצלך</div>
-        <p>בחלק 3 למדת <code>.replace</code>, <code>.split</code>, ו-list indexing. בחלק 2 למדת input ו-print. <strong>זה כל מה שצריך כדי לפתור את התרגיל הזה.</strong> אם משהו מוכר — חזור ל-<a href="#part-3">חלק 3</a>.</p>
-      </div>
-
-      <h3>המטרה</h3>
-      <p>צור קובץ חדש: <code>exercises/lesson-01/domain_extractor.py</code>. המטרה — סקריפט שמקבל URL מהמשתמש ומדפיס רק את הדומיין.</p>
-
-      <div class="output">
-        <div class="output__label">דוגמה לתפעול</div>
-<pre>הכנס URL: https://www.beatport.com/genre/techno
-הדומיין הוא: beatport.com</pre>
-      </div>
-
-      <p><strong>אל תפתח את Claude עדיין.</strong> נסה לבד 30 דקות לפחות. אם תקעת — אז תפתח את הרמזים.</p>
-
-      <details class="hint">
-        <summary>רמז 1 — חשוב על השלבים</summary>
-        <p>ה-URL הוא <code>https://www.beatport.com/genre/techno</code>. מה צריך להסיר כדי להישאר עם <code>beatport.com</code>?</p>
-      </details>
-
-      <details class="hint">
-        <summary>רמז 2 — איך מסירים חלק ממחרוזת</summary>
-        <p>מחרוזות ב-Python יש להן מתודה <code>.replace(old, new)</code> שמחליפה חלק אחד באחר. אם רוצים <em>להסיר</em> משהו — מחליפים אותו במחרוזת ריקה <code>""</code>.</p>
-      </details>
-
-      <details class="hint">
-        <summary>רמז 3 — איך חותכים את הסוף</summary>
-        <p>אחרי שהסרת את <code>https://</code> ו-<code>www.</code>, נשארת לך מחרוזת כמו <code>beatport.com/genre/techno</code>. מתודה <code>.split("/")</code> מחזירה רשימה כשהיא חותכת בסלאש. האיבר הראשון ברשימה (אינדקס <code>[0]</code>) הוא הדומיין.</p>
-      </details>
-
-      <details class="solution">
-        <summary>פתרון מלא (רק אחרי שניסית!)</summary>
-        <div class="code-block">
-          <div class="code-block__header">
-            <span class="code-block__filename">domain_extractor.py</span>
-            <button class="code-block__copy">העתק</button>
-          </div>
-<pre><code># domain_extractor.py
-url = input("הכנס URL: ")
-
-# מסירים את הפרוטוקול
-url = url.replace("https://", "").replace("http://", "")
-
-# מסירים www
-url = url.replace("www.", "")
-
-# חותכים בסלאש הראשון
-domain = url.split("/")[0]
-
-print("הדומיין הוא:", domain)</code></pre>
-        </div>
-        <p>הרץ עם 3 URLs שונים כדי לראות שזה עובד.</p>
-      </details>
 
       <button class="section-complete-btn" data-section="part-4">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 5: Review (was Part 4) -->
+    <!-- Part 5: Review -->
     <section class="lesson-section" id="part-5">
       <div class="lesson-section__header">
         <div class="lesson-section__num">5</div>
         <h2 class="lesson-section__title">Review — מה למדת</h2>
-        <span class="lesson-section__time">30 דקות</span>
+        <span class="lesson-section__time">15 דקות</span>
       </div>
 
-      <h3>6 שאלות לפני שאתה ממשיך</h3>
-      <p>ענה לעצמך בכתב (בלי לגלול חזרה). אם אתה לא בטוח על שאלה — חזור לסעיף הרלוונטי לפני Lesson 2.</p>
-      <ol>
-        <li>מה ההבדל בין <code>print</code> ל-<code>input</code>? ומה הטיפוס של מה ש-<code>input</code> מחזיר?</li>
-        <li>מה השם של הטיפוס של <code>35</code>? של <code>"35"</code>? של <code>35.0</code>?</li>
-        <li>מה ההבדל בין <code>=</code> ל-<code>==</code>?</li>
-        <li>למה אנחנו כותבים <code>name = name.lower()</code> ולא רק <code>name.lower()</code>?</li>
-        <li>מה <code>.replace("www.", "")</code> עושה ולמה זה שימושי?</li>
-        <li>מה <code>"a/b/c".split("/")[0]</code> מחזיר ולמה?</li>
-      </ol>
+      <h3>3 שאלות "מה הקוד הזה עושה?"</h3>
+      <p>השאלות לא בודקות אם אתה זוכר תחביר. הן בודקות אם אתה <em>מזהה</em> מה הקוד עושה. <strong>ענה לעצמך בכתב לפני שאתה פותח את התשובות.</strong></p>
 
-      <details class="solution">
-        <summary>תשובות (אחרי שניסית בעצמך)</summary>
-        <ol>
-          <li><code>print</code> כותב למסך. <code>input</code> מחכה לקלט מהמשתמש ומחזיר אותו כ-<code>str</code>.</li>
-          <li><code>35</code> הוא <code>int</code>, <code>"35"</code> הוא <code>str</code> (יש גרשיים), <code>35.0</code> הוא <code>float</code>.</li>
-          <li><code>=</code> זה השמה (תכניס לתוך). <code>==</code> זה השוואה (האם שווה? מחזיר bool).</li>
-          <li>כי מחרוזות הן immutable — <code>.lower()</code> מחזירה <strong>מחרוזת חדשה</strong> במקום לשנות את המקורית. צריך להציב חזרה לתוך המשתנה.</li>
-          <li>מחליפה את <code>"www."</code> במחרוזת ריקה, כלומר מסירה את <code>"www."</code> מהמחרוזת. שימושי לנירמול URLs.</li>
-          <li>מחזיר <code>"a"</code>. <code>split("/")</code> חותך ל-<code>['a','b','c']</code>, ו-<code>[0]</code> לוקח את האיבר הראשון.</li>
-        </ol>
+      <details class="hint">
+        <summary>שאלה 1</summary>
+        <p>בקוד הבא:</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__filename">קטע קוד</span><button class="code-block__copy">העתק</button></div>
+<pre><code>name = input("שם: ")
+print(f"שלום {name.strip().lower()}")</code></pre>
+        </div>
+        <p>אם המשתמש הקליד <code>"  SHAI  "</code> — מה יודפס?</p>
+        <details class="solution">
+          <summary>תשובה</summary>
+          <p><code>שלום shai</code>. <code>.strip()</code> הסיר את הרווחים בקצוות → <code>"SHAI"</code>. אחר כך <code>.lower()</code> הפך לאותיות קטנות → <code>"shai"</code>. ה-f-string הדפיס.</p>
+        </details>
+      </details>
+
+      <details class="hint">
+        <summary>שאלה 2</summary>
+        <p>מה ההבדל בין שתי השורות הבאות?</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__filename">קטע קוד</span><button class="code-block__copy">העתק</button></div>
+<pre><code>age = input("גיל: ")
+age = int(input("גיל: "))</code></pre>
+        </div>
+        <details class="solution">
+          <summary>תשובה</summary>
+          <p>בשורה הראשונה, <code>age</code> הוא <strong>מחרוזת</strong> (str) — גם אם המשתמש הקליד מספר. בשורה השנייה, <code>int()</code> ממיר את הקלט למספר שלם, אז <code>age</code> הוא <strong>int</strong>. בלי ההמרה לא אפשר לעשות חשבון עם הערך הזה.</p>
+        </details>
+      </details>
+
+      <details class="hint">
+        <summary>שאלה 3</summary>
+        <p>בקריאה הבאה ל-Claude API, מה הופך אותה ל"שיחה עם יועץ SEO" ולא לסתם תשובה כללית?</p>
+        <div class="code-block">
+          <div class="code-block__header"><span class="code-block__filename">קטע קוד</span><button class="code-block__copy">העתק</button></div>
+<pre><code>client.messages.create(
+    model="claude-haiku-4-5",
+    max_tokens=1024,
+    system="אתה יועץ SEO בכיר.",
+    messages=[{"role": "user", "content": "תן לי כותרת לבלוג"}]
+)</code></pre>
+        </div>
+        <details class="solution">
+          <summary>תשובה</summary>
+          <p><code>system="אתה יועץ SEO בכיר."</code> — זה ה-system prompt. הוא מגדיר את ההתנהגות והפרספקטיבה של Claude לשיחה. בלי השורה הזו, Claude היה עונה ככלל. עם השורה — הוא עונה כמו יועץ SEO.</p>
+        </details>
       </details>
 
       <hr class="mini-divider">
@@ -1083,13 +805,13 @@ print("הדומיין הוא:", domain)</code></pre>
       <ul>
         <li><strong>שעות בפועל:</strong> כמה זמן זה לקח באמת</li>
         <li><strong>קושי (1-5):</strong> סובייקטיבי</li>
-        <li><strong>הערות:</strong> מה הפתיע, מה לא היה ברור, מה רצית עוד</li>
+        <li><strong>הערות:</strong> מה עבד, מה לא, מה היה רוצה יותר</li>
       </ul>
 
       <hr class="mini-divider">
 
       <h3>Git commit ראשון — סוגרים את השיעור בריפו</h3>
-      <p>עכשיו נשמור את כל מה שעשית בריפו של הקורס. (אם אתה עוד לא יודע git — אל תדאג, נלמד אותו לעומק ב-Lesson 3. כרגע פשוט תפעל לפי הפקודות.)</p>
+      <p>נשמור את כל מה שעשית בריפו. (אם אתה עוד לא יודע git — אל תדאג, נלמד אותו לעומק ב-Lesson 3. כרגע פשוט הרץ את הפקודות.)</p>
 
       <p class="do-here do-here--terminal">ב-Terminal — היכנס לשורש הפרויקט והרץ:</p>
       <div class="code-block code-block--terminal">
@@ -1099,11 +821,11 @@ print("הדומיין הוא:", domain)</code></pre>
         </div>
 <pre><code>cd ~/projects/vibe-master-academy
 git add exercises/lesson-01 PROGRESS.md
-git commit -m "Lesson 1 complete — Python setup + strings + domain_extractor"
+git commit -m "Lesson 1 — Python setup + 3 demo scripts (incl. Claude API)"
 git push</code></pre>
       </div>
 
-      <p>אם זאת הפעם הראשונה שלך עם git, יכול להיות שתקבל הודעה "<em>Please tell me who you are</em>". במקרה כזה — קופץ ל-Lesson 3 חלק 4 (Git first-time setup) ועושה את ה-config, ואז חוזר וריץ את ה-commit שוב.</p>
+      <p>אם git שואל "<em>Please tell me who you are</em>" — קפוץ ל-Lesson 3 חלק Git first-time setup, עשה את ה-config, חזור והרץ commit שוב.</p>
 
       <button class="section-complete-btn" data-section="part-5">סיימתי חלק זה ✓</button>
     </section>
@@ -1123,21 +845,18 @@ git push</code></pre>
 
       <div class="checklist">
         <ul>
-          <li data-id="w1-python">Python 3.12 מותקן על המאק</li>
-          <li data-id="w1-vscode">VS Code מותקן + extension של Python + פקודת <code>code</code> ב-Terminal</li>
-          <li data-id="w1-hello"><code>hello.py</code> רץ והדפיס שלום</li>
-          <li data-id="w1-types">מכיר את 4 הטיפוסים (str, int, float, bool) ויודע להמיר ביניהם</li>
-          <li data-id="w1-fstring">משתמש ב-f-strings בנוחות</li>
-          <li data-id="w1-strings">למד <code>.replace</code>, <code>.split</code>, ו-string indexing — תרגילים 3.A/3.B/3.C עברו</li>
-          <li data-id="w1-domain"><code>domain_extractor.py</code> עובד עם 3 URLs לפחות</li>
-          <li data-id="w1-progress"><code>PROGRESS.md</code> מעודכן</li>
-          <li data-id="w1-commit"><span class="term" data-term-id="git">Git</span> <span class="term" data-term-id="commit">commit</span> + <span class="term" data-term-id="push">push</span></li>
+          <li data-id="w1-python">Python 3.12 + VS Code מותקנים, <code>hello.py</code> רץ</li>
+          <li data-id="w1-greet"><code>greet.py</code> רץ אצלי ועדכנתי את ההודעה האחרונה</li>
+          <li data-id="w1-domain"><code>domain_extractor.py</code> רץ עם 3 URLs שונים</li>
+          <li data-id="w1-claude"><code>ask_claude.py</code> שלח שאלה ל-Claude וקיבל תשובה אמיתית</li>
+          <li data-id="w1-system">שיניתי את ה-system prompt וראיתי איך התשובה השתנתה</li>
+          <li data-id="w1-progress"><code>PROGRESS.md</code> מעודכן + git commit + push</li>
         </ul>
       </div>
 
       <div class="callout callout--info">
         <div class="callout__title">משהו לא ברור?</div>
-        <p>אל תיתקע לבד יותר מ-30 דקות. שאל את Claude (בצ'אט או ב-Claude Code), או חזור על החלק הרלוונטי. אם אחרי 60 דקות עוד תקוע — תכתוב לי, ננווט יחד.</p>
+        <p>אל תיתקע לבד יותר מ-30 דקות. שאל את Claude (בצ'אט או ב-Claude Code), או חזור על הסעיף הרלוונטי. אם אחרי 60 דקות עוד תקוע — תכתוב לי, ננווט יחד.</p>
       </div>
     </section>
 
@@ -1159,6 +878,6 @@ git push</code></pre>
     <div class="container"><p>Vibe Master Academy</p></div>
   </footer>
 
-  <script src="../assets/js/app.js?v=20260521-12"></script>
+  <script src="../assets/js/app.js?v=20260521-13"></script>
 </body>
 </html>

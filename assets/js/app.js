@@ -92,6 +92,18 @@
       title: 'הערה (Comment)',
       definition: 'טקסט בקוד ש-Python מתעלם ממנו. מתחיל ב-#. לזכור מה הקוד עושה.'
     },
+    'f-string': {
+      title: 'f-string',
+      definition: 'מחרוזת עם משתנים בתוכה. f"שלום {name}" — Python מחליף את {name} בערך של המשתנה. הסטנדרט המודרני לבניית טקסט עם משתנים.'
+    },
+    'package': {
+      title: 'Package (חבילה)',
+      definition: 'קוד מוכן שאחרים כתבו, שאפשר להתקין ולהשתמש בו. ב-Python מתקינים עם pip install. דוגמה: anthropic, requests, python-dotenv.'
+    },
+    'anthropic-api': {
+      title: 'Claude API (Anthropic)',
+      definition: 'הממשק התכנותי לדבר עם Claude מתוך קוד. דורש API key מ-console.anthropic.com. מאפשר לבנות AI agents, סקריפטים שמסכמים, יועצים אוטומטיים.'
+    },
     'commit': {
       title: 'Commit',
       definition: 'פעולה ב-Git שמתעדת שמירה של שינויים עם תיאור. כמו save עם רישום היסטוריה.'

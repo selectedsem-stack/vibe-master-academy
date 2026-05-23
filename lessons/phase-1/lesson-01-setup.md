@@ -1,115 +1,70 @@
 # Lesson 1 — Python יום ראשון
 
-**זמן צפוי:** 5 שעות (3 שבת + 1.5 ראשון + 30 דק' לילה)
-**מטרה:** סביבת Python עובדת אצלך במאק + יודע לכתוב סקריפט פשוט.
+**זמן צפוי:** 3 שעות
+**גישה:** Vibe coder — קוראים סקריפטים מוכנים, מבינים, ומשנים. לא כותבים מאפס.
+**שלוש דוגמאות:** `greet.py`, `domain_extractor.py`, `ask_claude.py` (זה שמדבר עם Claude API).
 
 ---
 
-## חלק 1: Setup (1.5 שעות)
+## חלק 1: Setup (45 דקות)
 
 ### מה זה Python בכלל?
 
-Python היא שפת תכנות. כשאתה כותב קוד Python, אתה כותב הוראות לחומרה שלך בשפה שיותר קלה לבני אדם לקרוא. הקוד עצמו הוא קובץ טקסט שמסתיים ב-`.py`.
-
-**דוגמה לקוד Python**:
+Python היא שפת תכנות. כשאתה כותב קוד Python, אתה כותב הוראות למחשב בשפה שיחסית קלה לבני אדם לקרוא. קובץ Python מסתיים ב-`.py` ומריצים אותו מה-Terminal.
 
 ```python
 print("Hello, Shai!")
 ```
 
-זאת שורה אחת. היא מבקשת מהמחשב להדפיס את המילים האלה למסך.
+זאת שורה אחת — היא מבקשת מהמחשב להדפיס את המילים האלה למסך.
 
----
+### Terminal — שלוש פקודות שתשתמש בהן כל הזמן
 
-### Terminal — לפני שמתחילים
+| פקודה | מה היא עושה |
+|--------|--------------|
+| `pwd` | מציגה את התיקייה הנוכחית |
+| `ls` | מציגה את הקבצים בתיקייה |
+| `cd <תיקייה>` | נכנסת לתיקייה. `cd ~` חוזר לתיקיית הבית. |
 
-ה-Terminal הוא חלון שבו אתה מקליד פקודות ישירות למחשב. **5 פקודות שתשתמש בהן בלי הפסקה:**
+### 3 הצעדים
 
-| פקודה | מה היא עושה | דוגמה |
-|--------|--------------|--------|
-| `pwd` | מציג את התיקייה הנוכחית | `pwd` → `/Users/shai` |
-| `ls` | מציג את הקבצים בתיקייה | `ls` |
-| `cd <תיקייה>` | נכנס לתיקייה | `cd projects` |
-| `cd ~` | חוזר לתיקיית הבית שלך | `~` = home directory |
-| `mkdir <שם>` | יוצר תיקייה חדשה | `mkdir my-folder` |
+#### צעד 1 — התקנת Python
 
-**טיפ חשוב:** הסימן `~` תמיד מצביע על תיקיית הבית של המשתמש שלך (במאק: `/Users/SHEMSHELCHA`). אז `cd ~/projects` = "לך לתיקיית projects שבתוך הבית שלי".
-
-**אם פקודה לא עובדת:** קרא את הודעת השגיאה. `command not found` = הכלי לא מותקן. `Permission denied` = חסרות הרשאות (נסה להוסיף `sudo` לפני הפקודה, יבקש סיסמה).
-
----
-
-### שלב 1: התקנת Python על המאק
-
-המאק שלך בא עם גרסת Python ישנה (2.x) שאנחנו לא רוצים. נתקין את הגרסה החדשה (3.12) דרך Homebrew.
-
-פתח את ה-**Terminal** (Cmd+Space, חפש "Terminal").
-
-הרץ:
+פתח את ה-Terminal (Cmd+Space → "Terminal"):
 
 ```bash
 brew install python@3.12
 ```
 
-אם brew לא מותקן, תקבל הודעה. תתקין דרך:
+אם brew לא מותקן, התקן קודם:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-אחרי ההתקנה, בדוק שזה עבד:
+בדיקה:
 
 ```bash
 python3 --version
 ```
 
-אמור להופיע משהו כמו `Python 3.12.x`. ✅
+צריך להופיע: `Python 3.12.x`.
 
----
-
-### שלב 2: VS Code על המאק
-
-אם אין לך VS Code — בחר אפשרות אחת:
-
-**אפשרות א' (מומלץ):** דרך Homebrew:
+#### צעד 2 — VS Code
 
 ```bash
 brew install --cask visual-studio-code
 ```
 
-**אפשרות ב':** הורד מ-[code.visualstudio.com/download](https://code.visualstudio.com/download) וגרור את האפליקציה ל-Applications.
+אחרי ההתקנה: פתח את VS Code, לחץ על סמל ה-extensions בצד שמאל, חפש "Python", התקן את ה-extension של Microsoft.
 
-אחרי ההתקנה — פתח את VS Code. בצד שמאל יש סמל של אפליקציות (extensions). לחץ עליו, חפש **Python**, ולחץ Install על ה-extension של **Microsoft**.
+**הפעלת פקודת `code`:**
+1. VS Code → Cmd+Shift+P
+2. הקלד `shell command` ובחר "Shell Command: Install 'code' command in PATH"
+3. סגור את חלון ה-Terminal הפתוח ופתח חדש
+4. `code --version` — צריך לראות גרסה.
 
-#### הפעלת פקודת `code` ב-Terminal
-
-כדי שתוכל להריץ `code <קובץ>` מה-Terminal ולפתוח קובץ ב-VS Code, צריך להוסיף את הפקודה ל-**PATH** (משתנה הסביבה שאומר ל-shell איפה לחפש פקודות). **בלי הצעד הזה — תקבל `command not found: code`**.
-
-1. בתוך VS Code, לחץ **Cmd+Shift+P** (Command Palette).
-2. הקלד: `shell command`
-3. בחר ברשימה: **Shell Command: Install 'code' command in PATH**
-4. **סגור ופתח מחדש את ה-Terminal** (שינוי PATH לא תופס בחלון פתוח).
-5. בדוק שזה עובד:
-
-```bash
-code --version
-```
-
-אמור להופיע מספר גרסה (למשל `1.95.x`). ✅
-
-**אם `code` עדיין לא נמצא**, הוסף ידנית ל-PATH:
-
-```bash
-echo 'export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"' >> ~/.zprofile
-source ~/.zprofile
-code --version
-```
-
----
-
-### שלב 3: יוצרים את הסקריפט הראשון
-
-ב-Terminal:
+#### צעד 3 — הסקריפט הראשון
 
 ```bash
 cd ~/projects/vibe-master-academy
@@ -118,194 +73,282 @@ cd exercises/lesson-01
 code hello.py
 ```
 
-זה יפתח את VS Code עם קובץ חדש בשם `hello.py`.
-
-> **אם `code hello.py` לא עובד:** חזור לשלב 2 ובצע את ההפעלה של הפקודה `code`. חלופה זמנית: פתח את VS Code ידנית, **File → Open Folder** → בחר את `~/projects/vibe-master-academy/exercises/lesson-01`, ואז **File → New File** → שמור בשם `hello.py`.
-
-הכנס לתוכו:
+ב-VS Code:
 
 ```python
 print("Hello, Shai!")
 print("This is my first Python script.")
 ```
 
-שמור (Cmd+S).
-
-חזור ל-Terminal, וב-`exercises/lesson-01/` הרץ:
+שמור (Cmd+S). הרץ:
 
 ```bash
 python3 hello.py
 ```
 
-אמור להופיע:
-
-```
-Hello, Shai!
-This is my first Python script.
-```
-
-🎉 **הרצת את הקוד הראשון שלך.**
+צריך לראות את שתי השורות מודפסות. 🎉
 
 ---
 
-## חלק 2: Concepts בסיסיים (1.5 שעות)
+## חלק 2: דוגמה 1 — `greet.py` (30 דקות)
 
-### משתנים
+הקובץ `exercises/lesson-01/greet.py` כבר נמצא בריפו. פתח אותו:
 
-משתנה הוא "תיבה" שמכילה ערך. ב-Python:
-
-```python
-name = "Shai"
-age = 35
-is_seo_head = True
+```bash
+code exercises/lesson-01/greet.py
 ```
 
-עכשיו תוכל להשתמש בהם:
+**התוכן:**
 
 ```python
-print(name)            # מדפיס: Shai
-print("שלום", name)    # מדפיס: שלום Shai
+# greet.py — סקריפט Python ראשון שמדבר איתך
+
+name = input("מה השם שלך? ")
+age_text = input("בן כמה אתה? ")
+
+age = int(age_text)
+
+print(f"שלום {name}!")
+print(f"בעוד 10 שנים תהיה בן {age + 10}.")
 ```
 
-### טיפוסים בסיסיים
+### קוראים שורה־שורה
 
-| טיפוס | דוגמה | למה זה |
-|-------|--------|--------|
-| `str` | `"Shai"` | מחרוזת — טקסט |
-| `int` | `35` | מספר שלם |
-| `float` | `3.14` | מספר עם נקודה עשרונית |
-| `bool` | `True` או `False` | בוליאני — נכון/לא נכון |
+- **שורה 1:** הערה (`#`). Python מתעלם.
+- **שורות 3-4:** `input(...)` שואל את המשתמש, מחזיר טקסט (str). שומרים במשתנה.
+- **שורה 6:** `int(age_text)` ממיר מחרוזת למספר. בלי זה — שגיאה כשנעשה `age + 10` (כי str+int לא עובד).
+- **שורות 8-9:** `f-string` — בתוך `{}` Python שם את הערך של המשתנה. אפשר גם חישובים: `{age + 10}`.
 
-### Print ו-Input
+**העיקרון:** כל ערך ב-Python יש לו טיפוס (str, int, float, bool). לא חשוב לזכור את הסינטקס — חשוב לזהות שגיאות טיפוס כשהן צצות.
 
-```python
-print("מה השם שלך?")
-name = input()
-print("שלום,", name)
+### הרצה
+
+```bash
+python3 greet.py
 ```
 
-הרץ את זה. המחשב יחכה שתכניס שם, ואז ידפיס לך שלום.
+### המשימה
 
-**הערה על print:** הפסיק בין הארגומנטים (`"שלום", name`) גורם ל-Python להוסיף רווח אוטומטית בין הערכים.
-
-### f-strings — הדרך המודרנית להדפיס
-
-יש דרך יותר נקייה לשלב משתנים בטקסט — **f-string**:
-
-```python
-name = "Shai"
-print(f"שלום, {name}!")            # שלום, Shai!
-print(f"השם שלך הוא {name}, נכון?")  # השם שלך הוא Shai, נכון?
-```
-
-ה-`f` לפני הגרשיים אומר ל-Python: "זה לא טקסט רגיל, תחפש משתנים בתוך `{}` והחלף אותם בערכים שלהם". זה הסטנדרט המודרני — תשתמש בו לאורך הקורס.
-
-### הערות
-
-הערות הן טקסט בקוד שה-Python מתעלם ממנו. הן בשבילך, לזכור מה הקוד עושה:
-
-```python
-# זאת הערה — לא משפיעה על ההרצה
-name = "Shai"   # זאת גם הערה, אחרי קוד
-```
-
-**הרגל מצוין:** הוסף הערה לפני כל שורה לא טריוויאלית. עוד שנה תודה לעצמך.
-
-### אינדנטציה — הסוד של Python
-
-ב-Python, **רווחים בתחילת השורה הם משמעותיים**. שלא כמו בשפות אחרות שמשתמשות ב-`{ }`, Python מסתמך על אינדנטציה כדי להבין מה שייך לאן.
-
-לדוגמה, ב-`if`:
-
-```python
-age = 18
-if age >= 18:
-    print("מבוגר")          # 4 רווחים בהתחלה
-    print("יכול להצביע")     # אותם 4 רווחים — באותו הבלוק
-print("זה לא תלוי בגיל")    # אין רווחים — מחוץ לבלוק
-```
-
-**שגיאה ראשונה של כל מתחיל ב-Python:** `IndentationError`. אם תקבל את זה — תבדוק את הרווחים. השתמש תמיד ב-4 רווחים, לא tabs.
-
-ב-VS Code, אם תלחץ Tab, הוא יהפוך אותו לרווחים אוטומטית (זה הסטנדרט).
+פתח את `greet.py`, שנה את "10" ל-"25", שמור, הרץ שוב.
 
 ---
 
-## חלק 3: תרגול (1.5 שעות)
+## חלק 3: דוגמה 2 — `domain_extractor.py` (30 דקות)
 
-### תרגיל: מה הדומיין של URL?
-
-צור קובץ חדש: `exercises/lesson-01/domain_extractor.py`
-
-המטרה: סקריפט שמקבל URL מהמשתמש ומדפיס רק את הדומיין.
-
-**דוגמה לתפעול:**
-```
-הכנס URL: https://www.beatport.com/genre/techno
-הדומיין הוא: beatport.com
+```bash
+code exercises/lesson-01/domain_extractor.py
 ```
 
-**רמז 1:** חשוב על השלבים. ה-URL הוא `https://www.beatport.com/genre/techno`. מה צריך להסיר כדי להישאר עם `beatport.com`?
-
-**רמז 2:** מחרוזות ב-Python יש להן מתודה `.replace(old, new)` שמחליפה חלק אחד באחר. אם רוצים *להסיר* משהו — מחליפים אותו במחרוזת ריקה `""`.
-
-**רמז 3:** אחרי שהסרת את `https://` ו-`www.`, נשארת לך מחרוזת כמו `beatport.com/genre/techno`. מתודה `.split("/")` מחזירה רשימה כשהיא חותכת בסלאש. האיבר הראשון ברשימה (אינדקס `[0]`) הוא הדומיין.
-
-**אל תפתח את ה-Claude עדיין.** נסה לבד 30 דקות לפחות. אם תקעת — אז תפתח.
-
----
-
-### פתרון (אחרי שניסית!)
+**התוכן:**
 
 ```python
-# domain_extractor.py
+# domain_extractor.py — מקבל URL ומחזיר רק את הדומיין
+
 url = input("הכנס URL: ")
 
-# מסירים את הפרוטוקול
 url = url.replace("https://", "").replace("http://", "")
-
-# מסירים www
 url = url.replace("www.", "")
 
-# חותכים בסלאש הראשון
 domain = url.split("/")[0]
 
-print("הדומיין הוא:", domain)
+print(f"הדומיין הוא: {domain}")
 ```
 
-הרץ עם כמה URLs כדי לראות שזה עובד.
+### קוראים שורה־שורה
+
+- **שורה 3:** קלט מהמשתמש.
+- **שורה 5:** `.replace(X, "")` — מסיר את X מהמחרוזת. שרשור של שתי קריאות כדי להסיר גם https וגם http.
+- **שורה 6:** מסירים `www.` באותה דרך.
+- **שורה 8:** `url.split("/")` חותך את המחרוזת לרשימה לפי "/". `[0]` לוקח את האיבר הראשון — הדומיין.
+
+**העיקרון:** `.replace(X, "")` = "תסיר את X". זה דפוס שתפגוש בכל פעם שתעבד טקסט.
+
+### על slicing (לא לזכור)
+
+תחביר כמו `s[0:5]` או `s[-4:]` הוא slicing — לקיחת חתיכה ממחרוזת. **לא צריך לזכור.** כשתצטרך, Claude יכתוב.
+
+### הרצה
+
+```bash
+python3 domain_extractor.py
+```
+
+נסה עם:
+- `https://www.beatport.com/genre/techno` → `beatport.com`
+- `http://example.com/about` → `example.com`
+- `https://selected.co.il` → `selected.co.il`
+
+### המשימה
+
+הסקריפט לא מסיר UTM params (`?utm_source=...`). הוסף שורה אחת לפני `split("/")[0]`:
+
+```python
+url = url.split("?")[0]
+```
 
 ---
 
-## חלק 4: Review (30 דקות)
+## חלק 4: דוגמה 3 — Python מדבר עם Claude ⭐ (45 דקות)
+
+זה החלק הכי חשוב בשיעור. מכאן והלאה Python שלך לא רק מדפיס טקסט — הוא מדבר עם Claude.
+
+### 4.1 קבלת API key
+
+1. `console.anthropic.com` → הירשם.
+2. Settings → Billing → הוסף $5 קרדיט (מינימום).
+3. Settings → API Keys → Create Key. **העתק מיד** (יוצג רק פעם אחת).
+
+⚠️ **אל תפרסם את ה-key.** הקובץ `.env` ב-`.gitignore` של הריפו — שם הוא ישב.
+
+### 4.2 התקנת חבילות
+
+```bash
+pip3 install anthropic python-dotenv
+```
+
+- `anthropic` — ה-SDK הרשמי לדבר עם Claude.
+- `python-dotenv` — קוראת את ה-key מהקובץ `.env`.
+
+### 4.3 קובץ `.env`
+
+```bash
+cd ~/projects/vibe-master-academy/exercises/lesson-01
+code .env
+```
+
+הדבק (החלף את ה-X-ים ב-key האמיתי):
+
+```
+ANTHROPIC_API_KEY=sk-ant-api03-xxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+ללא מרכאות, ללא רווחים סביב ה-`=`.
+
+### 4.4 הקוד
+
+```bash
+code exercises/lesson-01/ask_claude.py
+```
+
+**התוכן:**
+
+```python
+import os
+from dotenv import load_dotenv
+from anthropic import Anthropic
+
+load_dotenv()
+
+client = Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+
+question = input("מה לשאול את Claude? ")
+
+response = client.messages.create(
+    model="claude-haiku-4-5",
+    max_tokens=1024,
+    system="אתה עוזר ידידותי שעונה בעברית, בצורה קצרה וברורה.",
+    messages=[
+        {"role": "user", "content": question}
+    ]
+)
+
+answer = response.content[0].text
+print("\nClaude עונה:\n")
+print(answer)
+```
+
+### 4.5 קוראים את הקוד (לזיהוי, לא לזיכרון)
+
+- **שורות 1-3:** `import` — מביאים כלים. `os` קורא משתני סביבה. `dotenv` ו-`anthropic` הן החבילות שהתקנו.
+- **שורה 5:** `load_dotenv()` טוענת את `.env` לזיכרון.
+- **שורה 7:** יוצרים `client` — אובייקט שיודע לדבר עם Claude. ה-key נשלף ממשתני הסביבה.
+- **שורות 11-18:** הקריאה עצמה. ארבעה דברים לזהות:
+  - `model` — איזה מודל (`claude-haiku-4-5` = זול ומהיר).
+  - `max_tokens` — אורך תשובה מקסימלי.
+  - `system` — "האישיות" של Claude לשיחה הזו.
+  - `messages` — השיחה עצמה. כאן הודעה אחת מהמשתמש.
+- **שורה 20:** `response.content[0].text` — מחלצים את הטקסט מהאובייקט שחזר.
+
+### 4.6 הרצה
+
+```bash
+python3 ask_claude.py
+```
+
+שאל משהו — Claude יענה.
+
+### המשימה
+
+שנה את `system` ל:
+
+```python
+system="אתה יועץ SEO בכיר עם 15 שנות ניסיון. אתה עונה בעברית, בצורה ישירה, ותמיד נותן 3 צעדים פרקטיים שאפשר לבצע מיד.",
+```
+
+הרץ שוב את אותה שאלה. שים לב איך התשובה שונה.
+
+**העיקרון:** שינוי system prompt = 90% מבניית AI agents. כל סוכן AI שתבנה בקורס יתבסס על זה.
+
+---
+
+## חלק 5: Review (15 דקות)
+
+### 3 שאלות "מה הקוד הזה עושה?"
+
+**שאלה 1:** אם המשתמש הקליד `"  SHAI  "` בקוד הבא, מה יודפס?
+
+```python
+name = input("שם: ")
+print(f"שלום {name.strip().lower()}")
+```
+
+<details>
+<summary>תשובה</summary>
+
+`שלום shai`. `.strip()` הסיר רווחים בקצוות. `.lower()` הפך לאותיות קטנות.
+</details>
+
+**שאלה 2:** מה ההבדל בין השורות?
+
+```python
+age = input("גיל: ")
+age = int(input("גיל: "))
+```
+
+<details>
+<summary>תשובה</summary>
+
+הראשונה — `age` הוא str. השנייה — `age` הוא int אחרי המרה. בלי המרה לא ניתן לעשות חשבון.
+</details>
+
+**שאלה 3:** מה הופך את הקריאה ל-Claude ל"יועץ SEO" ולא לסתם תשובה?
+
+<details>
+<summary>תשובה</summary>
+
+ה-`system` prompt. הוא מגדיר את ההתנהגות והפרספקטיבה של Claude לשיחה.
+</details>
 
 ### עדכן את PROGRESS.md
 
-פתח `PROGRESS.md` בשורש הפרויקט. סמן ✅ ליד "Week 1 — Setup הושלם", "Concepts הושלם", "Practice הושלם".
+מלא: שעות בפועל, קושי (1-5), הערות.
 
-מלא:
-- **שעות בפועל:** כמה שעות זה לקח באמת
-- **קושי (1-5):** סובייקטיבי
-- **הערות:** מה הפתיע אותך, מה לא היה ברור, מה רצית ללמוד יותר
+### Git commit
 
-### שאלות לפני שאתה ממשיך
-
-ענה לעצמך:
-1. מה ההבדל בין `print` ל-`input`?
-2. מה השם של הטיפוס `35`?
-3. למה הוספנו `.replace("www.", "")`?
-
-אם אתה לא בטוח על אחת מאלה — חזור על החלק הרלוונטי.
+```bash
+cd ~/projects/vibe-master-academy
+git add exercises/lesson-01 PROGRESS.md
+git commit -m "Lesson 1 — Python setup + 3 demo scripts (incl. Claude API)"
+git push
+```
 
 ---
 
-## checkpoint לסוף שיעור 1
+## Checkpoint
 
-- [ ] Python 3.12 מותקן על המאק
-- [ ] VS Code עם extension של Python
-- [ ] `hello.py` רץ והדפיס שלום
-- [ ] `domain_extractor.py` עובד עם 3 URLs לפחות
-- [ ] PROGRESS.md מעודכן
-- [ ] git commit + push
-
-**כשכל אלה ✅ — אתה מוכן ל-Lesson 2.**
+- [ ] Python 3.12 + VS Code מותקנים, `hello.py` רץ
+- [ ] `greet.py` רץ + עדכנתי את ההודעה האחרונה
+- [ ] `domain_extractor.py` רץ עם 3 URLs שונים
+- [ ] `ask_claude.py` שלח שאלה ל-Claude וקיבל תשובה אמיתית
+- [ ] שיניתי את ה-system prompt וראיתי איך התשובה השתנתה
+- [ ] `PROGRESS.md` מעודכן + git commit + push
