@@ -1,10 +1,10 @@
 [
-  {"name": "מנגו", "traffic": 45000, "conversion_rate": 2.3, "industry": "fashion"},
-  {"name": "סופר ביץ'", "traffic": 32000, "conversion_rate": 1.8, "industry": "ecommerce"},
-  {"name": "קליניקת רימון", "traffic": 12000, "conversion_rate": 4.1, "industry": "healthcare"},
-  {"name": "מסעדת בר אבא", "traffic": 8500, "conversion_rate": 3.2, "industry": "restaurant"},
-  {"name": "סטודיו דיו", "traffic": 22000, "conversion_rate": 1.5, "industry": "fashion"},
-  {"name": "קוסמטיקה ננו", "traffic": 67000, "conversion_rate": 2.9, "industry": "beauty"},
-  {"name": "אגד נדל\"ן", "traffic": 15000, "conversion_rate": 1.2, "industry": "realestate"},
-  {"name": "פיצה דיסקו", "traffic": 5400, "conversion_rate": 4.8, "industry": "restaurant"}
+  {"name": "מנגו", "domain": "mango.co.il", "traffic": 45000, "conversion_rate": 2.3, "industry": "fashion", "has_blog": true, "top_keyword": "בגדי נשים", "last_audit_days": 45},
+  {"name": "סופר ביץ'", "domain": "superbeach.co.il", "traffic": 32000, "conversion_rate": 1.8, "industry": "ecommerce", "has_blog": false, "top_keyword": "בגדי ים", "last_audit_days": 120},
+  {"name": "קליניקת רימון", "domain": "rimonclinic.co.il", "traffic": 12000, "conversion_rate": 4.1, "industry": "healthcare", "has_blog": true, "top_keyword": "טיפול שיניים", "last_audit_days": 30},
+  {"name": "מסעדת בר אבא", "domain": "barabba.co.il", "traffic": 8500, "conversion_rate": 3.2, "industry": "restaurant", "has_blog": false, "top_keyword": "מסעדה תל אביב", "last_audit_days": 200},
+  {"name": "סטודיו דיו", "domain": "studiodio.co.il", "traffic": 22000, "conversion_rate": 1.5, "industry": "fashion", "has_blog": true, "top_keyword": "תכשיטים יד שניה", "last_audit_days": 60},
+  {"name": "קוסמטיקה ננו", "domain": "nano-beauty.co.il", "traffic": 67000, "conversion_rate": 2.9, "industry": "beauty", "has_blog": true, "top_keyword": "מוצרי טיפוח טבעיים", "last_audit_days": 15},
+  {"name": "אגד נדל\"ן", "domain": "egged-realestate.co.il", "traffic": 15000, "conversion_rate": 1.2, "industry": "realestate", "has_blog": false, "top_keyword": "דירות להשכרה", "last_audit_days": 180},
+  {"name": "פיצה דיסקו", "domain": "pizzadisco.co.il", "traffic": 5400, "conversion_rate": 4.8, "industry": "restaurant", "has_blog": false, "top_keyword": "פיצה משלוחים", "last_audit_days": 90}
 ]
