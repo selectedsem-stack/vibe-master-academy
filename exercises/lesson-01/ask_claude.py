@@ -21,8 +21,8 @@ question = input("מה לשאול את Claude? ")
 # שולחים את השאלה. system = "האישיות" של Claude. messages = השיחה עצמה.
 response = client.messages.create(
     model="claude-haiku-4-5",
-    max_tokens=1024,
-    system="אתה עוזר ידידותי שעונה בעברית, בצורה קצרה וברורה.",
+    max_tokens=1200,
+    system="אתה תזונאי קליני שמתמחה בתזונת ספורטאים. אתה עונה בקצרה ובבהירות, ומסביר את התשובות שלך עם דוגמאות.",
     messages=[
         {"role": "user", "content": question}
     ]
