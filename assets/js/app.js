@@ -214,7 +214,7 @@
     1: ['w1-python', 'w1-greet', 'w1-domain', 'w1-claude', 'w1-system', 'w1-progress'],
     2: ['w2-list', 'w2-dict', 'w2-function', 'w2-json', 'w2-exercise', 'w2-commit'],
     3: ['w3-http', 'w3-wiki', 'w3-pipeline', 'w3-errors', 'w3-git', 'w3-commit'],
-    4: ['w4-n8n-account', 'w4-hello-workflow', 'w4-claude-workflow', 'w4-progress', 'w4-exercises', 'w4-retro', 'w4-commit', 'w4-phase2-ready']
+    4: ['w4-n8n-account', 'w4-hello-workflow', 'w4-claude-workflow', 'w4-own-workflow', 'w4-retro', 'w4-commit']
   };
 
   const TOTAL_LESSONS_IN_COURSE = 32;
@@ -237,9 +237,9 @@
       desc: '4 שעות · בונה Topic Researcher שמשלב Wikipedia + Claude, עם error handling אמיתי ו-Git workflow יומי.'
     },
     4: {
-      title: 'Lesson 4 — n8n + אוטומציה',
+      title: 'Lesson 4 — n8n + אוטומציה (Capstone)',
       href: 'phase-1/lesson-04.html',
-      desc: '3 שעות · בונה את אותה אוטומציה ב-n8n ויזואלי, בלי קוד. Retrospective של Phase 1.'
+      desc: '3 שעות · בונה 3 workflows ב-n8n ויזואלי כולל AI Assistant דרך webhook. סיום Phase 1.'
     }
   };
 

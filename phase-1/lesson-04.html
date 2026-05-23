@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 4 — n8n + Portal Setup · VMA</title>
+  <title>Lesson 4 — n8n + אוטומציה · VMA</title>
   <link rel="stylesheet" href="../assets/css/styles.css?v=20260521-17">
 </head>
 <body>
@@ -18,7 +18,7 @@
       </a>
       <nav class="site-nav">
         <a href="../index.html">בית</a>
-        <a href="index.html" class="active">Phase 1</a>
+        <a href="index.html">Phase 1</a>
         <a href="../glossary.html">מילון</a>
       </nav>
     </div>
@@ -31,656 +31,439 @@
       <span class="breadcrumbs__separator">›</span>
       <a href="index.html">Phase 1</a>
       <span class="breadcrumbs__separator">›</span>
-      <span class="breadcrumbs__current">Lesson 4 — n8n + Portal Setup</span>
+      <span class="breadcrumbs__current">Lesson 4 — n8n + אוטומציה</span>
     </nav>
 
-    <!-- Lesson Hero -->
     <section class="lesson-hero">
       <div class="lesson-hero__badges">
         <a href="index.html" class="lesson-hero__badge lesson-hero__badge--phase">Phase 1 · Foundations</a>
-        <span class="lesson-hero__badge lesson-hero__badge--time">⏱ 5 שעות לימוד</span>
-        <span class="lesson-hero__badge lesson-hero__badge--level">🏁 השיעור האחרון של פאזה 1</span>
+        <span class="lesson-hero__badge lesson-hero__badge--time">3 שעות לימוד</span>
+        <span class="lesson-hero__badge lesson-hero__badge--level">סיום Phase 1</span>
       </div>
-      <h1 class="lesson-hero__title">Lesson 4 — n8n + Portal Setup</h1>
+      <h1 class="lesson-hero__title">Lesson 4 — n8n + אוטומציה (Capstone)</h1>
       <p class="lesson-hero__intro">
-        ב-Lesson 3 קראת ל-<span class="term" data-term-id="api">Claude API</span> מ-<span class="term" data-term-id="python">Python</span>.
-        עכשיו נעלה שלב — נבנה אותו flow ויזואלית עם <span class="term" data-term-id="n8n">n8n</span>,
-        ניצור <span class="term" data-term-id="workflow">workflow</span> ראשון עם
-        <span class="term" data-term-id="webhook">Webhook</span>, ונסגור את Phase 1 ב-<span class="term" data-term-id="git">Git</span>.
+        סיימת 3 שיעורים של Python ויודע לקרוא, להריץ ולשנות קוד. <strong>היום אתה מגלה שאת אותם דברים אפשר לעשות בלי שורת קוד אחת — דרך <span class="term" data-term-id="n8n">n8n</span></strong>.
+        זה הסיום של Phase 1: אתה תבנה 2 workflows מוכנים יחד איתי, ו-workflow שלישי לבד. <em>החיבור הקסום:</em> Python ל-logic מותאם, n8n לחיבור בין מערכות.
       </p>
 
       <div class="objectives">
         <div class="objectives__title">בסוף השיעור תדע</div>
         <ul class="objectives__list">
-          <li>מה זה <span class="term" data-term-id="n8n">n8n</span> ולמה הוא קיים — n8n לעומת Zapier לעומת Make</li>
-          <li>להירשם ל-n8n.cloud ולנווט בממשק ה-<span class="term" data-term-id="workflow">workflow</span></li>
-          <li>לבנות workflow ראשון: <span class="term" data-term-id="webhook">Webhook</span> → Set → Email</li>
-          <li>לחבר <span class="term" data-term-id="n8n">n8n</span> ל-Claude API — text → סיכום → מייל</li>
-          <li>לסיים את הפורטל הלימודי: PROGRESS.md, exercises, retro, commit</li>
-          <li>לסגור Phase 1 — מוכן ל-Phase 2 Music Radar</li>
+          <li>מה זה <span class="term" data-term-id="n8n">n8n</span>, מתי משתמשים בו, ומה ההבדל מ-<span class="term" data-term-id="zapier">Zapier</span></li>
+          <li>לבנות <span class="term" data-term-id="workflow">workflow</span> ב-n8n עם <span class="term" data-term-id="node">nodes</span>, <span class="term" data-term-id="trigger">triggers</span>, ו-<span class="term" data-term-id="credential">credentials</span></li>
+          <li>לחבר n8n ל-Gmail, ל-HTTP חיצוני, ול-Claude API דרך node ייעודי</li>
+          <li>לבנות <span class="term" data-term-id="webhook">webhook</span>: URL שמופעל מבחוץ ומריץ workflow</li>
+          <li>להריץ workflow שלם שמקבל שאלה → שולח ל-Claude → מחזיר תשובה למייל — <strong>בלי שורת Python אחת</strong></li>
         </ul>
       </div>
 
       <div class="lesson-hero__chips">
-        <span class="lesson-hero__chip lesson-hero__chip--accent">n8n</span>
-        <span class="lesson-hero__chip">Webhook</span>
-        <span class="lesson-hero__chip">Workflow</span>
-        <span class="lesson-hero__chip">Claude API</span>
-        <span class="lesson-hero__chip">Credentials</span>
-        <span class="lesson-hero__chip">Git Commit</span>
-        <span class="lesson-hero__chip">Phase 1 Close</span>
+        <span class="lesson-hero__chip lesson-hero__chip--accent">n8n cloud</span>
+        <span class="lesson-hero__chip">workflows</span>
+        <span class="lesson-hero__chip">webhooks</span>
+        <span class="lesson-hero__chip">Gmail</span>
+        <span class="lesson-hero__chip">HTTP Request node</span>
+        <span class="lesson-hero__chip lesson-hero__chip--accent">Claude via n8n</span>
+        <span class="lesson-hero__chip">curl testing</span>
+        <span class="lesson-hero__chip lesson-hero__chip--accent">Phase 1 Capstone</span>
       </div>
     </section>
 
-    <!-- TOC -->
+    <div class="callout callout--info">
+      <div class="callout__title">למה צריך גם Python וגם n8n</div>
+      <p>הם לא מתחרים — הם משלימים. <strong>n8n</strong> מצוין לחיבור בין שירותים (Slack, Gmail, Notion, Stripe, Claude...) — workflows שאם תכתוב ב-Python יקח לך שעות. <strong>Python</strong> מצוין ל-logic מותאם — תנאים מורכבים, עיבוד nuanced, ניתוח data. בקורס נשתמש בשניהם — n8n כשהשירותים הם הכוכבים, Python כשה-logic הוא הכוכב.</p>
+    </div>
+
     <nav class="lesson-toc">
-      <a href="#part-1" class="lesson-toc__item">חלק 1: n8n — מה זה ולמה זה קיים</a>
-      <a href="#part-2" class="lesson-toc__item">חלק 2: התקנה + Hello Workflow</a>
-      <a href="#part-3" class="lesson-toc__item">חלק 3: n8n + Claude</a>
-      <a href="#part-4" class="lesson-toc__item">חלק 4: Portal Final Touches</a>
-      <a href="#part-5" class="lesson-toc__item">חלק 5: Phase 1 Review</a>
+      <a href="#part-1" class="lesson-toc__item">חלק 1: Setup n8n</a>
+      <a href="#part-2" class="lesson-toc__item">חלק 2: Workflow 1 — Hello Email</a>
+      <a href="#part-3" class="lesson-toc__item">חלק 3: ⭐ Workflow 2 — AI Assistant</a>
+      <a href="#part-4" class="lesson-toc__item">חלק 4: Workflow 3 שלך</a>
+      <a href="#part-5" class="lesson-toc__item">חלק 5: Phase 1 Retrospective</a>
     </nav>
 
-    <!-- Part 1: n8n Intro -->
     <section class="lesson-section" id="part-1">
       <div class="lesson-section__header">
         <div class="lesson-section__num">1</div>
-        <h2 class="lesson-section__title">n8n — מה זה ולמה זה קיים</h2>
-        <span class="lesson-section__time">1 שעה</span>
+        <h2 class="lesson-section__title">Setup — n8n cloud + מושגי יסוד</h2>
+        <span class="lesson-section__time">30 דקות</span>
       </div>
 
-      <div class="refresher">
-        <div class="refresher__title">רענון מ-Lesson 3</div>
-        <p>ב-Lesson 3 ראינו איך לקרוא ל-<span class="term" data-term-id="api">API</span> מ-<span class="term" data-term-id="python">Python</span>. אבל בכל פעם שאתה רוצה לחבר 3-4 שירותים יחד, אתה כותב הרבה קוד — error handling, retry logic, parse. <span class="term" data-term-id="n8n">n8n</span> מאפשר לבנות את אותם flows ויזואלית, בלי לכתוב את כל ה-boilerplate.</p>
-      </div>
-
-      <h3>מה זה <span class="term" data-term-id="n8n">n8n</span>?</h3>
-      <p>
-        n8n הוא <strong>open-source workflow automation tool</strong>. במקום לכתוב קוד Python שקורא API → מעבד נתונים → שולח מייל, אתה גורר <span class="term" data-term-id="node">node</span> על canvas, מחבר חיצים, ומגדיר פרמטרים.
-      </p>
-      <ul>
-        <li>כל <span class="term" data-term-id="node">node</span> הוא צעד אחד</li>
-        <li>החיצים מחברים בין הצעדים</li>
-        <li>הזרימה כולה נקראת <span class="term" data-term-id="workflow">workflow</span></li>
-        <li>ה-<span class="term" data-term-id="workflow">workflow</span> רץ כשה-<span class="term" data-term-id="trigger">trigger</span> מופעל</li>
-      </ul>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">דוגמה ויזואלית — workflow פשוט</span>
-        </div>
-<pre><code>[Webhook Trigger] → [HTTP Request] → [Email Send]</code></pre>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>n8n לעומת Zapier לעומת Make</h3>
-      <p>שלושה כלים נפוצים לאוטומציה — מה ההבדל?</p>
+      <h3>1.1 n8n vs Zapier vs Make — ההבדל ב-3 שורות</h3>
 
       <table>
         <thead>
-          <tr>
-            <th>תכונה</th>
-            <th>n8n</th>
-            <th><span class="term" data-term-id="zapier">Zapier</span></th>
-            <th>Make</th>
-          </tr>
+          <tr><th>כלי</th><th>חוזק</th><th>למי</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td>מחיר</td>
-            <td>חינמי (self-hosted) / $20 לחודש</td>
-            <td>$30+/חודש</td>
-            <td>בינוני</td>
-          </tr>
-          <tr>
-            <td>התאמה אישית</td>
-            <td>גמיש מאוד</td>
-            <td>מוגבל</td>
-            <td>בינוני</td>
-          </tr>
-          <tr>
-            <td>JavaScript ב-nodes</td>
-            <td>כן</td>
-            <td>חלקי</td>
-            <td>חלקי</td>
-          </tr>
-          <tr>
-            <td>Self-hosted</td>
-            <td>כן</td>
-            <td>לא</td>
-            <td>לא</td>
-          </tr>
-          <tr>
-            <td>מתאים ל</td>
-            <td>מפתחים שרוצים שליטה</td>
-            <td>non-technical</td>
-            <td>בינוני</td>
-          </tr>
+          <tr><td><strong>Zapier</strong></td><td>הכי קל, הכי הרבה אינטגרציות</td><td>non-dev, פשטות מעל גמישות</td></tr>
+          <tr><td><strong>Make</strong></td><td>visual + יחס מחיר/ערך טוב</td><td>middle ground</td></tr>
+          <tr><td><strong>n8n</strong></td><td>גמיש כמו קוד, יש self-hosted חינמי</td><td>vibe coders, אנשי טכני</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>למה אנחנו ב-n8n:</strong> כי בעתיד תרצה להריץ workflows מסובכים עם הרבה תנאים ולוגיקה — וגם תרצה אופציה לרוץ אצלך self-hosted בלי תשלום. n8n היא הבחירה של vibe coders.</p>
+
+      <hr class="mini-divider">
+
+      <h3>1.2 הרשמה ל-n8n cloud</h3>
+
+      <ol>
+        <li>כנס ל-<a href="https://n8n.io/cloud" target="_blank" rel="noopener">n8n.io/cloud</a> והירשם עם המייל שלך.</li>
+        <li>בחר ב-<strong>Free Trial</strong> (14 ימים, ללא כרטיס אשראי). אחרי הניסיון אפשר להמשיך עם plan חינמי מוגבל, או לעבור ל-self-hosted (חינם לחלוטין, נטפל בזה ב-Phase 2 אם נצטרך).</li>
+        <li>אחרי שתאשר את המייל — תקבל URL ייחודי כמו <code>https://shai.app.n8n.cloud</code>. שמור אותו.</li>
+      </ol>
+
+      <hr class="mini-divider">
+
+      <h3>1.3 4 מושגי היסוד של n8n</h3>
+
+      <table>
+        <thead>
+          <tr><th>מושג</th><th>מה זה</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Workflow</strong></td><td>"זרימת עבודה" — סדרה של פעולות שמחוברות בחיצים. רץ מתחילה לסוף.</td></tr>
+          <tr><td><strong>Node</strong></td><td>צעד יחיד בתוך workflow. כל node עושה דבר אחד: שליחת מייל, קריאה ל-API, פילטור, וכו'.</td></tr>
+          <tr><td><strong>Trigger</strong></td><td>ה-node הראשון. מה מפעיל את ה-workflow? Manual trigger (כפתור), Webhook (קריאה מבחוץ), Schedule (Cron), וכו'.</td></tr>
+          <tr><td><strong>Credential</strong></td><td>פרטי גישה מוצפנים לשירות חיצוני. מאוחסנים מוצפנים ב-n8n. כל node שמתחבר לשירות חיצוני (Gmail, Claude) משתמש ב-credential.</td></tr>
         </tbody>
       </table>
 
       <div class="callout callout--tip">
-        <div class="callout__title">מתי לבחור מה</div>
-        <p>
-          <strong>n8n</strong> — כשאתה צריך גמישות, JavaScript בתוך nodes, או self-hosting.<br>
-          <strong><span class="term" data-term-id="zapier">Zapier</span></strong> — כשאתה צריך לחבר שני כלים מוכרים מהר, בלי להשקיע זמן.<br>
-          בקורס הזה: n8n. הוא חינמי יותר, גמיש יותר, ומאפשר לנו לכתוב JavaScript כשצריך.
-        </p>
+        <div class="callout__title">המנטלי המודל</div>
+        <p>תחשוב על workflow כעל <em>pipeline</em> — בדיוק כמו ה-pipeline של <code>topic_researcher.py</code> משיעור 3 (Wikipedia → Claude → output). בדיוק אותם רעיונות, רק שב-n8n זה גרירה ושחרור ולא קוד.</p>
       </div>
-
-      <hr class="mini-divider">
-
-      <h3>Anatomy של <span class="term" data-term-id="n8n">n8n</span></h3>
-      <p>שלוש קטגוריות של <span class="term" data-term-id="node">nodes</span>:</p>
-
-      <table>
-        <thead>
-          <tr>
-            <th>קטגוריה</th>
-            <th>מה עושה</th>
-            <th>דוגמאות</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="term" data-term-id="trigger">Triggers</span></td>
-            <td>מפעיל את ה-workflow</td>
-            <td>Webhook, Schedule (<span class="term" data-term-id="cron">Cron</span>), Manual</td>
-          </tr>
-          <tr>
-            <td>Action Nodes</td>
-            <td>עושה משהו עם הנתונים</td>
-            <td>HTTP Request, Gmail, Slack</td>
-          </tr>
-          <tr>
-            <td>Logic Nodes</td>
-            <td>מסנן ומנתב</td>
-            <td>IF, Switch, Merge</td>
-          </tr>
-        </tbody>
-      </table>
 
       <button class="section-complete-btn" data-section="part-1">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 2: Installation + Hello Workflow -->
     <section class="lesson-section" id="part-2">
       <div class="lesson-section__header">
         <div class="lesson-section__num">2</div>
-        <h2 class="lesson-section__title">התקנה + Hello Workflow</h2>
-        <span class="lesson-section__time">1.5 שעות</span>
+        <h2 class="lesson-section__title">Workflow 1 — Hello Email (workflow ראשון)</h2>
+        <span class="lesson-section__time">30 דקות</span>
       </div>
 
-      <h3>שלב 1: הרשמה ל-n8n Cloud</h3>
-      <p>
-        שתי אפשרויות להתקין n8n:
-      </p>
-      <ul>
-        <li><strong>n8n Cloud (מומלץ לשלב זה):</strong> פשוט, מנוהל. יש ניסיון חינמי <strong>בלי צורך בכרטיס אשראי</strong>. לא צריך Docker, לא צריך שרת.</li>
-        <li><strong>Self-hosted (Docker):</strong> מריצים על מחשב מקומי. מדלגים עליו ב-Phase 1 — נחזור בהמשך.</li>
-      </ul>
+      <div class="refresher">
+        <div class="refresher__title">מה נבנה</div>
+        <p>workflow פשוט עם 2 nodes: <strong>Manual Trigger</strong> → <strong>Gmail Send</strong>. תלחץ כפתור — אתה מקבל מייל. זה ה-"Hello World" של n8n.</p>
+      </div>
 
-      <p>כדי להירשם:</p>
+      <h3>2.1 יצירת workflow חדש</h3>
       <ol>
-        <li>פתח: <a href="https://app.n8n.cloud/register" target="_blank" rel="noopener">https://app.n8n.cloud/register</a></li>
-        <li>הירשם עם Gmail או אימייל</li>
-        <li>בחר תת-דומיין (למשל <code>shai-vma</code>) — ה-instance שלך יהיה ב-<code>https://shai-vma.app.n8n.cloud</code></li>
+        <li>ב-n8n cloud, לחץ <strong>+ New Workflow</strong> בצד שמאל.</li>
+        <li>אתה רואה canvas ריק. בצד ימין יש לוח nodes לבחירה.</li>
       </ol>
-
-      <div class="callout callout--info">
-        <div class="callout__title">מה קורה אחרי שהניסיון החינמי נגמר?</div>
-        <p>הניסיון הוא ל-Starter plan שעולה <strong>€20/חודש</strong> (2,500 הפעלות workflow בחודש). לא נצטרך את זה לשיעור הזה — תרגיל ה-Hello Workflow מתבצע במלואו בתוך הניסיון. אם תרצה להמשיך להשתמש ב-n8n אחר כך — או שדרוג ל-Starter, או מעבר ל-Self-hosted (חינם, נלמד ב-Phase 2).</p>
-      </div>
 
       <hr class="mini-divider">
 
-      <h3>שלב 2: ממשק n8n — סקירה מהירה</h3>
-      <p>
-        ארבעה אזורים עיקריים בממשק:
-      </p>
-      <ul>
-        <li><strong>Workflows list</strong> — כל ה-<span class="term" data-term-id="workflow">workflows</span> שלך, פעיל/לא פעיל</li>
-        <li><strong>Editor Canvas</strong> — ה-canvas הויזואלי. גורר <span class="term" data-term-id="node">nodes</span>, מחבר בחיצים</li>
-        <li><strong>Credentials</strong> — פרטי גישה (<span class="term" data-term-id="credential">credentials</span>) מוצפנים לשירותים חיצוניים</li>
-        <li><strong>Executions</strong> — לוג של כל פעם ש-workflow רץ</li>
-      </ul>
+      <h3>2.2 הוספת Manual Trigger</h3>
+      <ol>
+        <li>לחץ <strong>+ Add first step</strong> במרכז המסך.</li>
+        <li>חפש <strong>"Manual Trigger"</strong>, בחר אותו.</li>
+        <li>ה-node מופיע ב-canvas. זה הצעד הראשון שלך.</li>
+      </ol>
+
+      <p>Manual Trigger מופעל כשאתה לוחץ <strong>Execute Workflow</strong> — שימושי לפיתוח ובדיקות.</p>
 
       <hr class="mini-divider">
 
-      <h3>שלב 3: First Workflow — <span class="term" data-term-id="webhook">Webhook</span> → Set → Email</h3>
-      <p>
-        מה אנחנו בונים: <span class="term" data-term-id="workflow">workflow</span> שמקבל <span class="term" data-term-id="http">HTTP</span> request ושולח מייל.
-      </p>
-
-      <h4>שלב 3א — Webhook node</h4>
+      <h3>2.3 הוספת Gmail node</h3>
       <ol>
-        <li>לחץ "New Workflow"</li>
-        <li>הוסף <span class="term" data-term-id="node">node</span> → חפש "Webhook"</li>
-        <li>שמור את ה-URL שה-<span class="term" data-term-id="webhook">Webhook</span> נותן לך</li>
-        <li>שים את ה-Webhook ב-"Test" mode בינתיים</li>
+        <li>לחץ על העיגול הקטן בצד ה-Manual Trigger (output).</li>
+        <li>חפש <strong>"Gmail"</strong>, בחר.</li>
+        <li>בחר ב-action <strong>Send Email / Send a message</strong>.</li>
       </ol>
 
-      <h4>שלב 3ב — Set node (לעיבוד)</h4>
-      <ol>
-        <li>הוסף <span class="term" data-term-id="node">node</span> → "Edit Fields (Set)"</li>
-        <li>הגדר שדה חדש: <code>subject</code> = <code>"מבחן מ-n8n: &#123;&#123;$json.name&#125;&#125;"</code></li>
-        <li>חבר את ה-Webhook אל ה-Set node</li>
-      </ol>
-
-      <h4>שלב 3ג — Email node</h4>
-      <ol>
-        <li>הוסף <span class="term" data-term-id="node">node</span> → "Gmail" או "Email (SMTP)"</li>
-        <li>הגדר <span class="term" data-term-id="credential">Credential</span> — פרטי ה-Gmail שלך</li>
-      </ol>
-
-      <div class="callout callout--info">
-        <div class="callout__title">📎 לעזרה בהגדרת Gmail OAuth ב-n8n</div>
-        <p>הולך ל-<a href="https://docs.n8n.io/integrations/builtin/credentials/google/oauth-single-service/" target="_blank" rel="noopener">docs.n8n.io</a> — שם יש מדריך step-by-step עם screenshots. תהליך ה-OAuth דורש שתיצור Project ב-Google Cloud Console ותגדיר OAuth consent screen. זה לוקח 10-15 דקות בפעם הראשונה.</p>
-      </div>
-
-      <ol start="3">
-        <li><code>To:</code> הכנס את כתובת המייל שלך</li>
-        <li><code>Subject:</code> <code>&#123;&#123;$json.subject&#125;&#125;</code></li>
-        <li><code>Body:</code> <code>קיבלת הודעה מ: &#123;&#123;$json.name&#125;&#125; — &#123;&#123;$json.message&#125;&#125;</code></li>
-        <li>חבר את ה-Set node אל ה-Email node</li>
-      </ol>
-
-      <h4>שלב 3ד — בדיקה</h4>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">Terminal — test webhook</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>curl -X POST https://YOUR-N8N-INSTANCE.app.n8n.cloud/webhook/test \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Shai", "message": "מבחן ראשון"}'</code></pre>
-      </div>
-
-      <p>אם הכל תקין — תקבל מייל תוך שניות.</p>
-
-      <hr class="mini-divider">
-
-      <h3>Troubleshooting — אם המייל לא הגיע</h3>
-      <table>
-        <thead>
-          <tr><th>תופעה</th><th>מה לבדוק</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>curl מחזיר 404</td><td>הוודא שה-workflow ב-mode "Active" (לא רק "Test"). אם ב-Test — חייב ללחוץ "Execute Workflow" קודם, אז curl.</td></tr>
-          <tr><td>curl מחזיר 200 אבל אין מייל</td><td>פתח את <strong>Executions</strong> ב-n8n.cloud (תפריט שמאל). תראה אם ה-workflow רץ ואיפה נכשל. בדוק את ה-Email node ספציפית.</td></tr>
-          <tr><td>שגיאה ב-Email node</td><td>פרטי ה-Gmail credential לא הוגדרו כראוי. אם אתה משתמש ב-Gmail OAuth — וודא שאישרת את n8n לגשת לחשבון שלך.</td></tr>
-          <tr><td>המייל בספאם</td><td>בדוק את תיבת הספאם. הוסף את כתובת ה-from לרשימת השולחים המהימנים.</td></tr>
-          <tr><td>מקבל "Email not configured"</td><td>חזור ל-credentials. ב-n8n.cloud, הולך ל-Credentials → New → Gmail OAuth2, ועוקב אחרי המדריך.</td></tr>
-        </tbody>
-      </table>
-
-      <div class="callout callout--tip">
-        <div class="callout__title">Executions log</div>
-        <p>זה הכלי הכי חשוב שלך — שם רואים בדיוק מה קרה בכל ריצה.</p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>איך n8n מאחסן <span class="term" data-term-id="credential">Credentials</span></h3>
-      <p>
-        <strong>לעולם לא</strong> להכניס API keys ישירות ב-<span class="term" data-term-id="workflow">workflow</span> JSON.
-        n8n מספק מנגנון Credentials:
-      </p>
-      <ul>
-        <li>הנתונים מוצפנים (AES-256) ב-database של n8n.cloud</li>
-        <li>ה-<span class="term" data-term-id="node">node</span> מקבל reference ל-<span class="term" data-term-id="credential">credential</span>, לא את המפתח עצמו</li>
-        <li>בלוג ה-execution לא מופיעות הסיסמאות — רק <code>[CREDENTIALS HIDDEN]</code></li>
-      </ul>
+      <p>n8n יבקש credential. לחץ <strong>+ Create new credential</strong> ובחר <strong>"Sign in with Google"</strong>. אשר ב-popup של Google. החזרה ל-n8n — ה-credential מאוחסן ומוצפן.</p>
 
       <div class="callout callout--warning">
-        <div class="callout__title">API key = סיסמה</div>
-        <p>
-          אותו עיקרון מ-Lesson 3: מפתח <span class="term" data-term-id="api">API</span> הוא סיסמה.
-          בn8n — תשתמש תמיד ב-Credentials, לא תדביק מפתחות ישירות ב-workflow JSON.
-        </p>
+        <div class="callout__title">חשוב — הרשאות Gmail</div>
+        <p>Google ידרוש ממך אישור — בחר את אותו חשבון Gmail שאתה משתמש בו. <strong>צריך לאשר גישה מלאה לשליחת מיילים</strong> כדי שזה יעבוד.</p>
       </div>
+
+      <hr class="mini-divider">
+
+      <h3>2.4 הגדרת המייל</h3>
+      <p>במאפייני ה-Gmail node:</p>
+      <ul>
+        <li><strong>To:</strong> המייל שלך (תקבל את המייל לעצמך)</li>
+        <li><strong>Subject:</strong> <code>Hello from n8n!</code></li>
+        <li><strong>Email Type:</strong> <code>Text</code> (פשוט יותר ממולטימדיה)</li>
+        <li><strong>Message:</strong> <code>This is my first n8n workflow. 🎉</code></li>
+      </ul>
+
+      <hr class="mini-divider">
+
+      <h3>2.5 הרצה ובדיקה</h3>
+      <ol>
+        <li>לחץ <strong>Execute Workflow</strong> בתחתית.</li>
+        <li>תראה את ה-nodes הופכים לירוקים אחד אחרי השני.</li>
+        <li>בדוק את ה-Gmail שלך — אמור להיות שם מייל חדש.</li>
+      </ol>
+
+      <div class="callout callout--info">
+        <div class="callout__title">Troubleshooting</div>
+        <ul>
+          <li>אם ה-Gmail node אדום — לחץ עליו, תקרא את הודעת השגיאה. בדרך כלל זה credential שלא אומת.</li>
+          <li>אם המייל לא הגיע — בדוק ב-Spam folder.</li>
+          <li>אם הכל ירוק אבל אין מייל — וודא שכתבת את הכתובת נכון ב-<code>To</code>.</li>
+        </ul>
+      </div>
+
+      <p><strong>שמור</strong> את ה-workflow (Cmd+S או הכפתור Save). תן לו שם: <code>hello-email</code>.</p>
 
       <button class="section-complete-btn" data-section="part-2">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 3: n8n + Claude -->
     <section class="lesson-section" id="part-3">
       <div class="lesson-section__header">
         <div class="lesson-section__num">3</div>
-        <h2 class="lesson-section__title">n8n + Claude — Workflow מורכב יותר</h2>
-        <span class="lesson-section__time">1.5 שעות</span>
+        <h2 class="lesson-section__title">⭐ Workflow 2 — AI Assistant דרך Webhook</h2>
+        <span class="lesson-section__time">60 דקות</span>
       </div>
 
       <div class="refresher">
-        <div class="refresher__title">רענון מ-Lesson 3</div>
-        <p>ב-Lesson 3 קראת ל-Claude <span class="term" data-term-id="api">API</span> מ-<span class="term" data-term-id="python">Python</span>. עכשיו ניתן ל-<span class="term" data-term-id="n8n">n8n</span> לעשות את זה במקומך — בלי לכתוב קוד, בלי לנהל environment variables ידנית.</p>
+        <div class="refresher__title">למה זה השיא של היום</div>
+        <p>זה <strong>בדיוק אותה לוגיקה</strong> של <code>topic_researcher.py</code> משיעור 3 — מקבל קלט, שולח ל-Claude, מחזיר תשובה. אבל הפעם:</p>
+        <ul>
+          <li><strong>בלי קוד</strong> — רק גרירה ושחרור</li>
+          <li><strong>מופעל מבחוץ</strong> דרך webhook URL שתוכל לקרוא לו מ-curl, מהדפדפן, או מ-Slack</li>
+          <li><strong>שולח תשובה למייל</strong> — אוטומציה אמיתית</li>
+        </ul>
+        <p>אחרי שתבין את הדפוס הזה, אתה תוכל לחבר Claude לכל שירות בעולם.</p>
       </div>
 
-      <h3>Workflow 2: Text → Claude → Email Summary</h3>
-      <p>
-        מה אנחנו בונים: <span class="term" data-term-id="webhook">Webhook</span> מקבל טקסט,
-        שולח ל-Claude לסיכום, ושולח את הסיכום במייל.
-      </p>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">מבנה ה-workflow</span>
-        </div>
-<pre><code>[Webhook] → [HTTP Request → Claude API] → [Email]</code></pre>
-      </div>
+      <h3>3.1 יצירת workflow חדש</h3>
+      <p>צור workflow חדש. שם: <code>ai-assistant</code>.</p>
 
       <hr class="mini-divider">
 
-      <h3>שלב 1: Webhook node</h3>
-      <p>
-        ה-<span class="term" data-term-id="webhook">Webhook</span> מקבל <span class="term" data-term-id="json">JSON</span>:
-      </p>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">webhook_input.json</span>
-        </div>
-<pre><code>{"text": "...הטקסט לסיכום..."}</code></pre>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>שלב 2: HTTP Request node (Claude)</h3>
-      <p>
-        הגדרות ה-<span class="term" data-term-id="node">node</span>:
-      </p>
-      <ul>
-        <li>Method: <code>POST</code></li>
-        <li>URL: <code>https://api.anthropic.com/v1/messages</code></li>
-      </ul>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">Headers</span>
-        </div>
-<pre><code>x-api-key: {{ $credentials.anthropicApiKey }}
-anthropic-version: 2023-06-01
-content-type: application/json</code></pre>
-      </div>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">Body (JSON)</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>{
-  "model": "claude-opus-4-7",
-  "max_tokens": 500,
-  "messages": [
-    {
-      "role": "user",
-      "content": "סכם בעברית את הטקסט הבא:\n\n{{$json.text}}"
-    }
-  ]
-}</code></pre>
-      </div>
-
-      <p>
-        שים לב ל-<code>&#123;&#123;$json.text&#125;&#125;</code> — זה מוסיף את הטקסט מה-<span class="term" data-term-id="webhook">Webhook</span> לתוך ה-<span class="term" data-term-id="request">request</span> ל-Claude.
-      </p>
-
-      <hr class="mini-divider">
-
-      <h3>שלב 3: Parse תגובת Claude</h3>
-      <p>
-        Claude מחזיר <span class="term" data-term-id="json">JSON</span>. הסיכום נמצא ב:
-      </p>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">expression</span>
-        </div>
-<pre><code>{{$json.content[0].text}}</code></pre>
-      </div>
-
-      <p>
-        זה בדיוק <code>data["content"][0]["text"]</code> ב-Python — אותו מבנה, תחביר שונה.
-      </p>
-
-      <hr class="mini-divider">
-
-      <h3>שלב 4: Email node</h3>
-      <ul>
-        <li><code>Subject:</code> <code>סיכום AI</code></li>
-        <li><code>Body:</code> <code>&#123;&#123;$json.content[0].text&#125;&#125;</code></li>
-      </ul>
-
-      <hr class="mini-divider">
-
-      <h3>בדיקה עם curl</h3>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">Terminal — test Claude workflow</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>curl -X POST https://YOUR-N8N-INSTANCE.app.n8n.cloud/webhook/claude-summary \
-  -H "Content-Type: application/json" \
-  -d '{"text": "n8n היא פלטפורמה ויזואלית לאוטומציה. מאפשרת לחבר APIs בלי לכתוב קוד. מתחרה של Zapier ו-Make."}'</code></pre>
-      </div>
-
-      <p>אחרי כמה שניות — תקבל מייל עם סיכום של Claude.</p>
-
-      <div class="callout callout--info">
-        <div class="callout__title">זה Smart Brief בתוך workflow</div>
-        <p>
-          ה-<span class="term" data-term-id="workflow">workflow</span> שבנית הוא בדיוק הבסיס של Smart Brief:
-          קלט נכנס → Claude מסכם → תוצאה יוצאת.
-          ב-Phase 2 נבנה גרסה מלאה עם Music Radar.
-        </p>
-      </div>
-
-      <hr class="mini-divider">
-
-      <h3>תרגיל אישי — בנה workflow שלישי משלך</h3>
-      <p>עכשיו שיש לך 2 workflows שעובדים — בנה אחד שלישי משלך. רעיונות:</p>
+      <h3>3.2 Node 1 — Webhook Trigger</h3>
       <ol>
-        <li><strong>Daily SEO digest:</strong> Cron Trigger כל יום ב-7:00 → HTTP Request לקבלת נתוני GA4 (mock — איזה JSON שתרצה) → Claude לסיכום → Email</li>
-        <li><strong>Quick translator:</strong> Webhook מקבל טקסט באנגלית → Claude מתרגם → תגובה ישירה ב-Webhook response</li>
-        <li><strong>Slack notifier:</strong> Webhook מקבל לקוח חדש → Claude מנסח הודעת ברכה → Slack node שולח לערוץ</li>
+        <li>הוסף <strong>Webhook</strong> כ-trigger (במקום Manual).</li>
+        <li>במאפיינים: <strong>HTTP Method</strong> = <code>POST</code>. <strong>Path</strong> = <code>ai-assistant</code>.</li>
+        <li>תקבל <strong>2 URLs</strong>:
+          <ul>
+            <li><strong>Test URL</strong> — לבדיקות (פעיל רק כשה-workflow פתוח)</li>
+            <li><strong>Production URL</strong> — לעבודה אמיתית (פעיל אחרי שתלחץ Activate)</li>
+          </ul>
+        </li>
       </ol>
 
-      <p>בחר אחד, ובנה אותו ב-15-30 דקות. אם תקעת — חזור ל-Executions log ול-troubleshooting.</p>
+      <p>העתק את ה-<strong>Test URL</strong> לפנקס — תשתמש בו בעוד רגע.</p>
+
+      <hr class="mini-divider">
+
+      <h3>3.3 Node 2 — HTTP Request ל-Claude</h3>
+
+      <p>הוסף <strong>HTTP Request</strong> אחרי ה-Webhook. הגדרות:</p>
+
+      <ul>
+        <li><strong>Method:</strong> <code>POST</code></li>
+        <li><strong>URL:</strong> <code>https://api.anthropic.com/v1/messages</code></li>
+        <li><strong>Authentication:</strong> <code>Generic Credential Type</code> → <code>Header Auth</code>. תיצור credential חדש:
+          <ul>
+            <li><strong>Name:</strong> <code>x-api-key</code></li>
+            <li><strong>Value:</strong> ה-API key שלך מאנתרופיק (אותו אחד מ-<code>.env</code> בשיעור 1)</li>
+          </ul>
+        </li>
+        <li><strong>Send Headers:</strong> Yes. הוסף:
+          <ul>
+            <li><code>anthropic-version</code> : <code>2023-06-01</code></li>
+            <li><code>content-type</code> : <code>application/json</code></li>
+          </ul>
+        </li>
+        <li><strong>Send Body:</strong> Yes. <strong>Body Content Type:</strong> JSON.</li>
+        <li><strong>JSON:</strong>
+<div class="code-block">
+<div class="code-block__header"><span class="code-block__filename">JSON Body</span><button class="code-block__copy">העתק</button></div>
+<pre><code>{
+  "model": "claude-haiku-4-5",
+  "max_tokens": 512,
+  "system": "אתה עוזר ידידותי שעונה בעברית בצורה ממוקדת.",
+  "messages": [
+    { "role": "user", "content": "={{ $json.body.question }}" }
+  ]
+}</code></pre>
+</div>
+        </li>
+      </ul>
+
+      <div class="callout callout--info">
+        <div class="callout__title">מה זה <code>{{ $json.body.question }}</code>?</div>
+        <p>זה <strong>n8n expression</strong> — דרך להזריק data מ-node קודם. <code>$json</code> = הנתונים שזרמו ל-node הנוכחי. <code>.body.question</code> = השדה <code>question</code> בתוך <code>body</code> של ה-webhook. כל מה שמופיע ב-<code>{{ }}</code> מחושב דינמית.</p>
+      </div>
+
+      <hr class="mini-divider">
+
+      <h3>3.4 Node 3 — Gmail עם התשובה של Claude</h3>
+
+      <p>הוסף עוד <strong>Gmail Send</strong> אחרי ה-HTTP Request:</p>
+      <ul>
+        <li><strong>To:</strong> המייל שלך</li>
+        <li><strong>Subject:</strong> <code>תשובת Claude ל: {{ $('Webhook').first().json.body.question }}</code></li>
+        <li><strong>Email Type:</strong> Text</li>
+        <li><strong>Message:</strong> <code>{{ $json.content[0].text }}</code></li>
+      </ul>
+
+      <p><code>$json.content[0].text</code> = חילוץ התשובה מהמבנה של Claude. <strong>זה בדיוק אותו ניווט</strong> שעשינו ב-Python עם <code>response.content[0].text</code>.</p>
+
+      <hr class="mini-divider">
+
+      <h3>3.5 בדיקה עם curl</h3>
+
+      <p>הפעל את ה-workflow ב-<strong>Listen for Test Event</strong> (כפתור בתחתית). ה-Test URL פעיל.</p>
+
+      <p class="do-here do-here--terminal">ב-Terminal של המאק:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header"><span class="code-block__filename">Terminal</span><button class="code-block__copy">העתק</button></div>
+<pre><code>curl -X POST 'https://shai.app.n8n.cloud/webhook-test/ai-assistant' \
+  -H 'Content-Type: application/json' \
+  -d '{"question": "מה ההבדל בין SEO ל-SEM?"}'</code></pre>
+      </div>
+
+      <p><strong>(החלף את ה-URL ב-Test URL שלך מ-3.2.)</strong> תוך מספר שניות:</p>
+      <ol>
+        <li>n8n יראה את ה-nodes הופכים לירוקים</li>
+        <li>תקבל מייל עם תשובת Claude</li>
+      </ol>
+
+      <hr class="mini-divider">
+
+      <h3>3.6 הפעלה לעבודה אמיתית</h3>
+      <p>לחץ <strong>Active</strong> בפינה הימנית עליונה. עכשיו ה-Production URL פעיל 24/7. כל קריאה אליו — workflow רץ.</p>
 
       <div class="callout callout--success">
-        <div class="callout__title">זה התרגיל הכי חשוב של Phase 1</div>
-        <p>כי הוא דורש ממך <strong>לחשוב כמו Solution Architect</strong>.</p>
+        <div class="callout__title">מה הרגע עשית</div>
+        <p>בנית <strong>שירות AI שלך</strong> שזמין דרך URL. אתה יכול לקרוא לו מ-Slack (פוסט אוטומטי), מהדפדפן, מ-bookmarklet, או אפילו מ-Python (<code>requests.post</code>). זה <em>צעד אמיתי לקראת בניית AI agents</em>.</p>
       </div>
 
       <button class="section-complete-btn" data-section="part-3">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 4: Portal Final Touches -->
     <section class="lesson-section" id="part-4">
       <div class="lesson-section__header">
         <div class="lesson-section__num">4</div>
-        <h2 class="lesson-section__title">Portal Final Touches</h2>
-        <span class="lesson-section__time">1 שעה</span>
+        <h2 class="lesson-section__title">Workflow 3 — בנה משהו שלך</h2>
+        <span class="lesson-section__time">45 דקות</span>
       </div>
 
-      <h3>מה בנינו ב-Phase 1</h3>
-      <p>בארבעה שיעורים הקמנו פורטל לימוד שלם:</p>
+      <div class="refresher">
+        <div class="refresher__title">הזמן ליצירה</div>
+        <p>עד עכשיו בנינו workflows יחד. עכשיו — אתה לבד. בחר אחד מהרעיונות למטה, או חשוב על משהו שיהיה שימושי לך באמת.</p>
+      </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>שיעור</th>
-            <th>מה למדנו</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Lesson 1</td>
-            <td>הגדרת סביבה, Python ראשון, פורטל live ב-GitHub Pages</td>
-          </tr>
-          <tr>
-            <td>Lesson 2</td>
-            <td>מבני נתונים, JSON, לולאות, ניתוח נתוני SEO</td>
-          </tr>
-          <tr>
-            <td>Lesson 3</td>
-            <td>HTTP, Claude API, error handling, Git workflow</td>
-          </tr>
-          <tr>
-            <td>Lesson 4</td>
-            <td>n8n, automation visual, workflow ראשון, Claude ב-n8n</td>
-          </tr>
-        </tbody>
-      </table>
+      <h3>4.1 רעיונות לבחירה</h3>
 
-      <p>עכשיו סוגרים את Phase 1 ב-<span class="term" data-term-id="git">Git</span>.</p>
+      <div class="callout callout--info">
+        <div class="callout__title">אופציה A — Daily Tip Email</div>
+        <p>Workflow שרץ כל בוקר (Schedule Trigger), שולח prompt ל-Claude ("תן לי טיפ SEO ליום הזה"), ושולח את התשובה למייל. דרישה: לבחור שעה ב-Schedule node, להגדיר את ה-prompt, לחבר Gmail.</p>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">אופציה B — Wikipedia Researcher</div>
+        <p>אותו topic_researcher משיעור 3 — אבל ב-n8n. Webhook מקבל נושא → HTTP Request ל-Wikipedia → HTTP Request ל-Claude → מייל עם התוצאה. <strong>אתגר אמיתי</strong> — שילוב של 2 APIs ב-workflow אחד.</p>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">אופציה C — RSS to Email Digest</div>
+        <p>Schedule (פעם ביום) → RSS Read node (בלוג שאתה עוקב אחריו) → Claude לסיכום קצר → מייל עם 3 הסיכומים החדשים. יותר מורכב, אבל ערך מובהק.</p>
+      </div>
+
+      <div class="callout callout--info">
+        <div class="callout__title">אופציה D — משלך</div>
+        <p>חשוב על משהו שיהיה שימושי לעבודה שלך. <strong>הנוסחה:</strong> טריגר + 1-2 צעדי עיבוד + מוצא. אם זה לוקח לך פחות מ-45 דקות לבנות — מצוין. אם אתה תקוע — תפנה ל-Claude בצ'אט עם הרעיון, הוא יתן לך הצעות לארכיטקטורה.</p>
+      </div>
 
       <hr class="mini-divider">
 
-      <h3>TODO — 6 צעדים לסיום Phase 1</h3>
-
-      <h4>1. עדכן <code>PROGRESS.md</code> עם נתוני Phase 1 הסופיים</h4>
-      <p>
-        פתח <code>PROGRESS.md</code> בשורש הפרויקט. מלא עבור Lesson 4:
-        שעות בפועל, קושי (1-5), הערות.
-        וודא ש-Phase 1 summary מלאה.
-      </p>
-
-      <h4>2. וודא שכל ה-checkpoints מסומנים</h4>
-      <p>
-        כנס לכל שיעור (lesson-01 → lesson-04) ולחץ על כל checkpoint item שהשלמת.
-        ה-localStorage שומר את הסימונים אוטומטית.
-      </p>
-
-      <h4>3. הוסף את הסקריפטים ל-<code>exercises/</code></h4>
-      <p>וודא שיש לך את ארבעת הסקריפטים:</p>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">מבנה תיקיית exercises/</span>
-        </div>
-<pre><code>exercises/lesson-01/hello.py
-exercises/lesson-01/domain_extractor.py
-exercises/lesson-02/top_clients.py
-exercises/lesson-02/clients.json
-exercises/lesson-03/claude_call.py
-exercises/lesson-04/n8n_curl_test.sh</code></pre>
-      </div>
-
-      <h4>4. כתוב <code>notes/phase-1-retro.md</code></h4>
-      <p>כתוב הערה אישית קצרה. כמה שאלות להתחיל:</p>
+      <h3>4.2 בנה. תספר.</h3>
+      <p>בחר אופציה, בנה את ה-workflow, הפעל לפחות פעם אחת בהצלחה. עדכן את ה-PROGRESS.md עם:</p>
       <ul>
-        <li>מה הכי הפתיע אותי ב-Phase 1?</li>
-        <li>מה היה הכי קשה?</li>
-        <li>מה למדתי שאני כבר יכול להשתמש בו ב-Selected?</li>
+        <li>איזה workflow בנית</li>
+        <li>כמה זמן זה לקח</li>
+        <li>איפה היה הקושי הכי גדול</li>
+        <li>מה היה הרגע הכי מתגמל</li>
       </ul>
-
-      <h4>5. Commit אחרון של Phase 1</h4>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">Terminal — Phase 1 final commit</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>git add .
-git commit -m "[Phase 1] Completed — Foundations Sprint"
-git push</code></pre>
-      </div>
-
-      <h4>6. Push ל-GitHub + וודא שהפורטל חי</h4>
-
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__filename">Terminal</span>
-          <button class="code-block__copy">העתק</button>
-        </div>
-<pre><code>git push origin main</code></pre>
-      </div>
-
-      <p>
-        פתח <code>https://YOUR-USERNAME.github.io/vibe-master-academy/</code>
-        ווודא שהפורטל עלה.
-      </p>
-
-      <div class="callout callout--tip">
-        <div class="callout__title">הפורטל עצמו — אין מה לשנות</div>
-        <p>
-          ה-<code>lesson-04.html</code> שאתה קורא עכשיו הוא כבר חלק מהפורטל שבנינו יחד.
-          אין צורך לערוך אותו. Phase 2 יכלול הוספת sections חדשים לפורטל — לא עריכת קבצי Phase 1.
-        </p>
-      </div>
 
       <button class="section-complete-btn" data-section="part-4">סיימתי חלק זה ✓</button>
     </section>
 
-    <!-- Part 5: Phase 1 Review -->
     <section class="lesson-section" id="part-5">
       <div class="lesson-section__header">
         <div class="lesson-section__num">5</div>
-        <h2 class="lesson-section__title">Phase 1 Review + Self-Check</h2>
-        <span class="lesson-section__time">30 דקות</span>
+        <h2 class="lesson-section__title">Phase 1 Retrospective — סיום הסכימה הראשונה</h2>
+        <span class="lesson-section__time">15 דקות</span>
       </div>
 
-      <h3>5 שאלות לפני שאתה עובר ל-Phase 2</h3>
-      <p>ענה לעצמך בלי לגלול חזרה:</p>
-      <ol>
-        <li>מה זה <span class="term" data-term-id="webhook">Webhook</span> ולמה הוא שימושי?</li>
-        <li>מתי תעדיף <span class="term" data-term-id="n8n">n8n</span> על <span class="term" data-term-id="python">Python</span> ולהיפך?</li>
-        <li>ספר במשפט אחד מה כל אחד מ-4 השיעורים של Phase 1 לימד.</li>
-        <li>מה הדבר הכי מפתיע שלמדת ב-Phase 1?</li>
-        <li>איזה פרויקט / אוטומציה ב-Selected אתה כבר חושב לבנות עם הסקיל הזה?</li>
-      </ol>
-
-      <p>אם אחת השאלות מעלה ספק — חזור על החלק הרלוונטי. אין בושה. ככה הדברים יידבקו.</p>
-
-      <hr class="mini-divider">
-
-      <h3>Self-Rating — דרג את עצמך 1-5</h3>
-      <p>
-        פתח <code>PROGRESS.md</code> ומלא את טבלת ה-self-rating לסוף Phase 1:
-      </p>
+      <h3>5.1 מה בנית ב-Phase 1</h3>
 
       <table>
         <thead>
-          <tr>
-            <th>קריטריון</th>
-            <th>ציון (1-5)</th>
-          </tr>
+          <tr><th>שיעור</th><th>מה בנית</th><th>למה זה חשוב</th></tr>
         </thead>
         <tbody>
-          <tr><td>Python syntax בסיסי</td><td>__</td></tr>
-          <tr><td>קריאה ועריכה של קוד קיים</td><td>__</td></tr>
-          <tr><td>מבני נתונים (list, dict)</td><td>__</td></tr>
-          <tr><td>JSON — קריאה וכתיבה</td><td>__</td></tr>
-          <tr><td>HTTP request בסיסי</td><td>__</td></tr>
-          <tr><td>Claude API call</td><td>__</td></tr>
-          <tr><td>Error handling (try/except)</td><td>__</td></tr>
-          <tr><td>Git daily workflow</td><td>__</td></tr>
-          <tr><td>n8n — Webhook workflow</td><td>__</td></tr>
-          <tr><td>n8n — Claude integration</td><td>__</td></tr>
+          <tr>
+            <td>1</td>
+            <td><code>greet.py</code>, <code>domain_extractor.py</code>, <code>ask_claude.py</code></td>
+            <td>Python שמדבר עם Claude API</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><code>seo_advisor.py</code> + recommendations.json</td>
+            <td>Pipeline שלם: data → AI → output מובנה</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><code>topic_researcher.py</code> + <code>safe_researcher.py</code></td>
+            <td>שילוב 2 APIs + error handling + Git</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>workflow ai-assistant + workflow אישי</td>
+            <td>אותם דברים — בלי קוד, דרך n8n</td>
+          </tr>
         </tbody>
       </table>
 
-      <div class="callout callout--info">
-        <div class="callout__title">עצה על הדירוג</div>
-        <p>1 = לא מבין בכלל. 3 = מבין, יכול לעשות עם עזרה. 5 = יכול להסביר לאחר. אין ציון "נכון" — זה כלי לדעת מה לחזק ב-Phase 2.</p>
+      <div class="callout callout--success">
+        <div class="callout__title">תמונה כוללת</div>
+        <p>אתה עכשיו יודע <strong>לקרוא קוד Python של 50-100 שורות, להבין אותו, ולשנות אותו</strong>. אתה יודע <strong>להגיע ל-Claude משני כיוונים</strong> — מ-Python ומ-n8n. אתה יודע <strong>לחבר APIs חיצוניים</strong> ב-pipeline. ואתה יודע <strong>git workflow יומי</strong>. <em>זה מה שלוקח אדם ממצב "אני לא יודע לכתוב קוד" למצב "אני יכול לבנות".</em></p>
       </div>
 
       <hr class="mini-divider">
 
-      <h3>סיכום Phase 1</h3>
-      <p>
-        אתה עכשיו יודע <span class="term" data-term-id="python">Python</span> ברמה בסיסית,
-        מבין <span class="term" data-term-id="api">APIs</span>,
-        מסונכרן ב-<span class="term" data-term-id="git">Git</span>,
-        ובנית <span class="term" data-term-id="workflow">workflow</span> ראשון ב-<span class="term" data-term-id="n8n">n8n</span>.
-        זה לא טריוויאלי. שווה את העוגה.
-      </p>
-      <p>
-        Phase 2 — Music Radar — יבנה על הכל: Python + API + n8n + Claude → מוצר שיכול לעבוד ב-Selected.
-      </p>
+      <h3>5.2 Self-rating — דרג את עצמך 1-5</h3>
+
+      <ul>
+        <li>קריאת קוד Python — אני יכול לקבל סקריפט של 50 שורות שClaude כתב ולהבין מה הוא עושה.</li>
+        <li>עבודה עם JSON — אני יודע לקרוא, לערוך, ולכתוב.</li>
+        <li>קריאה ל-API חיצוני דרך Python — אני יכול לבנות כזו עם הדרכה.</li>
+        <li>חיבור ל-Claude API — אני יודע לכתוב prompt טוב, להריץ, ולעבד את התשובה.</li>
+        <li>Git workflow יומי — אני עושה status/diff/add/commit/push בלי לפחד.</li>
+        <li>n8n workflows — אני יכול לבנות workflow בסיסי עם trigger + 2-3 nodes.</li>
+      </ul>
+
+      <p>אם כל הדירוגים שלך 3+, אתה <strong>מוכן ל-Phase 2</strong>. אם משהו ב-1-2, חזור על הסעיף הספציפי לפני שאתה ממשיך.</p>
+
+      <hr class="mini-divider">
+
+      <h3>5.3 עדכן PROGRESS.md</h3>
+      <p>לשיעור 4: שעות בפועל, קושי (1-5), הערות. <strong>וגם — מלא את הפרק "Phase 1 Checkpoint" עם רטרוספקטיבה</strong>: מה היה הכי טוב, מה היה הכי קשה, מה תרצה שונה ב-Phase 2.</p>
+
+      <hr class="mini-divider">
+
+      <h3>5.4 Git commit סופי של Phase 1</h3>
+      <p class="do-here do-here--terminal">ב-Terminal:</p>
+      <div class="code-block code-block--terminal">
+        <div class="code-block__header"><span class="code-block__filename">Terminal</span><button class="code-block__copy">העתק</button></div>
+<pre><code>cd ~/projects/vibe-master-academy
+git add PROGRESS.md
+git commit -m "Phase 1 complete — n8n workflows + Phase 1 retrospective"
+git push</code></pre>
+      </div>
 
       <button class="section-complete-btn" data-section="part-5">סיימתי חלק זה ✓</button>
     </section>
@@ -689,49 +472,39 @@ git push</code></pre>
       <span class="section-divider__dot"></span>
     </div>
 
-    <!-- Checkpoint Card -->
     <section class="lesson-section" id="checkpoint">
       <div class="lesson-section__header">
         <div class="lesson-section__num">✓</div>
-        <h2 class="lesson-section__title">Checkpoint — סיום Phase 1</h2>
+        <h2 class="lesson-section__title">Checkpoint — השלמת Lesson 4 + Phase 1</h2>
       </div>
 
-      <p>כשכל ה-✓ למטה ירוקים — Phase 1 סגור ואתה מוכן ל-Phase 2.</p>
+      <p>זה ה-checkpoint הסופי של Phase 1. כשכל ה-✓ ירוקים — אתה מוכן ל-Phase 2: Music Radar 🎵.</p>
 
       <div class="checklist">
         <ul>
-          <li data-id="w4-n8n-account"><span class="term" data-term-id="n8n">n8n</span>.cloud account פתוח</li>
-          <li data-id="w4-hello-workflow">Hello <span class="term" data-term-id="workflow">workflow</span> רץ ושלח מייל</li>
-          <li data-id="w4-claude-workflow">Claude <span class="term" data-term-id="workflow">workflow</span> רץ ושלח סיכום</li>
-          <li data-id="w4-progress"><code>PROGRESS.md</code> מעודכן מלא</li>
-          <li data-id="w4-exercises">4 הסקריפטים ב-<code>exercises/</code></li>
-          <li data-id="w4-retro"><code>notes/phase-1-retro.md</code> נכתב</li>
-          <li data-id="w4-commit">Phase 1 <span class="term" data-term-id="commit">commit</span> + push ל-<span class="term" data-term-id="github">GitHub</span></li>
-          <li data-id="w4-phase2-ready">מוכן ל-Phase 2 — Music Radar</li>
+          <li data-id="w4-n8n-account">חשבון n8n cloud פעיל ויש לי URL ייחודי</li>
+          <li data-id="w4-hello-workflow">Workflow 1 (Hello Email) רץ והגיע מייל</li>
+          <li data-id="w4-claude-workflow">Workflow 2 (AI Assistant) פעיל — curl אל ה-webhook החזיר תשובה במייל</li>
+          <li data-id="w4-own-workflow">Workflow 3 שלי רץ לפחות פעם אחת בהצלחה</li>
+          <li data-id="w4-retro">PROGRESS.md מעודכן עם רטרוספקטיבה של Phase 1</li>
+          <li data-id="w4-commit">Git commit + push של Phase 1 בוצעו</li>
         </ul>
       </div>
 
       <div class="callout callout--success">
-        <div class="callout__title">🎉 סיימת את Phase 1!</div>
-        <p>
-          ארבעה שיעורים, ~20 שעות עבודה, פורטל לימוד שרץ online ב-GitHub Pages.
-          למדת <span class="term" data-term-id="python">Python</span>, <span class="term" data-term-id="json">JSON</span>,
-          <span class="term" data-term-id="api">APIs</span>, <span class="term" data-term-id="git">Git</span>,
-          ו-<span class="term" data-term-id="n8n">n8n</span>.
-          Phase 2 מחכה — Music Radar, כלי AI אמיתי שאפשר להשתמש בו ב-Selected.
-        </p>
+        <div class="callout__title">סיימת את Phase 1 🎉</div>
+        <p>זה לא רק "סיום שיעורים". זה הצעד הראשון בדרך ל-Solution Architect. ב-Phase 2 (Music Radar) נבנה פרויקט אמיתי — מערכת שסורקת מוזיקה אלקטרונית באוטומציה. אתה לא תכתוב את הקוד מאפס, אבל אתה תכוון את ה-AI שלך לבנות אותו — ותדע בדיוק מה הוא עושה. <em>זה התחיל.</em></p>
       </div>
     </section>
 
-    <!-- Lesson Footer Navigation -->
     <div class="lesson-footer">
       <a href="lesson-03.html" class="lesson-nav-btn">
-        <div class="lesson-nav-btn__label">השיעור הקודם</div>
-        <div class="lesson-nav-btn__title">Lesson 3 — APIs + Git + Errors</div>
+        <div class="lesson-nav-btn__label">→ השיעור הקודם</div>
+        <div class="lesson-nav-btn__title">Lesson 3 — APIs + Errors + Git</div>
       </a>
-      <a href="../phase-2/index.html" class="lesson-nav-btn lesson-nav-btn--next">
-        <div class="lesson-nav-btn__label">פאזה הבאה</div>
-        <div class="lesson-nav-btn__title">← Phase 2 — Music Radar</div>
+      <a href="index.html" class="lesson-nav-btn lesson-nav-btn--next">
+        <div class="lesson-nav-btn__label">סיימת את Phase 1</div>
+        <div class="lesson-nav-btn__title">← חזרה ל-Phase 1 Overview</div>
       </a>
     </div>
 
